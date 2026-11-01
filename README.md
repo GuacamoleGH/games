@@ -4,9 +4,10 @@
   <img src="public/logo.png" alt="GuacamoleGH Games Logo" width="128" height="128" />
   <p><strong>Catálogo web de juegos arcade clásicos para navegador en el homelab GuacamoleGH</strong></p>
   <p>
-    <img src="https://img.shields.io/badge/status-v1.0.0%20(5%20Juegos%20Disponibles)-00f59b?style=flat-square" alt="Status" />
+    <img src="https://img.shields.io/badge/status-v1.3.1%20(6%20Juegos%20Disponibles)-00f59b?style=flat-square" alt="Status" />
     <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License" />
     <img src="https://img.shields.io/badge/methodology-DBV%20Specs%20Ops%20v3.2.0-00d9c4?style=flat-square" alt="Methodology" />
+    <img src="https://img.shields.io/badge/tests-87%20passing-00d9c4?style=flat-square" alt="Tests" />
   </p>
 </div>
 
@@ -30,7 +31,7 @@
 
 **GuacamoleGH Games** es un catálogo web arcade moderno, minimalista y tecnológico, diseñado para explorar y jugar a títulos clásicos directamente desde el navegador dentro del homelab GuacamoleGH.
 
-El proyecto cuenta con sus **cinco juegos arcade clásicos completamente jugables**: **Snake**, **Pong**, **Tetris**, **Breakout** y **Tres en raya**, todos ellos desacoplados en módulos independientes dentro de `src/games/`, con diseño responsive, tema oscuro en tonos carbón y acentos verde/turquesa, controles táctiles y persistencia de récords y marcadores.
+El proyecto cuenta con sus **seis juegos arcade clásicos completamente jugables**: **Snake**, **Pong**, **Tetris**, **Breakout**, **Tres en raya** y **Space Invaders**, todos ellos desacoplados en módulos independientes dentro de `src/games/`, con diseño responsive, tema oscuro en tonos carbón y acentos verde/turquesa, controles táctiles, selector de dificultad dinámica con modo Extremo y síntesis de audio nativa con Web Audio API.
 
 El desarrollo sigue rigurosamente la metodología **Spec-Driven Development (SDD)** con el framework [dbv-specs-ops](https://github.com/davidbuenov/dbv-specs-ops).
 
@@ -46,6 +47,7 @@ El desarrollo sigue rigurosamente la metodología **Spec-Driven Development (SDD
 | **Tetris** | Puzzle | 🟢 **Disponible (Jugable)** | `src/games/tetris/` |
 | **Breakout** | Arcade | 🟢 **Disponible (Jugable)** | `src/games/breakout/` |
 | **Tres en raya** | Estrategia | 🟢 **Disponible (Jugable)** | `src/games/tic-tac-toe/` |
+| **Space Invaders** | Arcade Shooter | 🟢 **Disponible (Jugable)** | `src/games/space-invaders/` |
 
 Cada juego futuro se implementará de manera modular y aislada en su propio directorio dentro de `src/games/` sin acoplarse al catálogo.
 
