@@ -44,7 +44,11 @@ export class TicTacToeEngine {
   private scores: ScoreBoard;
   private isAiThinking: boolean = false;
 
-  constructor(initialDifficulty: AIDifficulty = 'normal', initialScores?: Partial<ScoreBoard>) {
+  constructor(
+    initialDifficulty: AIDifficulty = 'normal',
+    initialScores?: Partial<ScoreBoard>,
+    startingPlayer?: Player
+  ) {
     this.board = Array<CellValue>(9).fill(null);
     this.difficulty = initialDifficulty;
     this.scores = {
@@ -52,16 +56,18 @@ export class TicTacToeEngine {
       aiWins: initialScores?.aiWins ?? 0,
       draws: initialScores?.draws ?? 0
     };
-    this.reset();
+    this.reset(startingPlayer);
   }
 
   /**
    * Reinicia el tablero para una nueva ronda.
+   * Si no se especifica el jugador inicial, se escoge aleatoriamente entre X y O (50%).
    * @spec REQ-36
+   * @param startingPlayer Jugador inicial opcional ('X' o 'O'). Si se omite, se elige al azar.
    */
-  public reset(): void {
+  public reset(startingPlayer?: Player): void {
     this.board = Array<CellValue>(9).fill(null);
-    this.currentTurn = 'X';
+    this.currentTurn = startingPlayer ?? (Math.random() < 0.5 ? 'X' : 'O');
     this.status = 'PLAYING';
     this.result = null;
     this.winningLine = null;

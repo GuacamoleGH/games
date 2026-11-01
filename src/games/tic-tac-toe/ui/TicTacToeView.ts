@@ -59,6 +59,7 @@ export class TicTacToeView {
 
     this.bindEvents();
     this.render();
+    this.triggerAiMoveIfNeeded();
   }
 
   /**
@@ -108,6 +109,7 @@ export class TicTacToeView {
       }
       this.engine.reset();
       this.render();
+      this.triggerAiMoveIfNeeded();
     });
 
     const resetScoresBtn = this.container.querySelector('#ttt-reset-scores-btn');
@@ -190,8 +192,12 @@ export class TicTacToeView {
       return;
     }
 
-    if (afterMoveSnap.status === 'PLAYING' && afterMoveSnap.currentTurn === 'O') {
-      // Activar indicador de pensamiento y responder tras breve retardo natural
+    this.triggerAiMoveIfNeeded();
+  }
+
+  private triggerAiMoveIfNeeded(): void {
+    const snap = this.engine.getSnapshot();
+    if (snap.status === 'PLAYING' && snap.currentTurn === 'O' && !snap.isAiThinking) {
       this.engine.setAiThinking(true);
       this.render();
 
@@ -213,7 +219,7 @@ export class TicTacToeView {
             soundManager.play('bounce');
           }
         }
-      }, 350);
+      }, 400);
     }
   }
 
@@ -243,9 +249,19 @@ export class TicTacToeView {
         this.turnEl.innerHTML = '<span class="font-bold">¡TABLAS / EMPATE! 🤝</span>';
       }
     } else if (snap.isAiThinking) {
-      this.turnEl.innerHTML = '<span class="text-accent-turquoise">IA analizando jugada...</span>';
+      const isFirstMove = snap.board.every((c) => c === null);
+      if (isFirstMove) {
+        this.turnEl.innerHTML = '<span class="text-accent-turquoise">Empieza la IA (<strong class="text-accent-turquoise">O</strong>)...</span>';
+      } else {
+        this.turnEl.innerHTML = '<span class="text-accent-turquoise">IA analizando jugada...</span>';
+      }
     } else if (snap.currentTurn === 'X') {
-      this.turnEl.innerHTML = '<span>Tu turno (<strong class="text-accent-green">X</strong>)</span>';
+      const isFirstMove = snap.board.every((c) => c === null);
+      if (isFirstMove) {
+        this.turnEl.innerHTML = '<span>¡Empiezas tú! (<strong class="text-accent-green">X</strong>)</span>';
+      } else {
+        this.turnEl.innerHTML = '<span>Tu turno (<strong class="text-accent-green">X</strong>)</span>';
+      }
     } else {
       this.turnEl.innerHTML = '<span>Turno del rival (<strong class="text-accent-turquoise">O</strong>)</span>';
     }

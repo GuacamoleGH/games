@@ -17,7 +17,7 @@ describe('TicTacToeEngine - Lógica Pura y Minimax (@spec REQ-35, REQ-36, REQ-37
   let engine: TicTacToeEngine;
 
   beforeEach(() => {
-    engine = new TicTacToeEngine('unbeatable', { playerWins: 2, aiWins: 1, draws: 1 });
+    engine = new TicTacToeEngine('unbeatable', { playerWins: 2, aiWins: 1, draws: 1 }, 'X');
   });
 
   it('debe inicializarse con tablero vacío de 9 celdas y turno del jugador X (@spec REQ-35, REQ-36)', () => {
@@ -156,7 +156,7 @@ describe('TicTacToeEngine - Lógica Pura y Minimax (@spec REQ-35, REQ-36, REQ-37
   });
 
   it('la IA en dificultad normal debe realizar jugadas válidas (@spec REQ-37)', () => {
-    const defaultEngine = new TicTacToeEngine();
+    const defaultEngine = new TicTacToeEngine('normal', undefined, 'X');
     expect(defaultEngine.getSnapshot().difficulty).toBe('normal');
 
     defaultEngine.makeMove(0);
@@ -168,11 +168,23 @@ describe('TicTacToeEngine - Lógica Pura y Minimax (@spec REQ-35, REQ-36, REQ-37
 
   it('debe reiniciar el tablero manteniendo el historial de tanteo (@spec REQ-36, REQ-38)', () => {
     engine.makeMove(0);
-    engine.reset();
+    engine.reset('X');
     const snap = engine.getSnapshot();
     expect(snap.board.every((c) => c === null)).toBe(true);
     expect(snap.currentTurn).toBe('X');
     expect(snap.scores.playerWins).toBe(2);
+  });
+
+  it('debe permitir seleccionar el turno inicial aleatoriamente o fijarlo (@spec REQ-36)', () => {
+    const fixedX = new TicTacToeEngine('normal', undefined, 'X');
+    expect(fixedX.getSnapshot().currentTurn).toBe('X');
+
+    const fixedO = new TicTacToeEngine('normal', undefined, 'O');
+    expect(fixedO.getSnapshot().currentTurn).toBe('O');
+
+    // Al reiniciar sin parámetro debe producir un turno inicial válido ('X' o 'O')
+    fixedX.reset();
+    expect(['X', 'O']).toContain(fixedX.getSnapshot().currentTurn);
   });
 
   it('debe permitir a la IA mover correctamente aunque el estado de pensamiento esté activo (@spec REQ-37, REQ-38)', () => {

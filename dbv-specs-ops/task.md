@@ -119,6 +119,7 @@
 - [x] **T-106:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (86/86 tests, 52/52 specs, 0 avisos).
 - [x] **T-107:** Homogeneizar dimensiones y arquitectura de barra superior en los 6 juegos: altura fija de 42px en botones y HUD, estructura tríptico unificada (Volver / HUD / Acciones), y `white-space: nowrap` anti-envoltura (`main.css`, views) (`@spec REQ-04, REQ-25, REQ-33, REQ-46, RNF-02, RNF-03`).
 - [x] **T-108:** Corregir deformación de cuadrícula en Tres en Raya (`grid-template-rows: repeat(3, 1fr)` y `aspect-ratio: 1 / 1`), alinear barra superior a 640px en una sola línea horizontal y cancelar temporizadores asíncronos en reinicio (`main.css`, `TicTacToeView.ts`) (`@spec REQ-38, REQ-39, RNF-02, RNF-03`).
+- [x] **T-109:** Selección aleatoria de turno inicial (50% humano 'X', 50% IA 'O') en Tres en Raya al iniciar o pulsar Nueva Ronda, con mensajes de apertura dinámicos y disparo automático de IA (`TicTacToeEngine.ts`, `TicTacToeView.ts`, tests) (`@spec REQ-36`).
 
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
@@ -130,6 +131,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Tres en Raya optimizado: casillas cuadradas perfectas sin aplastamiento de filas vacías (`grid-template-rows: repeat(3, 1fr)`), barra superior en 3 bloques en una sola línea horizontal idéntica a Space Invaders y Breakout, y temporizador de IA asíncrono cancelado en reinicio. 86/86 tests pasando y build de producción verificado.
+> **Exact point / Punto exacto:** Turno inicial aleatorio en Tres en Raya completado con éxito: 50% de probabilidad para jugador ('X') o IA ('O') en cada inicio o "Nueva Ronda", con feedback textual en cabecera ("¡Empiezas tú! (X)" vs "Empieza la IA (O)...") y disparo automático tras 400ms si inicia la IA. Las casillas y barras superiores de todos los juegos permanecen 100% consistentes y alineadas. 87/87 tests pasando, build de producción verificado y 52/52 specs trazadas.
 > **Pending / Pendiente:** Ninguna tarea pendiente. Todos los requisitos REQ-01 a REQ-48 y RNF-01 a RNF-04 verificados.
 > **Next step / Próximo paso:** Listo para probar en homelab o continuar según feedback.
