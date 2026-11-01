@@ -31,6 +31,7 @@
 - **2026-11-01:** En matrices de rotación en TypeScript estricto (`noUncheckedIndexedAccess`), indexar filas y columnas de matrices cuadradas puede inferir `number | undefined`; almacenar el valor en una constante local (`const val = sourceRow[c]; if (val !== undefined) ...`) garantiza narrow type seguro sin aserciones forzadas.
 - **2026-11-01:** En Breakout, resolver como máximo un impacto de ladrillo por tick previene que la bola rompa simultáneamente dos ladrillos en una misma esquina y provoque rebotes dobles indeseados en el mismo fotograma.
 - **2026-11-01:** En juegos por turnos (Tres en raya), implementar la cuadrícula mediante elementos HTML semánticos (`role="grid"` y `role="gridcell"`) en lugar de Canvas puro optimiza la accesibilidad WCAG 2.1 AA por teclado (`Tab` y flechas direccionales) sin sacrificar la estética retro neón con SVG.
+- **2026-11-01:** En Snake, el procesamiento de entradas rápidas (pulsar dos teclas casi a la vez o encadenar giros en esquina antes del siguiente tick) requiere una cola de entrada (*Input Buffering* de 2 slots) donde cada nueva dirección se valida contra la última dirección encolada en el búfer y no solo contra el último tick ya procesado, permitiendo giros sucesivos fluidos y evitando descartes de pulsaciones válidas.
 
 ## 🚫 Rejection Memory (Caminos Descartados)
 

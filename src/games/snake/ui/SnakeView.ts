@@ -365,15 +365,35 @@ export class SnakeView {
 
     if (key === 'arrowup' || key === 'w') {
       e.preventDefault();
+      if (this.engine.getStatus() === 'READY') {
+        this.hideOverlay();
+        this.engine.start();
+        this.updateHUD();
+      }
       this.engine.setDirection('UP');
     } else if (key === 'arrowdown' || key === 's') {
       e.preventDefault();
+      if (this.engine.getStatus() === 'READY') {
+        this.hideOverlay();
+        this.engine.start();
+        this.updateHUD();
+      }
       this.engine.setDirection('DOWN');
     } else if (key === 'arrowleft' || key === 'a') {
       e.preventDefault();
+      if (this.engine.getStatus() === 'READY') {
+        this.hideOverlay();
+        this.engine.start();
+        this.updateHUD();
+      }
       this.engine.setDirection('LEFT');
     } else if (key === 'arrowright' || key === 'd') {
       e.preventDefault();
+      if (this.engine.getStatus() === 'READY') {
+        this.hideOverlay();
+        this.engine.start();
+        this.updateHUD();
+      }
       this.engine.setDirection('RIGHT');
     } else if (key === 'p' || key === 'escape') {
       e.preventDefault();

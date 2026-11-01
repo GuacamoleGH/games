@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
+### Fixed
+- **Snake (Input Buffering para giros rápidos):** Implementada cola de entrada de 2 posiciones para permitir giros encadenados o pulsación casi simultánea de dos teclas (por ejemplo, Izquierda y Arriba para hacer esquina rápida) sin descartar la segunda orden.
+- **Snake (Auto-inicio por teclado):** Pulsar cualquier tecla de movimiento en la pantalla inicial (READY) inicia automáticamente la partida hacia esa dirección.
+
 ### Added - GuacamoleGH Games (v1.0.0 - Fase 6: Tres en Raya y Catálogo Completo)
 - Juego completo y jugable de Tres en raya en módulo aislado `src/games/tic-tac-toe/` (REQ-35).
 - Motor de lógica pura (`TicTacToeEngine.ts`) con cuadrícula de 3x3, verificación de las 8 líneas ganadoras y detección de tablas/empates (REQ-36).

@@ -77,6 +77,25 @@ describe('SnakeEngine - Motor de Juego Puro (@spec REQ-07, REQ-08, REQ-09, REQ-1
     expect(engine.setDirection('LEFT')).toBe(true);
   });
 
+  it('debe admitir encadenamiento de dos giros rápidos en el mismo tick mediante cola de comandos (@spec REQ-11)', () => {
+    engine.start();
+    // Serpiente moviéndose a la DERECHA inicialmente
+    // El jugador pulsa ARRIBA e IZQUIERDA rápidamente (dos teclas seguidas o a la vez)
+    const firstTurn = engine.setDirection('UP');
+    const secondTurn = engine.setDirection('LEFT');
+
+    expect(firstTurn).toBe(true);
+    expect(secondTurn).toBe(true);
+
+    // Primer tick: procesa el primer giro (ARRIBA)
+    engine.tick();
+    expect(engine.getSnapshot().direction).toBe('UP');
+
+    // Segundo tick: procesa el segundo giro encadenado (IZQUIERDA)
+    engine.tick();
+    expect(engine.getSnapshot().direction).toBe('LEFT');
+  });
+
   it('debe colisionar contra los muros de la cuadrícula produciendo GAME_OVER (@spec REQ-09)', () => {
     engine.start();
     // Grid 10x10, cabeza empieza en x=5. Moviendo 5 veces a la derecha colisiona con el borde (x=10)

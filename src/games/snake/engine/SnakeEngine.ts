@@ -25,8 +25,8 @@ export class SnakeEngine {
   private snake: Point[] = [];
   private food: Point = { x: 5, y: 5 };
   private currentDirection: Direction = 'RIGHT';
-  private nextDirection: Direction = 'RIGHT';
   private lastProcessedDirection: Direction = 'RIGHT';
+  private directionQueue: Direction[] = [];
   private status: GameStatus = 'READY';
   private score: number = 0;
   private highScore: number = 0;
@@ -58,8 +58,8 @@ export class SnakeEngine {
       { x: midX - 2, y: midY }
     ];
     this.currentDirection = 'RIGHT';
-    this.nextDirection = 'RIGHT';
     this.lastProcessedDirection = 'RIGHT';
+    this.directionQueue = [];
     this.status = 'READY';
     this.score = 0;
     this.tickIntervalMs = this.config.initialSpeedMs;
@@ -93,16 +93,29 @@ export class SnakeEngine {
   }
 
   /**
-   * Intenta cambiar la dirección de movimiento evitando giros ilegales de 180°.
+   * Intenta cambiar la dirección de movimiento evitando giros ilegales de 180°
+   * y almacenando en búfer giros rápidos consecutivos (input buffering).
    * @spec REQ-11
    * @param dir Nueva dirección solicitada.
-   * @returns true si el cambio es válido, false si es un giro opuesto ilegal.
+   * @returns true si el cambio es válido, false si es un giro opuesto ilegal o la cola está llena.
    */
   public setDirection(dir: Direction): boolean {
-    if (this.isOppositeDirection(dir, this.lastProcessedDirection)) {
+    if (this.directionQueue.length >= 2) {
       return false;
     }
-    this.nextDirection = dir;
+
+    // La dirección previa contra la que comparar giros ilegales de 180°
+    // es la última encolada en el búfer, o la procesada actualmente si la cola está vacía.
+    const lastDirection =
+      this.directionQueue.length > 0
+        ? this.directionQueue[this.directionQueue.length - 1]!
+        : this.lastProcessedDirection;
+
+    if (dir === lastDirection || this.isOppositeDirection(dir, lastDirection)) {
+      return false;
+    }
+
+    this.directionQueue.push(dir);
     return true;
   }
 
@@ -116,7 +129,9 @@ export class SnakeEngine {
       return this.getSnapshot();
     }
 
-    this.currentDirection = this.nextDirection;
+    if (this.directionQueue.length > 0) {
+      this.currentDirection = this.directionQueue.shift()!;
+    }
     this.lastProcessedDirection = this.currentDirection;
 
     const head = this.snake[0];
