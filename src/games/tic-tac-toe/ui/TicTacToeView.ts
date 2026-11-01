@@ -83,7 +83,12 @@ export class TicTacToeView {
     this.diffBtn?.addEventListener('click', () => {
       soundManager.play('click');
       const snap = this.engine.getSnapshot();
-      const newDiff: AIDifficulty = snap.difficulty === 'unbeatable' ? 'easy' : 'unbeatable';
+      const newDiff: AIDifficulty =
+        snap.difficulty === 'normal'
+          ? 'unbeatable'
+          : snap.difficulty === 'unbeatable'
+            ? 'easy'
+            : 'normal';
       this.engine.setDifficulty(newDiff);
       this.saveDifficulty(newDiff);
       this.render();
@@ -211,8 +216,12 @@ export class TicTacToeView {
     this.aiWinsEl.textContent = snap.scores.aiWins.toString();
 
     // Actualizar botón de dificultad
-    this.diffBtn.textContent =
-      snap.difficulty === 'unbeatable' ? 'IA: Imbatible (Minimax)' : 'IA: Fácil (Relajado)';
+    const diffLabelMap: Record<AIDifficulty, string> = {
+      easy: 'IA: Fácil (Relajado)',
+      normal: 'IA: Normal (Equilibrado)',
+      unbeatable: 'IA: Imbatible (Minimax)'
+    };
+    this.diffBtn.textContent = diffLabelMap[snap.difficulty];
 
     // Mensaje de turno o resultado
     if (snap.status === 'FINISHED') {
@@ -299,13 +308,13 @@ export class TicTacToeView {
   private loadDifficulty(): AIDifficulty {
     try {
       const diff = localStorage.getItem(DIFFICULTY_STORAGE_KEY);
-      if (diff === 'easy' || diff === 'unbeatable') {
+      if (diff === 'easy' || diff === 'normal' || diff === 'unbeatable') {
         return diff;
       }
     } catch {
       // Ignorar
     }
-    return 'unbeatable';
+    return 'normal';
   }
 
   private saveDifficulty(diff: AIDifficulty): void {
@@ -339,7 +348,7 @@ export class TicTacToeView {
               </div>
             </div>
             <button id="ttt-diff-btn" class="hud-btn" aria-label="Alternar dificultad de la IA">
-              IA: Imbatible (Minimax)
+              IA: Normal (Equilibrado)
             </button>
           </div>
 

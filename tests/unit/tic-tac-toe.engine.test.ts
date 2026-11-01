@@ -155,6 +155,17 @@ describe('TicTacToeEngine - Lógica Pura y Minimax (@spec REQ-35, REQ-36, REQ-37
     expect(engine.getSnapshot().board[aiMove!]).toBe('O');
   });
 
+  it('la IA en dificultad normal debe realizar jugadas válidas (@spec REQ-37)', () => {
+    const defaultEngine = new TicTacToeEngine();
+    expect(defaultEngine.getSnapshot().difficulty).toBe('normal');
+
+    defaultEngine.makeMove(0);
+    const aiMove = defaultEngine.makeAiMove();
+    expect(aiMove).not.toBeNull();
+    expect(aiMove).not.toBe(0);
+    expect(defaultEngine.getSnapshot().board[aiMove!]).toBe('O');
+  });
+
   it('debe reiniciar el tablero manteniendo el historial de tanteo (@spec REQ-36, REQ-38)', () => {
     engine.makeMove(0);
     engine.reset();

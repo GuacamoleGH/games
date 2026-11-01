@@ -40,11 +40,11 @@ export class TicTacToeEngine {
   private status: TicTacToeGameStatus = 'READY';
   private result: GameResult = null;
   private winningLine: WinningLine | null = null;
-  private difficulty: AIDifficulty = 'unbeatable';
+  private difficulty: AIDifficulty = 'normal';
   private scores: ScoreBoard;
   private isAiThinking: boolean = false;
 
-  constructor(initialDifficulty: AIDifficulty = 'unbeatable', initialScores?: Partial<ScoreBoard>) {
+  constructor(initialDifficulty: AIDifficulty = 'normal', initialScores?: Partial<ScoreBoard>) {
     this.board = Array<CellValue>(9).fill(null);
     this.difficulty = initialDifficulty;
     this.scores = {
@@ -131,6 +131,8 @@ export class TicTacToeEngine {
 
     if (this.difficulty === 'easy') {
       chosenIndex = this.getEasyMove();
+    } else if (this.difficulty === 'normal') {
+      chosenIndex = this.getNormalMove();
     } else {
       chosenIndex = this.getBestMoveMinimax();
     }
@@ -209,6 +211,42 @@ export class TicTacToeEngine {
       }
     }
     return indices;
+  }
+
+  private getNormalMove(): number {
+    const emptyCells = this.getEmptyCellIndices(this.board);
+    if (emptyCells.length === 0) {
+      return -1;
+    }
+
+    // 1) Si la IA puede ganar en este turno, toma la victoria
+    for (const idx of emptyCells) {
+      this.board[idx] = 'O';
+      const win = this.checkWin(this.board, 'O');
+      this.board[idx] = null;
+      if (win) {
+        return idx;
+      }
+    }
+
+    // 2) Si el rival está a punto de ganar, bloquear el 80% de las veces
+    for (const idx of emptyCells) {
+      this.board[idx] = 'X';
+      const playerWin = this.checkWin(this.board, 'X');
+      this.board[idx] = null;
+      if (playerWin && Math.random() < 0.8) {
+        return idx;
+      }
+    }
+
+    // 3) 50% de probabilidad de jugada óptima minimax, 50% aleatoria
+    if (Math.random() < 0.5) {
+      return this.getBestMoveMinimax();
+    }
+
+    const randomIdx = Math.floor(Math.random() * emptyCells.length);
+    const chosen = emptyCells[randomIdx]!;
+    return chosen;
   }
 
   private getEasyMove(): number {

@@ -16,7 +16,7 @@ export type CellValue = Player | null;
 
 export type Board = CellValue[];
 
-export type AIDifficulty = 'easy' | 'unbeatable';
+export type AIDifficulty = 'easy' | 'normal' | 'unbeatable';
 
 export type GameResult = 'X_WINS' | 'O_WINS' | 'DRAW' | null;
 

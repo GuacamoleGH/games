@@ -75,6 +75,23 @@ describe('SpaceInvadersEngine - Motor de Cinemática y Reglas (@spec REQ-43, REQ
     expect(secondFired).toBe(false);
   });
 
+  it('debe aplicar cooldown de recarga al cañón defensor evitando disparos continuos tipo ametralladora (@spec REQ-44)', () => {
+    engine.start();
+    expect(engine.fire()).toBe(true);
+
+    // Limpiar proyectil simulando que impactó de inmediato
+    engine.setBulletsForTesting([]);
+
+    // Intentar disparar inmediatamente en el mismo instante debe fallar por cooldown activo
+    expect(engine.fire()).toBe(false);
+
+    // Tras transcurrir el cooldown (250ms = 16 ticks de 16ms), debe permitir disparar de nuevo
+    for (let i = 0; i < 17; i += 1) {
+      engine.tick(0.016);
+    }
+    expect(engine.fire()).toBe(true);
+  });
+
   it('debe detectar impacto de proyectil sobre invasor, sumar puntos y destruirlo (@spec REQ-44)', () => {
     engine.start();
 

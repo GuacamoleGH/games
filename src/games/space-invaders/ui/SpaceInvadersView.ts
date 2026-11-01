@@ -221,6 +221,9 @@ export class SpaceInvadersView {
       e.preventDefault();
     } else if (e.key === ' ' || e.key === 'Spacebar') {
       e.preventDefault();
+      if (e.repeat) {
+        return;
+      }
       this.handleActionClick();
     } else if (e.key === 'p' || e.key === 'P') {
       e.preventDefault();

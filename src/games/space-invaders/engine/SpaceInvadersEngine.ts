@@ -70,6 +70,7 @@ export class SpaceInvadersEngine {
   private enemyFireTimerMs: number = 0;
   private ufoTimerMs: number = 0;
   private animFrameState: number = 0;
+  private playerFireCooldownMs: number = 0;
 
   constructor(
     customConfig?: Partial<SpaceInvadersConfig>,
@@ -172,6 +173,7 @@ export class SpaceInvadersEngine {
     this.enemyFireTimerMs = 0;
     this.ufoTimerMs = 0;
     this.animFrameState = 0;
+    this.playerFireCooldownMs = 0;
     this.bullets = [];
 
     this.initPlayer();
@@ -261,11 +263,17 @@ export class SpaceInvadersEngine {
       return false;
     }
 
+    if (this.playerFireCooldownMs > 0) {
+      return false;
+    }
+
     const maxPlayerBullets = this.difficulty === 'extreme' ? 2 : 1;
     const activePlayerBullets = this.bullets.filter((b) => b.fromPlayer).length;
     if (activePlayerBullets >= maxPlayerBullets) {
       return false;
     }
+
+    this.playerFireCooldownMs = this.difficulty === 'extreme' ? 180 : 250;
 
     const bx = this.player.x + this.player.width / 2 - this.config.bulletWidth / 2;
     const by = this.player.y - this.config.bulletHeight - 2;
@@ -296,6 +304,11 @@ export class SpaceInvadersEngine {
     }
 
     const dtMs = dt * 1000;
+
+    // Reducir cooldown de disparo del jugador
+    if (this.playerFireCooldownMs > 0) {
+      this.playerFireCooldownMs = Math.max(0, this.playerFireCooldownMs - dtMs);
+    }
 
     // 1. Actualizar marcha de los invasores
     this.updateInvadersMarch(dtMs);

@@ -45,6 +45,7 @@
 - **2026-11-01:** En simulaciones cinemáticas con múltiples entidades interactivas (Space Invaders), evaluar la condición de victoria inmediatamente tras el impacto fatal del proyectil con el último enemigo vivo garantiza feedback instantáneo al usuario y previene que aserciones unitarias síncronas lean un estado intermedio desfasado.
 - **2026-11-01:** En sistemas con aceleración progresiva y dificultades predefinidas (Snake), al ajustar la dificultad debe actualizarse de forma solidaria el límite mínimo (`minSpeedMs`) además de la velocidad base (`initialSpeedMs`); de lo contrario, una dificultad con intervalo menor al límite global por defecto causará una regresión de velocidad inmediata (desaceleración) en el primer incremento.
 - **2026-11-01:** En cabeceras móviles fijas (< 600px), las insignias o badges decorativos ("HOMELAB EDITION") no deben competir en ancho con la marca ni los controles esenciales de audio; ocultar elementos secundarios en pantallas estrechas con `white-space: nowrap` en escritorio garantiza una experiencia limpia sin colisiones de texto ni saltos de línea forzados.
+- **2026-11-01:** En juegos de disparo arcade (Space Invaders), filtrar eventos repetidos del teclado (`if (e.repeat) return;`) y aplicar un cooldown mínimo de recarga en el motor evita que mantener pulsada la barra espaciadora active ráfagas ininterrumpidas ("ametralladora"), preservando la tensión y la necesidad de disparos manuales precisos.
 
 ## 🚫 Rejection Memory (Caminos Descartados)
 
