@@ -7,7 +7,7 @@
 
 /**
  * @fileoverview Punto de entrada principal y orquestador de vistas de GuacamoleGH Games.
- * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-13, REQ-14, REQ-20, REQ-21, REQ-27, REQ-28, REQ-34, REQ-35, REQ-40, REQ-41
+ * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-13, REQ-14, REQ-20, REQ-21, REQ-27, REQ-28, REQ-34, REQ-35, REQ-40, REQ-41, REQ-43, REQ-48
  */
 
 import './common/styles/main.css';
@@ -22,6 +22,7 @@ import { mountPong } from './games/pong/index.js';
 import { mountTetris } from './games/tetris/index.js';
 import { mountBreakout } from './games/breakout/index.js';
 import { mountTicTacToe } from './games/tic-tac-toe/index.js';
+import { mountSpaceInvaders } from './games/space-invaders/index.js';
 
 let activeUnmount: (() => void) | null = null;
 
@@ -64,6 +65,8 @@ function renderCatalogView(appContainer: HTMLElement): void {
         window.location.hash = '#breakout';
       } else if (gameId === 'tic-tac-toe') {
         window.location.hash = '#tic-tac-toe';
+      } else if (gameId === 'space-invaders') {
+        window.location.hash = '#space-invaders';
       }
     });
   });
@@ -87,6 +90,8 @@ function renderCatalogView(appContainer: HTMLElement): void {
         window.location.hash = '#breakout';
       } else if (gameId === 'tic-tac-toe') {
         window.location.hash = '#tic-tac-toe';
+      } else if (gameId === 'space-invaders') {
+        window.location.hash = '#space-invaders';
       }
     });
   });
@@ -233,8 +238,36 @@ function renderTicTacToeGameView(appContainer: HTMLElement): void {
 }
 
 /**
+ * Renderiza la vista del juego Space Invaders en modo aislado.
+ * @spec REQ-43, REQ-48
+ */
+function renderSpaceInvadersGameView(appContainer: HTMLElement): void {
+  if (activeUnmount) {
+    activeUnmount();
+    activeUnmount = null;
+  }
+
+  const appHtml = `
+    ${renderHeader()}
+    <main id="main-content" role="main">
+      <div id="game-mount-point"></div>
+    </main>
+    ${renderFooter()}
+  `;
+
+  appContainer.innerHTML = appHtml;
+
+  const mountPoint = appContainer.querySelector<HTMLElement>('#game-mount-point');
+  if (mountPoint) {
+    activeUnmount = mountSpaceInvaders(mountPoint, () => {
+      window.location.hash = '';
+    });
+  }
+}
+
+/**
  * Enruta la aplicación según el hash actual del navegador.
- * @spec REQ-13, REQ-20, REQ-27, REQ-34, REQ-40
+ * @spec REQ-13, REQ-20, REQ-27, REQ-34, REQ-40, REQ-48
  */
 export function handleRouting(): void {
   const appContainer = document.querySelector<HTMLDivElement>('#app');
@@ -260,6 +293,12 @@ export function handleRouting(): void {
     hash === '#tictactoe'
   ) {
     renderTicTacToeGameView(appContainer);
+  } else if (
+    hash === '#space-invaders' ||
+    hash === '#spaceinvaders' ||
+    hash === '#invaders'
+  ) {
+    renderSpaceInvadersGameView(appContainer);
   } else {
     renderCatalogView(appContainer);
   }

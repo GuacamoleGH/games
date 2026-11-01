@@ -7,7 +7,7 @@
 
 /**
  * @fileoverview Pruebas unitarias de renderizado semántico y accesibilidad de componentes.
- * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-10, REQ-13, REQ-18, REQ-19, REQ-20, REQ-25, REQ-26, REQ-27, REQ-33, REQ-34, REQ-39, REQ-40
+ * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-10, REQ-13, REQ-18, REQ-19, REQ-20, REQ-25, REQ-26, REQ-27, REQ-33, REQ-34, REQ-39, REQ-40, REQ-46, REQ-48
  */
 
 import { describe, it, expect } from 'vitest';
@@ -19,7 +19,7 @@ import { renderFooter } from '../../src/common/components/Footer.js';
 import { GAMES_DATA } from '../../src/common/data/games.data.js';
 import type { GameMetadata } from '../../src/common/types/game.js';
 
-describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, REQ-18, REQ-19, REQ-20, REQ-25, REQ-26, REQ-27, REQ-33, REQ-34, REQ-39, REQ-40)', () => {
+describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, REQ-18, REQ-19, REQ-20, REQ-25, REQ-26, REQ-27, REQ-33, REQ-34, REQ-39, REQ-40, REQ-46, REQ-48)', () => {
   it('renderHeader debe generar la cabecera semántica con logo, título y control de audio (@spec REQ-01, REQ-41)', () => {
     const html = renderHeader();
     expect(html).toContain('<header class="site-header"');
@@ -38,7 +38,7 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, 
     expect(html).toContain('Colección Arcade Retro');
   });
 
-  it('renderGameCard debe renderizar botón de acción para todos los juegos disponibles (@spec REQ-04, REQ-13, REQ-20, REQ-27, REQ-34, REQ-40)', () => {
+  it('renderGameCard debe renderizar botón de acción para todos los juegos disponibles (@spec REQ-04, REQ-13, REQ-20, REQ-27, REQ-34, REQ-40, REQ-48)', () => {
     for (const game of GAMES_DATA) {
       const html = renderGameCard(game);
       expect(html).toContain('class="game-card card-available"');
@@ -74,11 +74,11 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, 
     expect(html).not.toContain('<button');
   });
 
-  it('renderGameGrid debe renderizar las 5 tarjetas de los juegos planificados (@spec REQ-03)', () => {
+  it('renderGameGrid debe renderizar las 6 tarjetas de todos los juegos del catálogo (@spec REQ-03, REQ-48)', () => {
     const html = renderGameGrid(GAMES_DATA);
 
     expect(html).toContain('Catálogo de Juegos');
-    expect(html).toContain('5 títulos');
+    expect(html).toContain('6 títulos');
 
     for (const game of GAMES_DATA) {
       expect(html).toContain(`data-game-id="${game.id}"`);
@@ -95,7 +95,7 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, 
     expect(html).toContain('SDD con dbv-specs-ops');
   });
 
-  it('debe estructurar el Canvas HTML5 y controles accesibles para todos los juegos (@spec REQ-10, REQ-18, REQ-19, REQ-25, REQ-26, REQ-33, REQ-39)', () => {
+  it('debe estructurar el Canvas HTML5 y controles accesibles para todos los juegos (@spec REQ-10, REQ-18, REQ-19, REQ-25, REQ-26, REQ-33, REQ-39, REQ-46)', () => {
     const mainCssPath = 'src/common/styles/main.css';
     expect(mainCssPath).toBeDefined();
   });

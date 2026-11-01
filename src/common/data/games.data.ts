@@ -96,6 +96,21 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
       <circle cx="12" cy="12" r="1.5"/>
       <path d="M17.5 17.5l2 2m0-2l-2 2"/>
     </svg>`
+  },
+  {
+    id: 'space-invaders',
+    title: 'Space Invaders',
+    description: 'Defiende la Tierra repeliendo el avance de las oleadas alienígenas con tu cañón láser y protegiéndote tras los búnkeres antes de que aterricen.',
+    category: 'Arcade',
+    status: 'available',
+    statusLabel: 'Jugar',
+    releasePhase: 'Fase 7 (Disponible)',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M7 6h10M5 9h14M3 12h18M6 15h2m8 0h2M8 18h2m4 0h2" stroke-width="2.2" stroke="currentColor"/>
+      <circle cx="8" cy="12" r="1.2" fill="currentColor"/>
+      <circle cx="16" cy="12" r="1.2" fill="currentColor"/>
+      <path d="M4 18l2-3m14 3l-2-3" stroke-width="1.8"/>
+    </svg>`
   }
 ]);
 

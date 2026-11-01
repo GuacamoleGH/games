@@ -7,7 +7,7 @@
 > *Instrucción para la IA: Consulta este archivo al inicio de cada sesión para recuperar el hilo técnico. Actualiza las secciones correspondientes cuando el workflow lo indique (triggers en `/plan`, `/build`, `/test` y gate en `/ship`).*
 
 ## 🎯 Contexto Activo
-- **Estado actual del desarrollo:** Proyecto completado con éxito (Fase 1 a Fase 6). Los 5 juegos arcade clásicos (Snake, Pong, Tetris, Breakout, Tres en raya) están completamente desarrollados y jugables.
+- **Estado actual del desarrollo:** Proyecto completado con éxito (Fase 1 a Fase 7). Los 6 juegos arcade clásicos (Snake, Pong, Tetris, Breakout, Tres en raya y Space Invaders) están completamente desarrollados y jugables.
 - **Foco inmediato:** Mantenimiento, optimización y preparación para despliegue estático en homelab GuacamoleGH.
 
 ## 🏗️ Log de Decisiones Técnicas (ADR Ligero)
@@ -23,7 +23,9 @@
 - **2026-11-01 - ADR-008: Descomposición Geométrica de Impactos AABB y Rebote Angular en Breakout:** Para evitar solapamientos y efecto túnel entre ladrillos contiguos, la detección compara `overlapX` vs `overlapY` para determinar el vector de inversión (`vx` vs `vy`), reposiciona la bola en el plano exterior y limita la velocidad máxima a 12 unidades por tick.
 - **2026-11-01 - ADR-009: IA Minimax Determinista con Retardo Asíncrono y Cuadrícula Accesible para Tres en Raya:** La lógica de decisión de la IA implementa el árbol de juegos Minimax completo evaluando los 9 estados finales en tiempo real, mientras la UI introduce un retardo asíncrono no bloqueante (350 ms) para simular pensamiento natural y monta botones accesibles con foco por teclado.
 - **2026-11-01 - ADR-010: Síntesis de Sonido Retro Desacoplada con Web Audio API:** Se implementa un subsistema de audio 100% sintetizado en tiempo real con osciladores nativos (`AudioContext`, ondas cuadradas, triangulares y diente de sierra) sin archivos de audio externos (`.mp3` o `.wav`), garantizando cero latencia de red, carga ultraligera (<3KB), botón accesible de mute (🔊/🔇) con persistencia en `localStorage` y soporte graceful en entornos sin audio.
-- **2026-11-01 - ADR-011: Dificultad Dinámica por Velocidad y Ergonomía de Entrada por Resolución:** Se incorpora un selector de dificultad de 3 niveles (Fácil, Normal, Difícil) con persistencia en `localStorage` que calibra las constantes cinemáticas y cadencias de avance en Snake, Pong y Breakout. Los controles táctiles virtuales se aíslan para mostrarse únicamente en pantallas < 900px, optimizando el área visual en escritorio.
+- **2026-11-01 - ADR-011: Dificultad Dinámica por Velocidad y Ergonomía de Entrada por Resolución:** Se incorpora un selector de dificultad de 4 niveles (Fácil, Normal, Difícil, Extremo) con persistencia en `localStorage` que calibra las constantes cinemáticas y cadencias de avance en Snake, Pong y Breakout. Los controles táctiles virtuales se aíslan para mostrarse únicamente en pantallas < 900px, optimizando el área visual en escritorio.
+- **2026-11-01 - ADR-012: Flota de Invasores con Marcha Acelerada Discreta y Búnkeres Celulares en Space Invaders:** Para reproducir fielmente la mecánica arcade clásica, la flota de 55 invasores se desplaza en pasos discretos horizontales cuyo intervalo de retardo se comprime dinámicamente de 700ms a 65ms según la cantidad de supervivientes. Los búnkeres se dividen en sub-celdas con salud independiente y detección AABB.
+- **2026-11-01 - ADR-013: Detección Inmediata de Victoria en Colisiones Cinemáticas:** Comprobar la condición de victoria inmediatamente tras la eliminación del último enemigo dentro del bucle de colisiones evita retardos indeseados hasta el siguiente intervalo de reloj o marcha.
 
 ## ⚠️ Lecciones Aprendidas / Errores Evitados
 
@@ -40,6 +42,7 @@
 - **2026-11-01:** En Snake, al colocar la comida en el estado inicial (`READY`), excluir la casilla adyacente frontal de la cabeza previene que la partida inicie con consumo inmediato involuntario antes de que el jugador interactúe y elimina aleatoriedades en pruebas de avance inicial.
 - **2026-11-01:** Ocultar los controles táctiles virtuales en pantallas mayores a 900px mediante media queries (`@media (min-width: 900px) { display: none !important; }`) despeja la interfaz en ordenadores de escritorio y portátiles donde el usuario ya cuenta con teclado y ratón, evitando botones redundantes que saturan la experiencia visual.
 - **2026-11-01:** Al cambiar la dificultad en caliente durante una partida en motores cinemáticos (Pong y Breakout), no basta con actualizar la configuración: debe reescalarse inmediatamente el vector de velocidad activo de la bola (`ball.vx` y `ball.vy` según el ratio `newSpeed / currentSpeed`) para que la aceleración o deceleración sea percibida al instante en pantalla.
+- **2026-11-01:** En simulaciones cinemáticas con múltiples entidades interactivas (Space Invaders), evaluar la condición de victoria inmediatamente tras el impacto fatal del proyectil con el último enemigo vivo garantiza feedback instantáneo al usuario y previene que aserciones unitarias síncronas lean un estado intermedio desfasado.
 
 ## 🚫 Rejection Memory (Caminos Descartados)
 

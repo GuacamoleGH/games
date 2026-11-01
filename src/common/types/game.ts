@@ -10,7 +10,7 @@
  * @spec REQ-03, REQ-04
  */
 
-export type GameId = 'snake' | 'pong' | 'tetris' | 'breakout' | 'tic-tac-toe';
+export type GameId = 'snake' | 'pong' | 'tetris' | 'breakout' | 'tic-tac-toe' | 'space-invaders';
 
 export type GameStatus = 'coming-soon' | 'available' | 'maintenance';
 

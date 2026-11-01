@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
+### Added - GuacamoleGH Games (Fase 7: Juego Space Invaders - REQ-43 a REQ-48)
+- Módulo completo y autónomo de **Space Invaders** en `src/games/space-invaders/` con arquitectura desacoplada modelo/vista/controlador (REQ-43).
+- **Motor Cinemático y Simulación Pura (`SpaceInvadersEngine.ts`):** Flota de 55 invasores organizados en 5 filas x 11 columnas (calamares, cangrejos y pulpos) con marcha rítmica oscilante, descenso automático en bordes y aceleración progresiva de frecuencia de marcha a medida que caen alienígenas (REQ-44).
+- **Sistema de Defensa por Búnkeres:** 4 escudos defensivos destruibles compuestos por una cuadrícula celular de 4x3 con 3 niveles de degradación de salud y daño por proyectiles de ambos bandos e invasión física (REQ-44).
+- **OVNI / Nave Nodriza Misteriosa (UFO):** Aparición periódica y traversal superior a velocidad constante con puntuación de bonificación variable (REQ-44).
+- **Selector de Dificultad Dinámica de 4 Niveles (`Fácil`, `Normal`, `Difícil`, `Extremo`):** Calibración de velocidad del cañón defensor, cadencia y velocidad de los proyectiles enemigos y tempo de marcha de la flota (REQ-45).
+- **Renderizado Canvas HTML5 y Sprites Vectoriales Pixel-Art:** Renderizado a 60Hz con animación de 2 fotogramas por tipo de invasor, efectos de partículas de explosión, cañón neón con torreta, HUD completo de estadísticas y controles táctiles virtuales para dispositivos móviles (< 900px) (REQ-46).
+- **Efectos de Sonido Web Audio API en Tiempo Real:** Sonido de disparo láser, marcha en 4 tonos rítmicos, impacto en búnker, explosión de invasor y fanfarria de victoria/derrota (REQ-47).
+- **Integración en Catálogo y Enrutador SPA:** Enrutamiento cliente mediante hash `#space-invaders`, tarjeta con badge disponible y botón "Jugar Ahora &rarr;" elevando el catálogo a 6 juegos interactivos (REQ-48).
+- Cobertura de pruebas unitarias ampliada a 83 tests pasando en 10 suites con 100% de trazabilidad de requisitos verificada por `dbv-lint.py`.
+
 ### Added - GuacamoleGH Games (Selector de Dificultad Dinámica con Modo Extremo y Expansión de Breakout - REQ-42)
 - Selector de dificultad de 4 niveles (`Fácil`, `Normal`, `Difícil`, `Extremo`) integrado en la barra de controles superior de **Snake**, **Pong** y **Breakout** con persistencia en `localStorage` (REQ-42).
 - Reescalado inmediato en caliente de los vectores cinemáticos (`vx`, `vy`) de la bola en Pong y Breakout en el mismo instante en que se pulsa el botón, garantizando una respuesta táctil instantánea en tiempo real.

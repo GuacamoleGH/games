@@ -100,17 +100,17 @@
 - [x] **T-91:** Selector de dificultad de 3 niveles en Breakout con modulación de velocidad de bola y paleta (`BreakoutEngine.ts`, `BreakoutView.ts`, test) (`@spec REQ-42`).
 - [x] **T-92:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py`, commit y push a GitHub.
 
-### Fase 7: Implementación del Juego Space Invaders (Planificada)
-- [ ] **T-93:** Definir tipos y modelos en `src/games/space-invaders/types.ts` (`@spec REQ-43, REQ-44, REQ-45`).
-- [ ] **T-94:** Implementar motor de física y lógica pura en `src/games/space-invaders/engine/SpaceInvadersEngine.ts` (`@spec REQ-44, REQ-45`).
-- [ ] **T-95:** Implementar efectos de sonido sintetizados en `src/common/audio/SoundEffects.ts` (`@spec REQ-47`).
-- [ ] **T-96:** Implementar vista Canvas y controles táctiles en `src/games/space-invaders/ui/SpaceInvadersView.ts` (`@spec REQ-45, REQ-46, REQ-47`).
-- [ ] **T-97:** Crear punto de entrada de módulo en `src/games/space-invaders/index.ts` (`@spec REQ-43`).
-- [ ] **T-98:** Añadir estilos CSS de Space Invaders en `src/common/styles/main.css`.
-- [ ] **T-99:** Actualizar tipos `GameId` en `src/common/types/game.ts` y catálogo en `src/common/data/games.data.ts` (`@spec REQ-48`).
-- [ ] **T-100:** Actualizar enrutador SPA y navegación en `src/main.ts` (`@spec REQ-48`).
-- [ ] **T-101:** Suite de pruebas unitarias en `tests/unit/space-invaders.engine.test.ts` y actualizar `tests/unit/render.test.ts` (`@spec REQ-43, REQ-44, REQ-45, REQ-46, REQ-47, REQ-48`).
-- [ ] **T-102:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py`, commit y push a GitHub.
+### Fase 7: Implementación del Juego Space Invaders (Completada)
+- [x] **T-93:** Definir tipos y modelos en `src/games/space-invaders/types.ts` (`@spec REQ-43, REQ-44, REQ-45`).
+- [x] **T-94:** Implementar motor de física y lógica pura en `src/games/space-invaders/engine/SpaceInvadersEngine.ts` (`@spec REQ-44, REQ-45`).
+- [x] **T-95:** Implementar efectos de sonido sintetizados en `src/common/audio/SoundEffects.ts` (`@spec REQ-47`).
+- [x] **T-96:** Implementar vista Canvas y controles táctiles en `src/games/space-invaders/ui/SpaceInvadersView.ts` (`@spec REQ-45, REQ-46, REQ-47`).
+- [x] **T-97:** Crear punto de entrada de módulo en `src/games/space-invaders/index.ts` (`@spec REQ-43`).
+- [x] **T-98:** Añadir estilos CSS de Space Invaders en `src/common/styles/main.css`.
+- [x] **T-99:** Actualizar tipos `GameId` en `src/common/types/game.ts` y catálogo en `src/common/data/games.data.ts` (`@spec REQ-48`).
+- [x] **T-100:** Actualizar enrutador SPA y navegación en `src/main.ts` (`@spec REQ-48`).
+- [x] **T-101:** Suite de pruebas unitarias en `tests/unit/space-invaders.engine.test.ts` y actualizar `tests/unit/render.test.ts` (`@spec REQ-43, REQ-44, REQ-45, REQ-46, REQ-47, REQ-48`).
+- [x] **T-102:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py`, commit y push a GitHub.
 
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
@@ -122,6 +122,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Planificación y especificación completadas para la Fase 7 (Space Invaders, REQ-43 a REQ-48). Esperando confirmación del usuario para proceder a la fase `/build`.
-> **Pending / Pendiente:** T-93 a T-102.
-> **Next step / Próximo paso:** T-93 (Tipos y modelos de Space Invaders).
+> **Exact point / Punto exacto:** Fase 7 (Space Invaders) completada con éxito. Catálogo ampliado a 6 juegos interactivos, motor de simulación con 55 invasores, 4 búnkeres de 12 celdas con degradación, OVNI misterioso, selector de 4 dificultades (Fácil, Normal, Difícil, Extremo), Web Audio API en tiempo real y 83/83 pruebas unitarias pasando.
+> **Pending / Pendiente:** Ninguna tarea pendiente. Todos los requisitos REQ-01 a REQ-48 y RNF-01 a RNF-04 verificados.
+> **Next step / Próximo paso:** Publicar release y documentar en memoria del proyecto.
