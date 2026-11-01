@@ -530,37 +530,37 @@ export class BreakoutView {
     const html = `
       <section class="breakout-game-wrapper" aria-label="Juego Breakout">
         <div class="breakout-inner-container">
-          <div class="breakout-top-bar">
-            <button id="breakout-back-btn" class="snake-back-btn" aria-label="Volver al catálogo principal">
+          <div class="breakout-top-bar game-top-bar">
+            <button id="breakout-back-btn" class="snake-back-btn game-top-btn" aria-label="Volver al catálogo principal">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
               </svg>
               <span>Volver al Catálogo</span>
             </button>
-            <div class="snake-hud">
+            <div class="snake-hud game-hud">
               <div class="hud-item">
                 <span class="hud-label">PUNTOS</span>
                 <span id="breakout-score" class="hud-value">0</span>
               </div>
               <div class="hud-item">
                 <span class="hud-label">VIDAS</span>
-                <span id="breakout-lives" class="hud-value" style="font-size: 0.9375rem;">❤️❤️❤️</span>
+                <span id="breakout-lives" class="hud-value">❤️❤️❤️</span>
               </div>
               <div class="hud-item">
                 <span class="hud-label">LADRILLOS</span>
-                <span id="breakout-bricks" class="hud-value text-accent-turquoise" style="font-size: 0.9375rem;">70 / 70</span>
+                <span id="breakout-bricks" class="hud-value text-accent-turquoise">70 / 70</span>
               </div>
               <div class="hud-item">
                 <span class="hud-label">RÉCORD</span>
                 <span id="breakout-highscore" class="hud-value text-accent-turquoise">0</span>
               </div>
             </div>
-            <div class="breakout-actions-bar">
-              <button id="breakout-diff-btn" class="hud-btn" aria-label="Cambiar dificultad de Breakout">
+            <div class="breakout-actions-bar game-actions-bar">
+              <button id="breakout-diff-btn" class="hud-btn game-top-btn" aria-label="Cambiar dificultad de Breakout">
                 Dificultad: Normal
               </button>
-              <button id="breakout-pause-btn" class="hud-btn" aria-label="Pausar o reanudar Breakout">
+              <button id="breakout-pause-btn" class="hud-btn game-top-btn" aria-label="Pausar o reanudar Breakout">
                 Pausa [P]
               </button>
             </div>

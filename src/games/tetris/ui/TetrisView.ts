@@ -454,17 +454,19 @@ export class TetrisView {
     const html = `
       <section class="tetris-game-wrapper" aria-label="Juego Tetris">
         <div class="container tetris-inner-container">
-          <div class="tetris-top-bar">
-            <button id="tetris-back-btn" class="snake-back-btn" aria-label="Volver al catálogo principal">
+          <div class="tetris-top-bar game-top-bar">
+            <button id="tetris-back-btn" class="snake-back-btn game-top-btn" aria-label="Volver al catálogo principal">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
               </svg>
               <span>Volver al Catálogo</span>
             </button>
-            <button id="tetris-pause-btn" class="hud-btn" aria-label="Pausar o reanudar Tetris">
-              Pausa [P]
-            </button>
+            <div class="tetris-actions-bar game-actions-bar">
+              <button id="tetris-pause-btn" class="hud-btn game-top-btn" aria-label="Pausar o reanudar Tetris">
+                Pausa [P]
+              </button>
+            </div>
           </div>
 
           <div class="tetris-layout">

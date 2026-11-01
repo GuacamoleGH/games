@@ -47,6 +47,7 @@
 - **2026-11-01:** En cabeceras móviles fijas (< 600px), las insignias o badges decorativos ("HOMELAB EDITION") no deben competir en ancho con la marca ni los controles esenciales de audio; ocultar elementos secundarios en pantallas estrechas con `white-space: nowrap` en escritorio garantiza una experiencia limpia sin colisiones de texto ni saltos de línea forzados.
 - **2026-11-01:** En juegos de disparo arcade (Space Invaders), filtrar eventos repetidos del teclado (`if (e.repeat) return;`) y aplicar un cooldown mínimo de recarga en el motor evita que mantener pulsada la barra espaciadora active ráfagas ininterrumpidas ("ametralladora"), preservando la tensión y la necesidad de disparos manuales precisos.
 - **2026-11-01:** En vistas compuestas con barras superiores y paneles laterales asimétricos (Tetris), acotar el contenedor de navegación (`.tetris-top-bar`) con `justify-content: space-between` al ancho exacto de la cuadrícula de juego más su panel lateral (416px) previene que los botones de retorno y pausa se agrupen en la esquina izquierda, logrando un encuadre visual simétrico y equilibrado en cualquier resolución.
+- **2026-11-01:** Establecer una altura uniforme estricta (`42px`) y un modelo de 3 bloques (`[Volver]` - `[HUD]` - `[Acciones]`) para las barras superiores de todos los juegos elimina disparidades visuales entre pantallas, previene saltos de línea indeseados con `white-space: nowrap` y homogeniza la experiencia del usuario sin importar qué juego arcade se ejecute.
 
 ## 🚫 Rejection Memory (Caminos Descartados)
 

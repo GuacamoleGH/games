@@ -462,8 +462,8 @@ export class PongView {
     const html = `
       <section class="pong-game-wrapper" aria-label="Juego Pong">
         <div class="container pong-inner-container">
-          <div class="pong-top-bar">
-            <button id="pong-back-btn" class="snake-back-btn" aria-label="Volver al catálogo principal">
+          <div class="pong-top-bar game-top-bar">
+            <button id="pong-back-btn" class="snake-back-btn game-top-btn" aria-label="Volver al catálogo principal">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
@@ -471,7 +471,7 @@ export class PongView {
               <span>Volver al Catálogo</span>
             </button>
 
-            <div class="pong-scoreboard">
+            <div class="pong-scoreboard game-hud">
               <div class="score-team team-player">
                 <span class="team-label">TÚ</span>
                 <span id="pong-player-score" class="score-number score-player">0</span>
@@ -481,10 +481,13 @@ export class PongView {
                 <span id="pong-ai-score" class="score-number score-ai">0</span>
                 <span class="team-label">RIVAL</span>
               </div>
-              <button id="pong-diff-btn" class="hud-btn" aria-label="Cambiar dificultad de Pong">
+            </div>
+
+            <div class="pong-actions-bar game-actions-bar">
+              <button id="pong-diff-btn" class="hud-btn game-top-btn" aria-label="Cambiar dificultad de Pong">
                 Dificultad: Normal
               </button>
-              <button id="pong-pause-hud-btn" class="hud-btn" aria-label="Pausar o reanudar Pong">
+              <button id="pong-pause-hud-btn" class="hud-btn game-top-btn" aria-label="Pausar o reanudar Pong">
                 Pausa [P]
               </button>
             </div>

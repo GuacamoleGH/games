@@ -37,9 +37,7 @@ body {
   }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   HEADER (REQ-01)
-   ───────────────────────────────────────────────────────────── */
+/* HEADER (REQ-01) */
 .site-header {
   position: sticky;
   top: 0;
@@ -144,9 +142,7 @@ body {
   flex-shrink: 0;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   HERO (REQ-02)
-   ───────────────────────────────────────────────────────────── */
+/* HERO (REQ-02) */
 .hero-section {
   padding: var(--space-xxxl) 0 var(--space-xxl);
   text-align: center;
@@ -209,9 +205,7 @@ body {
   margin: 0 auto;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   CATÁLOGO / GAME GRID (REQ-03)
-   ───────────────────────────────────────────────────────────── */
+/* CATÁLOGO / GAME GRID (REQ-03) */
 .catalog-section {
   padding: 0 0 var(--space-xxxl);
   flex: 1;
@@ -263,9 +257,7 @@ body {
   }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   GAME CARD (REQ-04, REQ-05)
-   ───────────────────────────────────────────────────────────── */
+/* GAME CARD (REQ-04, REQ-05) */
 .game-card {
   position: relative;
   display: flex;
@@ -388,9 +380,7 @@ body {
   font-weight: 500;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   FOOTER (REQ-06)
-   ───────────────────────────────────────────────────────────── */
+/* FOOTER (REQ-06) */
 .site-footer {
   border-top: 1px solid var(--color-border-subtle);
   background: var(--color-bg-deep);
@@ -452,9 +442,7 @@ body {
   padding-left: var(--space-md);
 }
 
-/* ─────────────────────────────────────────────────────────────
-   ANIMACIONES
-   ───────────────────────────────────────────────────────────── */
+/* ANIMACIONES */
 @keyframes pulse-glow {
   0%, 100% {
     opacity: 1;
@@ -466,9 +454,7 @@ body {
   }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   BOTÓN INTERACTIVO DE JUEGO (REQ-05, REQ-13)
-   ───────────────────────────────────────────────────────────── */
+/* BOTÓN INTERACTIVO DE JUEGO (REQ-05, REQ-13) */
 .game-card.card-available {
   cursor: pointer;
   border-color: rgba(0, 245, 155, 0.3);
@@ -508,9 +494,7 @@ body {
   color: var(--color-accent-green);
 }
 
-/* ─────────────────────────────────────────────────────────────
-   SNAKE GAME VIEW (REQ-10, REQ-11, REQ-12, REQ-13)
-   ───────────────────────────────────────────────────────────── */
+/* SNAKE GAME VIEW (REQ-10, REQ-11, REQ-12, REQ-13) */
 .snake-game-wrapper {
   padding: var(--space-xl) 0 var(--space-xxxl);
   flex: 1;
@@ -523,51 +507,83 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 520px;
+  width: 100%;
+  max-width: 580px;
 }
 
-.snake-top-bar {
+/* Universal Top Bar for All Games */
+.game-top-bar,
+.snake-top-bar,
+.pong-top-bar,
+.tetris-top-bar,
+.breakout-top-bar,
+.space-top-bar,
+.tictactoe-top-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   margin-bottom: var(--space-md);
   gap: var(--space-sm);
+  box-sizing: border-box;
 }
 
-.snake-back-btn {
+/* Universal Back Button (Always 42px tall, never wraps) */
+.snake-back-btn,
+.game-top-btn {
+  height: 42px;
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   color: var(--color-text-secondary);
+  font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 500;
-  padding: 8px 12px;
+  padding: 0 16px;
   border-radius: var(--radius-md);
   background: var(--color-surface-card);
   border: 1px solid var(--color-border-subtle);
-  transition: var(--transition-fast);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
 }
 
-.snake-back-btn:hover {
+.snake-back-btn:hover,
+.game-top-btn:hover {
   color: var(--color-accent-green);
   border-color: var(--color-accent-green);
+  background: var(--color-surface-card-hover);
+  transform: translateY(-1px);
 }
 
-.snake-hud {
-  display: flex;
+/* Universal HUD Card (Score, Lives, Bricks, Waves, Record) */
+.game-hud,
+.snake-hud,
+.pong-scoreboard {
+  height: 42px;
+  box-sizing: border-box;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-md);
   background: var(--color-surface-card);
   border: 1px solid var(--color-border-subtle);
-  padding: 6px 14px;
+  padding: 0 16px;
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  flex-shrink: 0;
 }
 
 .hud-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .hud-label {
@@ -575,28 +591,63 @@ body {
   font-family: var(--font-mono);
   color: var(--color-text-muted);
   letter-spacing: 0.05em;
+  margin-bottom: 2px;
+  text-transform: uppercase;
 }
 
 .hud-value {
   font-family: var(--font-mono);
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   font-weight: 700;
   color: var(--color-accent-green);
+  line-height: 1;
 }
 
+/* Universal Action Buttons (Difficulty, Pause) */
 .hud-btn {
+  height: 42px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
   color: var(--color-accent-turquoise);
-  background: rgba(0, 217, 196, 0.1);
+  background: rgba(0, 217, 196, 0.08);
   border: 1px solid rgba(0, 217, 196, 0.25);
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  transition: var(--transition-fast);
+  padding: 0 14px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
 }
 
 .hud-btn:hover {
-  background: rgba(0, 217, 196, 0.2);
+  background: rgba(0, 217, 196, 0.18);
+  border-color: var(--color-accent-turquoise);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.hud-btn:active {
+  transform: translateY(0);
+}
+
+/* Actions Bar (Groups difficulty and pause together) */
+.game-actions-bar,
+.breakout-actions-bar,
+.space-actions-bar,
+.snake-actions-bar,
+.pong-actions-bar,
+.tetris-actions-bar,
+.tictactoe-actions-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
 }
 
 .snake-canvas-box {
@@ -744,9 +795,7 @@ body {
   color: var(--color-text-secondary);
 }
 
-/* ─────────────────────────────────────────────────────────────
-   PONG GAME VIEW (REQ-18, REQ-19, REQ-20)
-   ───────────────────────────────────────────────────────────── */
+/* PONG GAME VIEW (REQ-18, REQ-19, REQ-20) */
 .pong-game-wrapper {
   padding: var(--space-xl) 0 var(--space-xxxl);
   flex: 1;
@@ -759,32 +808,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 840px;
-}
-
-.pong-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-  margin-bottom: var(--space-md);
-  gap: var(--space-sm);
-}
-
-.pong-scoreboard {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  background: var(--color-surface-card);
-  border: 1px solid var(--color-border-subtle);
-  padding: 6px 18px;
-  border-radius: var(--radius-md);
+  max-width: 800px;
 }
 
 .score-team {
   display: flex;
   align-items: center;
   gap: 8px;
+  line-height: 1;
 }
 
 .team-label {
@@ -797,10 +829,11 @@ body {
 
 .score-number {
   font-family: var(--font-mono);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  min-width: 24px;
+  min-width: 20px;
   text-align: center;
+  line-height: 1;
 }
 
 .score-player {
@@ -873,9 +906,7 @@ body {
   transform: scale(0.98);
 }
 
-/* ==========================================================================
-   Tetris Module Styles
-   ========================================================================== */
+/* Tetris Module Styles */
 
 .tetris-game-wrapper {
   display: flex;
@@ -892,17 +923,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 520px;
-}
-
-.tetris-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
   max-width: 416px;
-  margin-bottom: var(--space-sm);
-  gap: var(--space-sm);
 }
 
 .tetris-layout {
@@ -1067,9 +1088,7 @@ body {
   }
 }
 
-/* ==========================================================================
-   Breakout Module Styles
-   ========================================================================== */
+/* Breakout Module Styles */
 
 .breakout-game-wrapper {
   display: flex;
@@ -1086,23 +1105,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 820px;
-}
-
-.breakout-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: var(--space-md);
-  gap: var(--space-sm);
-  flex-wrap: wrap;
-}
-
-.breakout-actions-bar {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
+  max-width: 800px;
 }
 
 .breakout-canvas-box {
@@ -1144,9 +1147,7 @@ body {
   }
 }
 
-/* ==========================================================================
-   Space Invaders Module Styles (REQ-46)
-   ========================================================================== */
+/* Space Invaders Module Styles (REQ-46) */
 .space-game-wrapper {
   display: flex;
   flex-direction: column;
@@ -1160,23 +1161,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 820px;
-}
-
-.space-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: var(--space-md);
-  gap: var(--space-sm);
-  flex-wrap: wrap;
-}
-
-.space-actions-bar {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
+  max-width: 800px;
 }
 
 .space-canvas-box {
@@ -1208,9 +1193,7 @@ body {
   max-width: 480px;
 }
 
-/* ==========================================================================
-   Tic-Tac-Toe (Tres en raya) Module Styles
-   ========================================================================== */
+/* Tic-Tac-Toe (Tres en raya) Module Styles */
 
 .tictactoe-game-wrapper {
   display: flex;
@@ -1337,18 +1320,26 @@ body {
   width: 100%;
 }
 
-/* ==========================================================================
-   Responsive Adaptations for Mobile Viewports (REQ-01, RNF-02, RNF-03)
-   ========================================================================== */
+/* Responsive Adaptations for Mobile Viewports (REQ-01, RNF-02, RNF-03) */
 @media (max-width: 768px) {
+  .game-top-bar,
+  .snake-top-bar,
+  .pong-top-bar,
   .breakout-top-bar,
-  .space-top-bar {
-    justify-content: center;
+  .space-top-bar,
+  .tictactoe-top-bar {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
   }
 
+  .game-actions-bar,
   .breakout-actions-bar,
-  .space-actions-bar {
-    width: 100%;
+  .space-actions-bar,
+  .snake-actions-bar,
+  .pong-actions-bar,
+  .tetris-actions-bar,
+  .tictactoe-actions-bar {
     justify-content: center;
   }
 }
@@ -1410,11 +1401,14 @@ body {
   }
 
   .snake-back-btn span {
-    display: none;
+    display: none !important;
   }
 
   .snake-back-btn {
-    padding: 8px 10px;
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    padding: 0;
   }
 }
 
@@ -1431,6 +1425,4 @@ body {
     padding: 0 10px;
   }
 }
-
-
 

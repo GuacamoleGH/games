@@ -329,11 +329,15 @@ export class TicTacToeView {
     const html = `
       <section class="tictactoe-game-wrapper" aria-label="Juego Tres en Raya">
         <div class="tictactoe-inner-container">
-          <div class="game-header-bar">
-            <button id="ttt-back-btn" class="snake-back-btn" aria-label="Volver al catálogo">
-              &larr; <span>Volver al Catálogo</span>
+          <div class="tictactoe-top-bar game-top-bar">
+            <button id="ttt-back-btn" class="snake-back-btn game-top-btn" aria-label="Volver al catálogo principal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Volver al Catálogo</span>
             </button>
-            <div class="snake-hud">
+            <div class="snake-hud game-hud">
               <div class="hud-item">
                 <span class="hud-label">TÚ (X)</span>
                 <span id="ttt-player-wins" class="hud-value text-accent-green">0</span>
@@ -347,9 +351,11 @@ export class TicTacToeView {
                 <span id="ttt-ai-wins" class="hud-value text-accent-turquoise">0</span>
               </div>
             </div>
-            <button id="ttt-diff-btn" class="hud-btn" aria-label="Alternar dificultad de la IA">
-              IA: Normal (Equilibrado)
-            </button>
+            <div class="tictactoe-actions-bar game-actions-bar">
+              <button id="ttt-diff-btn" class="hud-btn game-top-btn" aria-label="Alternar dificultad de la IA">
+                IA: Normal (Equilibrado)
+              </button>
+            </div>
           </div>
 
           <div class="tictactoe-status-bar">

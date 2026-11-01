@@ -736,15 +736,15 @@ export class SpaceInvadersView {
     const html = `
       <section class="space-game-wrapper" aria-label="Juego Space Invaders">
         <div class="space-inner-container">
-          <div class="space-top-bar">
-            <button id="space-back-btn" class="snake-back-btn" aria-label="Volver al catálogo principal">
+          <div class="space-top-bar game-top-bar">
+            <button id="space-back-btn" class="snake-back-btn game-top-btn" aria-label="Volver al catálogo principal">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
               </svg>
               <span>Volver al Catálogo</span>
             </button>
-            <div class="snake-hud">
+            <div class="snake-hud game-hud">
               <div class="hud-item">
                 <span class="hud-label">PUNTOS</span>
                 <span id="space-score" class="hud-value">0</span>
@@ -762,11 +762,11 @@ export class SpaceInvadersView {
                 <span id="space-highscore" class="hud-value text-accent-turquoise">0</span>
               </div>
             </div>
-            <div class="space-actions-bar">
-              <button id="space-diff-btn" class="hud-btn" aria-label="Cambiar dificultad de Space Invaders">
+            <div class="space-actions-bar game-actions-bar">
+              <button id="space-diff-btn" class="hud-btn game-top-btn" aria-label="Cambiar dificultad de Space Invaders">
                 Dificultad: Normal
               </button>
-              <button id="space-pause-btn" class="hud-btn" aria-label="Pausar o reanudar Space Invaders">
+              <button id="space-pause-btn" class="hud-btn game-top-btn" aria-label="Pausar o reanudar Space Invaders">
                 Pausa [P]
               </button>
             </div>

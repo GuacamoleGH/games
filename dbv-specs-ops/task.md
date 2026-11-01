@@ -117,6 +117,7 @@
 - [x] **T-104:** Ocultar controles táctiles virtuales en escritorio (`min-width: 900px` y `pointer: fine`) para Tetris (`.tetris-touch-controls`) y demás títulos (`main.css`) (`@spec RNF-02, RNF-03`).
 - [x] **T-105:** Centrar barra de acciones en Breakout y Space Invaders en resoluciones intermedias/móviles para evitar desbordes desalineados (`main.css`) (`@spec REQ-33, REQ-46, RNF-02`).
 - [x] **T-106:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (86/86 tests, 52/52 specs, 0 avisos).
+- [x] **T-107:** Homogeneizar dimensiones y arquitectura de barra superior en los 6 juegos: altura fija de 42px en botones y HUD, estructura tríptico unificada (Volver / HUD / Acciones), y `white-space: nowrap` anti-envoltura (`main.css`, views) (`@spec REQ-04, REQ-25, REQ-33, REQ-46, RNF-02, RNF-03`).
 
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
@@ -128,6 +129,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Ajustes de UI completados: barra superior de Tetris alineada con simetría (`justify-content: space-between`), controles táctiles de Tetris ocultos en escritorio con ratón, barras de acción de Breakout y Space Invaders centradas en pantallas estrechas. 86/86 pruebas pasando y build limpio verificado.
+> **Exact point / Punto exacto:** Consistencia universal de interfaz implementada en los 6 juegos: todas las barras superiores tienen exactamente 42px de altura alineados al mismo eje horizontal, estructura de 3 bloques (Volver al catálogo a la izquierda, HUD central, barra de acciones de dificultad y pausa a la derecha), `white-space: nowrap` en botones de retorno y colapso móvil simétrico a 42x42px. 86/86 pruebas pasando y build limpio verificado.
 > **Pending / Pendiente:** Ninguna tarea pendiente. Todos los requisitos REQ-01 a REQ-48 y RNF-01 a RNF-04 verificados.
 > **Next step / Próximo paso:** Listo para desplegar o seguir probando en local / homelab.
