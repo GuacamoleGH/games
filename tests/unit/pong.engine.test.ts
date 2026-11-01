@@ -159,23 +159,23 @@ describe('PongEngine - Motor de Física y Tanteo (@spec REQ-14, REQ-15, REQ-16, 
   it('debe modular la velocidad de la bola y agilidad de la IA según la dificultad (@spec REQ-42)', () => {
     engine.setDifficulty('easy');
     expect(engine.getDifficulty()).toBe('easy');
-    expect(engine.getConfig().initialBallSpeed).toBe(260);
-    expect(engine.getConfig().aiSpeed).toBe(200);
+    expect(engine.getConfig().initialBallSpeed).toBe(380);
+    expect(engine.getConfig().aiSpeed).toBe(320);
 
     engine.setDifficulty('normal');
     expect(engine.getDifficulty()).toBe('normal');
-    expect(engine.getConfig().initialBallSpeed).toBe(400);
-    expect(engine.getConfig().aiSpeed).toBe(340);
+    expect(engine.getConfig().initialBallSpeed).toBe(550);
+    expect(engine.getConfig().aiSpeed).toBe(480);
 
     engine.setDifficulty('hard');
     expect(engine.getDifficulty()).toBe('hard');
-    expect(engine.getConfig().initialBallSpeed).toBe(600);
-    expect(engine.getConfig().aiSpeed).toBe(520);
+    expect(engine.getConfig().initialBallSpeed).toBe(750);
+    expect(engine.getConfig().aiSpeed).toBe(680);
 
     engine.setDifficulty('extreme');
     expect(engine.getDifficulty()).toBe('extreme');
-    expect(engine.getConfig().initialBallSpeed).toBe(850);
-    expect(engine.getConfig().aiSpeed).toBe(750);
+    expect(engine.getConfig().initialBallSpeed).toBe(1050);
+    expect(engine.getConfig().aiSpeed).toBe(950);
   });
 
   it('debe reescalar en caliente la velocidad de la bola en curso al cambiar dificultad en Pong (@spec REQ-42)', () => {
@@ -184,12 +184,12 @@ describe('PongEngine - Motor de Física y Tanteo (@spec REQ-14, REQ-15, REQ-16, 
 
     // Cambiar a dificultad extrema mientras la bola vuela
     engine.setDifficulty('extreme');
-    expect(engine.getSnapshot().ball.vx).toBeCloseTo(850, 0);
-    expect(engine.getSnapshot().ball.speed).toBe(850);
+    expect(engine.getSnapshot().ball.vx).toBeCloseTo(1050, 0);
+    expect(engine.getSnapshot().ball.speed).toBe(1050);
 
     // Cambiar a fácil
     engine.setDifficulty('easy');
-    expect(engine.getSnapshot().ball.vx).toBeCloseTo(260, 0);
-    expect(engine.getSnapshot().ball.speed).toBe(260);
+    expect(engine.getSnapshot().ball.vx).toBeCloseTo(380, 0);
+    expect(engine.getSnapshot().ball.speed).toBe(380);
   });
 });

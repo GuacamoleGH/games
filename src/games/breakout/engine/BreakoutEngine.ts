@@ -27,10 +27,10 @@ export const DEFAULT_BREAKOUT_CONFIG: BreakoutConfig = {
   virtualHeight: 600,
   paddleWidth: 110,
   paddleHeight: 14,
-  paddleSpeed: 8.5,
+  paddleSpeed: 12.0,
   ballRadius: 7,
-  initialBallSpeed: 4.5,
-  maxBallSpeed: 9.0,
+  initialBallSpeed: 7.0,
+  maxBallSpeed: 13.0,
   initialLives: 3,
   brickRows: 7,
   brickCols: 10,
@@ -96,21 +96,21 @@ export class BreakoutEngine {
   public setDifficulty(diff: BreakoutDifficulty): void {
     this.difficulty = diff;
     if (diff === 'easy') {
-      this.config.initialBallSpeed = 3.0;
-      this.config.paddleSpeed = 7.0;
-      this.config.maxBallSpeed = 6.0;
-    } else if (diff === 'hard') {
-      this.config.initialBallSpeed = 6.5;
-      this.config.paddleSpeed = 10.5;
-      this.config.maxBallSpeed = 12.0;
-    } else if (diff === 'extreme') {
-      this.config.initialBallSpeed = 9.5;
-      this.config.paddleSpeed = 13.5;
-      this.config.maxBallSpeed = 17.0;
-    } else {
-      this.config.initialBallSpeed = 4.5;
-      this.config.paddleSpeed = 8.5;
+      this.config.initialBallSpeed = 5.0;
+      this.config.paddleSpeed = 9.5;
       this.config.maxBallSpeed = 9.0;
+    } else if (diff === 'hard') {
+      this.config.initialBallSpeed = 9.5;
+      this.config.paddleSpeed = 15.0;
+      this.config.maxBallSpeed = 17.0;
+    } else if (diff === 'extreme') {
+      this.config.initialBallSpeed = 13.0;
+      this.config.paddleSpeed = 20.0;
+      this.config.maxBallSpeed = 22.0;
+    } else {
+      this.config.initialBallSpeed = 7.0;
+      this.config.paddleSpeed = 12.0;
+      this.config.maxBallSpeed = 13.0;
     }
 
     if (this.paddle) {
@@ -403,12 +403,12 @@ export class BreakoutEngine {
     const { x: bx, y: by, radius: br } = this.ball;
     const { x: px, y: py, width: pw, height: ph } = this.paddle;
 
-    // Comprobar solapamiento AABB con la paleta
+    // Comprobar solapamiento AABB con la paleta (con protección de barrido para altas velocidades)
     const overlaps =
       bx + br >= px &&
       bx - br <= px + pw &&
       by + br >= py &&
-      by - br <= py + ph;
+      by - br <= py + ph + Math.max(0, this.ball.vy);
 
     if (!overlaps) {
       return;

@@ -182,41 +182,41 @@ describe('BreakoutEngine - Cinemática y Lógica Pura (@spec REQ-28, REQ-29, REQ
   it('debe modular la velocidad de la bola y de la paleta según los 4 niveles de dificultad (@spec REQ-42)', () => {
     engine.setDifficulty('easy');
     expect(engine.getDifficulty()).toBe('easy');
-    expect(engine.getConfig().initialBallSpeed).toBe(3.0);
-    expect(engine.getConfig().paddleSpeed).toBe(7.0);
-    expect(engine.getConfig().maxBallSpeed).toBe(6.0);
+    expect(engine.getConfig().initialBallSpeed).toBe(5.0);
+    expect(engine.getConfig().paddleSpeed).toBe(9.5);
+    expect(engine.getConfig().maxBallSpeed).toBe(9.0);
 
     engine.setDifficulty('normal');
     expect(engine.getDifficulty()).toBe('normal');
-    expect(engine.getConfig().initialBallSpeed).toBe(4.5);
-    expect(engine.getConfig().paddleSpeed).toBe(8.5);
-    expect(engine.getConfig().maxBallSpeed).toBe(9.0);
+    expect(engine.getConfig().initialBallSpeed).toBe(7.0);
+    expect(engine.getConfig().paddleSpeed).toBe(12.0);
+    expect(engine.getConfig().maxBallSpeed).toBe(13.0);
 
     engine.setDifficulty('hard');
     expect(engine.getDifficulty()).toBe('hard');
-    expect(engine.getConfig().initialBallSpeed).toBe(6.5);
-    expect(engine.getConfig().paddleSpeed).toBe(10.5);
-    expect(engine.getConfig().maxBallSpeed).toBe(12.0);
+    expect(engine.getConfig().initialBallSpeed).toBe(9.5);
+    expect(engine.getConfig().paddleSpeed).toBe(15.0);
+    expect(engine.getConfig().maxBallSpeed).toBe(17.0);
 
     engine.setDifficulty('extreme');
     expect(engine.getDifficulty()).toBe('extreme');
-    expect(engine.getConfig().initialBallSpeed).toBe(9.5);
-    expect(engine.getConfig().paddleSpeed).toBe(13.5);
-    expect(engine.getConfig().maxBallSpeed).toBe(17.0);
+    expect(engine.getConfig().initialBallSpeed).toBe(13.0);
+    expect(engine.getConfig().paddleSpeed).toBe(20.0);
+    expect(engine.getConfig().maxBallSpeed).toBe(22.0);
   });
 
   it('debe reescalar en caliente la velocidad de la bola en curso al cambiar dificultad en Breakout (@spec REQ-42)', () => {
     engine.start();
-    engine.setBallForTesting(400, 300, 4.5, 0); // Bola viajando a 4.5 px/tick
+    engine.setBallForTesting(400, 300, 7.0, 0); // Bola viajando a 7.0 px/tick
 
     // Cambiar a extrema en pleno vuelo
     engine.setDifficulty('extreme');
-    expect(engine.getSnapshot().ball.vx).toBeCloseTo(9.5, 1);
-    expect(engine.getSnapshot().ball.speed).toBe(9.5);
+    expect(engine.getSnapshot().ball.vx).toBeCloseTo(13.0, 1);
+    expect(engine.getSnapshot().ball.speed).toBe(13.0);
 
     // Cambiar a fácil
     engine.setDifficulty('easy');
-    expect(engine.getSnapshot().ball.vx).toBeCloseTo(3.0, 1);
-    expect(engine.getSnapshot().ball.speed).toBe(3.0);
+    expect(engine.getSnapshot().ball.vx).toBeCloseTo(5.0, 1);
+    expect(engine.getSnapshot().ball.speed).toBe(5.0);
   });
 });

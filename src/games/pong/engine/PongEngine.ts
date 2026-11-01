@@ -20,13 +20,13 @@ export const DEFAULT_PONG_CONFIG: PongConfig = {
   courtHeight: 500,
   paddleWidth: 16,
   paddleHeight: 90,
-  paddleSpeed: 420,
+  paddleSpeed: 700,
   ballRadius: 8,
-  initialBallSpeed: 380,
-  maxBallSpeed: 650,
-  speedIncrement: 20,
+  initialBallSpeed: 550,
+  maxBallSpeed: 850,
+  speedIncrement: 25,
   winningScore: 5,
-  aiSpeed: 320
+  aiSpeed: 480
 };
 
 export class PongEngine {
@@ -95,21 +95,25 @@ export class PongEngine {
   public setDifficulty(diff: PongDifficulty): void {
     this.difficulty = diff;
     if (diff === 'easy') {
-      this.config.initialBallSpeed = 260;
-      this.config.aiSpeed = 200;
-      this.config.maxBallSpeed = 450;
-    } else if (diff === 'hard') {
-      this.config.initialBallSpeed = 600;
-      this.config.aiSpeed = 520;
-      this.config.maxBallSpeed = 850;
-    } else if (diff === 'extreme') {
-      this.config.initialBallSpeed = 850;
-      this.config.aiSpeed = 750;
-      this.config.maxBallSpeed = 1200;
-    } else {
-      this.config.initialBallSpeed = 400;
-      this.config.aiSpeed = 340;
+      this.config.initialBallSpeed = 380;
+      this.config.aiSpeed = 320;
       this.config.maxBallSpeed = 650;
+      this.config.paddleSpeed = 520;
+    } else if (diff === 'hard') {
+      this.config.initialBallSpeed = 750;
+      this.config.aiSpeed = 680;
+      this.config.maxBallSpeed = 1100;
+      this.config.paddleSpeed = 920;
+    } else if (diff === 'extreme') {
+      this.config.initialBallSpeed = 1050;
+      this.config.aiSpeed = 950;
+      this.config.maxBallSpeed = 1500;
+      this.config.paddleSpeed = 1250;
+    } else {
+      this.config.initialBallSpeed = 550;
+      this.config.aiSpeed = 480;
+      this.config.maxBallSpeed = 850;
+      this.config.paddleSpeed = 700;
     }
 
     // Reescalar inmediatamente en caliente la velocidad de la bola si ya está en movimiento

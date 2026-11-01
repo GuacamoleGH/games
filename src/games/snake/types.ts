@@ -22,8 +22,8 @@ export type GameStatus = 'READY' | 'PLAYING' | 'PAUSED' | 'GAME_OVER';
 export interface SnakeConfig {
   readonly gridSize: number;
   initialSpeedMs: number;
-  readonly minSpeedMs: number;
-  readonly speedDecrementMs: number;
+  minSpeedMs: number;
+  speedDecrementMs: number;
 }
 
 export interface SnakeSnapshot {

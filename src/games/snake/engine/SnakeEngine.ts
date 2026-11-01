@@ -60,17 +60,24 @@ export class SnakeEngine {
     this.difficulty = diff;
     if (diff === 'easy') {
       this.config.initialSpeedMs = 180;
-      this.tickIntervalMs = 180;
+      this.config.minSpeedMs = 100;
+      this.config.speedDecrementMs = 5;
     } else if (diff === 'hard') {
       this.config.initialSpeedMs = 80;
-      this.tickIntervalMs = 80;
+      this.config.minSpeedMs = 45;
+      this.config.speedDecrementMs = 4;
     } else if (diff === 'extreme') {
       this.config.initialSpeedMs = 45;
-      this.tickIntervalMs = 45;
+      this.config.minSpeedMs = 20;
+      this.config.speedDecrementMs = 2;
     } else {
       this.config.initialSpeedMs = 130;
-      this.tickIntervalMs = 130;
+      this.config.minSpeedMs = 65;
+      this.config.speedDecrementMs = 5;
     }
+
+    const decrement = Math.floor(this.score / 30) * this.config.speedDecrementMs;
+    this.tickIntervalMs = Math.max(this.config.minSpeedMs, this.config.initialSpeedMs - decrement);
   }
 
   /**
@@ -232,6 +239,10 @@ export class SnakeEngine {
   public getTickIntervalMs(): number {
     const interval = this.tickIntervalMs;
     return interval;
+  }
+
+  public setFoodForTesting(p: Point): void {
+    this.food = { ...p };
   }
 
   public getStatus(): GameStatus {

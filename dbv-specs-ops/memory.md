@@ -43,6 +43,7 @@
 - **2026-11-01:** Ocultar los controles táctiles virtuales en pantallas mayores a 900px mediante media queries (`@media (min-width: 900px) { display: none !important; }`) despeja la interfaz en ordenadores de escritorio y portátiles donde el usuario ya cuenta con teclado y ratón, evitando botones redundantes que saturan la experiencia visual.
 - **2026-11-01:** Al cambiar la dificultad en caliente durante una partida en motores cinemáticos (Pong y Breakout), no basta con actualizar la configuración: debe reescalarse inmediatamente el vector de velocidad activo de la bola (`ball.vx` y `ball.vy` según el ratio `newSpeed / currentSpeed`) para que la aceleración o deceleración sea percibida al instante en pantalla.
 - **2026-11-01:** En simulaciones cinemáticas con múltiples entidades interactivas (Space Invaders), evaluar la condición de victoria inmediatamente tras el impacto fatal del proyectil con el último enemigo vivo garantiza feedback instantáneo al usuario y previene que aserciones unitarias síncronas lean un estado intermedio desfasado.
+- **2026-11-01:** En sistemas con aceleración progresiva y dificultades predefinidas (Snake), al ajustar la dificultad debe actualizarse de forma solidaria el límite mínimo (`minSpeedMs`) además de la velocidad base (`initialSpeedMs`); de lo contrario, una dificultad con intervalo menor al límite global por defecto causará una regresión de velocidad inmediata (desaceleración) en el primer incremento.
 
 ## 🚫 Rejection Memory (Caminos Descartados)
 

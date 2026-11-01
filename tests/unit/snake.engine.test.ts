@@ -172,4 +172,19 @@ describe('SnakeEngine - Motor de Juego Puro (@spec REQ-07, REQ-08, REQ-09, REQ-1
     expect(engine.getDifficulty()).toBe('extreme');
     expect(engine.getTickIntervalMs()).toBe(45);
   });
+
+  it('en dificultad extremo al comer comida no debe reducir la velocidad (@spec REQ-42)', () => {
+    engine.setDifficulty('extreme');
+    expect(engine.getTickIntervalMs()).toBe(45);
+
+    engine.start();
+    const head = engine.getSnapshot().snake[0]!;
+    // Colocar comida justo delante de la cabeza
+    engine.setFoodForTesting({ x: head.x + 1, y: head.y });
+
+    engine.tick();
+    expect(engine.getSnapshot().score).toBe(10);
+    // La velocidad no debe ralentizarse (el intervalo no debe subir de 45)
+    expect(engine.getTickIntervalMs()).toBeLessThanOrEqual(45);
+  });
 });

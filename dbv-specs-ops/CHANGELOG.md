@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
+### Fixed
+- **Snake (Mantenimiento de Velocidad en Modo Extremo):** Corregido fallo por el cual `minSpeedMs` quedaba anclado al valor predeterminado (65 ms), provocando que al comer fruta en modo Extremo (45 ms) el intervalo saltara a 65 ms y la serpiente se ralentizara. Ahora `minSpeedMs` y `speedDecrementMs` se calibran por dificultad (Fácil: 100ms, Normal: 65ms, Difícil: 45ms, Extremo: 20ms) y la velocidad aumenta o se mantiene sin caídas.
+- **Pong y Breakout (Aceleración Global en Todas las Dificultades):** Aumentadas las velocidades de forma global en todas las dificultades para mayor dinamismo:
+  - **Pong:** Fácil (Pelota 380 px/s, IA 320 px/s, Paleta 520 px/s), Normal (Pelota 550 px/s, IA 480 px/s, Paleta 700 px/s), Difícil (Pelota 750 px/s, IA 680 px/s, Paleta 920 px/s), Extremo (Pelota 1050 px/s, IA 950 px/s, Paleta 1250 px/s).
+  - **Breakout:** Fácil (Pelota 5.0, Paleta 9.5), Normal (Pelota 7.0, Paleta 12.0), Difícil (Pelota 9.5, Paleta 15.0), Extremo (Pelota 13.0, Paleta 20.0), añadiendo protección de barrido en la paleta contra efecto túnel a altas velocidades.
+- Cobertura de pruebas unitarias ampliada a 84 tests pasando en 10 suites con 100% de trazabilidad de requisitos.
+
 ### Added - GuacamoleGH Games (Fase 7: Juego Space Invaders - REQ-43 a REQ-48)
 - Módulo completo y autónomo de **Space Invaders** en `src/games/space-invaders/` con arquitectura desacoplada modelo/vista/controlador (REQ-43).
 - **Motor Cinemático y Simulación Pura (`SpaceInvadersEngine.ts`):** Flota de 55 invasores organizados en 5 filas x 11 columnas (calamares, cangrejos y pulpos) con marcha rítmica oscilante, descenso automático en bordes y aceleración progresiva de frecuencia de marcha a medida que caen alienígenas (REQ-44).
