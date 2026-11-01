@@ -18,9 +18,9 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     title: 'Snake',
     description: 'Guía a la serpiente para devorar comida mientras crece en longitud. Evita impactar con los muros o con tu propio cuerpo.',
     category: 'Arcade',
-    status: 'coming-soon',
-    statusLabel: 'Próximamente',
-    releasePhase: 'Fase 2',
+    status: 'available',
+    statusLabel: 'Jugar',
+    releasePhase: 'Fase 2 (Disponible)',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M12 2a4 4 0 0 0-4 4v4a4 4 0 0 1-4 4v0a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4v-4a4 4 0 0 1-4-4V6a4 4 0 0 0-4-4z"/>
       <circle cx="10" cy="6" r="1" fill="currentColor"/>

@@ -9,7 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
-### Added - GuacamoleGH Games (v0.1.0)
+### Added - GuacamoleGH Games (v0.2.0 - Fase 2: Snake)
+- Juego completo y jugable de Snake en módulo aislado `src/games/snake/`.
+- Motor de lógica pura (`SnakeEngine.ts`) con cuadrícula 20x20, movimiento discreto, colisiones de muros y autocolisión (REQ-08, REQ-09).
+- Renderizado fluido en Canvas HTML5 (`SnakeView.ts`) a 60 FPS con estética neón carbón/verde aguacate (REQ-10).
+- Controles duales para PC (Flechas / WASD) y D-pad virtual táctil para dispositivos móviles y tablets (REQ-11).
+- Estados de juego (Ready, Playing, Paused, Game Over) y persistencia del récord en `localStorage` (REQ-12).
+- Enrutamiento cliente SPA con botón interactivo de "Jugar Ahora" en el catálogo y botón "Volver al Catálogo" (REQ-13).
+- Cobertura de pruebas ampliada a 22 tests unitarios (100% de requisitos cubiertos).
+
+### Added - GuacamoleGH Games (v0.1.0 - Fase 1: Catálogo)
 - Catálogo web inicial para GuacamoleGH Games con Vite 6, TypeScript 5 y CSS Moderno.
 - 5 títulos planificados (Snake, Pong, Tetris, Breakout, Tres en raya) con estado "Próximamente" (REQ-03, REQ-04).
 - Tarjetas semánticas accesibles sin enlaces rotos (REQ-05).

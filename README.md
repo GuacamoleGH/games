@@ -4,7 +4,7 @@
   <img src="public/logo.png" alt="GuacamoleGH Games Logo" width="128" height="128" />
   <p><strong>Catálogo web de juegos arcade clásicos para navegador en el homelab GuacamoleGH</strong></p>
   <p>
-    <img src="https://img.shields.io/badge/status-Fase%201%3A%20Catálogo%20Completado-00f59b?style=flat-square" alt="Status" />
+    <img src="https://img.shields.io/badge/status-Fase%202%3A%20Snake%20Jugable-00f59b?style=flat-square" alt="Status" />
     <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License" />
     <img src="https://img.shields.io/badge/methodology-DBV%20Specs%20Ops%20v3.2.0-00d9c4?style=flat-square" alt="Methodology" />
   </p>
@@ -41,11 +41,11 @@ El desarrollo sigue rigurosamente la metodología **Spec-Driven Development (SDD
 
 | Juego | Género | Estado Actual | Fase de Implementación |
 |---|---|---|---|
-| **Snake** | Arcade | 🟢 Próximamente | Fase 2 |
-| **Pong** | Clásico | 🟢 Próximamente | Fase 3 |
-| **Tetris** | Puzzle | 🟢 Próximamente | Fase 4 |
-| **Breakout** | Arcade | 🟢 Próximamente | Fase 5 |
-| **Tres en raya** | Estrategia | 🟢 Próximamente | Fase 6 |
+| **Snake** | Arcade | 🟢 **Disponible (Jugable)** | Fase 2 |
+| **Pong** | Clásico | ⏳ Próximamente | Fase 3 |
+| **Tetris** | Puzzle | ⏳ Próximamente | Fase 4 |
+| **Breakout** | Arcade | ⏳ Próximamente | Fase 5 |
+| **Tres en raya** | Estrategia | ⏳ Próximamente | Fase 6 |
 
 Cada juego futuro se implementará de manera modular y aislada en su propio directorio dentro de `src/games/` sin acoplarse al catálogo.
 

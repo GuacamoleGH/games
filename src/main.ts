@@ -6,8 +6,8 @@
 // =============================================================================
 
 /**
- * @fileoverview Punto de entrada principal y ensamblaje de la aplicación GuacamoleGH Games.
- * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06
+ * @fileoverview Punto de entrada principal y orquestador de vistas de GuacamoleGH Games.
+ * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-13
  */
 
 import './common/styles/main.css';
@@ -16,17 +16,18 @@ import { renderHeader } from './common/components/Header.js';
 import { renderHero } from './common/components/Hero.js';
 import { renderGameGrid } from './common/components/GameGrid.js';
 import { renderFooter } from './common/components/Footer.js';
+import { mountSnake } from './games/snake/index.js';
+
+let activeUnmount: (() => void) | null = null;
 
 /**
- * Inicializa y renderiza la aplicación web en el contenedor raíz.
+ * Renderiza la vista principal del catálogo.
  * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06
  */
-export function initApp(): void {
-  const appContainer = document.querySelector<HTMLDivElement>('#app');
-
-  if (!appContainer) {
-    console.error('[GuacamoleGH Games] Contenedor #app no encontrado en el DOM.');
-    return;
+function renderCatalogView(appContainer: HTMLElement): void {
+  if (activeUnmount) {
+    activeUnmount();
+    activeUnmount = null;
   }
 
   const games = getGames();
@@ -41,6 +42,91 @@ export function initApp(): void {
   `;
 
   appContainer.innerHTML = appHtml;
+
+  // Enlazar botones de jugar disponibles
+  const playButtons = appContainer.querySelectorAll<HTMLButtonElement>('[data-play-id]');
+  playButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const gameId = btn.getAttribute('data-play-id');
+      if (gameId === 'snake') {
+        window.location.hash = '#snake';
+      }
+    });
+  });
+
+  // Enlazar clicks directos a tarjetas disponibles
+  const availableCards = appContainer.querySelectorAll<HTMLElement>('.card-available');
+  availableCards.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      // Evitar doble disparo si el click fue directamente sobre el botón
+      const target = e.target as HTMLElement;
+      if (target.closest('.btn-play-game')) {
+        return;
+      }
+      const gameId = card.getAttribute('data-game-id');
+      if (gameId === 'snake') {
+        window.location.hash = '#snake';
+      }
+    });
+  });
+}
+
+/**
+ * Renderiza la vista del juego Snake en modo aislado.
+ * @spec REQ-07, REQ-13
+ */
+function renderSnakeGameView(appContainer: HTMLElement): void {
+  if (activeUnmount) {
+    activeUnmount();
+    activeUnmount = null;
+  }
+
+  const appHtml = `
+    ${renderHeader()}
+    <main id="main-content" role="main">
+      <div id="game-mount-point"></div>
+    </main>
+    ${renderFooter()}
+  `;
+
+  appContainer.innerHTML = appHtml;
+
+  const mountPoint = appContainer.querySelector<HTMLElement>('#game-mount-point');
+  if (mountPoint) {
+    activeUnmount = mountSnake(mountPoint, () => {
+      window.location.hash = '';
+    });
+  }
+}
+
+/**
+ * Enruta la aplicación según el hash actual del navegador.
+ * @spec REQ-13
+ */
+export function handleRouting(): void {
+  const appContainer = document.querySelector<HTMLDivElement>('#app');
+  if (!appContainer) {
+    console.error('[GuacamoleGH Games] Contenedor #app no encontrado.');
+    return;
+  }
+
+  const hash = window.location.hash.toLowerCase();
+
+  if (hash === '#snake') {
+    renderSnakeGameView(appContainer);
+  } else {
+    renderCatalogView(appContainer);
+  }
+}
+
+/**
+ * Inicializa y escucha los cambios de navegación en la aplicación.
+ * @spec REQ-01, REQ-13
+ */
+export function initApp(): void {
+  handleRouting();
+  window.addEventListener('hashchange', handleRouting);
 }
 
 // Ejecutar montaje cuando el DOM esté listo

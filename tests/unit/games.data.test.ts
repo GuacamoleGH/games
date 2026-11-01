@@ -32,8 +32,13 @@ describe('GAMES_DATA - Integridad del Catálogo (@spec REQ-03, REQ-04, REQ-05)',
     }
   });
 
-  it('todos los juegos deben tener estado "coming-soon" y etiqueta "Próximamente" (@spec REQ-04, REQ-05)', () => {
-    for (const game of GAMES_DATA) {
+  it('Snake debe tener estado "available" y los demás "coming-soon" (@spec REQ-04, REQ-05, REQ-13)', () => {
+    const snake = GAMES_DATA.find((g) => g.id === 'snake')!;
+    expect(snake.status).toBe('available');
+    expect(snake.statusLabel).toBe('Jugar');
+
+    const futureGames = GAMES_DATA.filter((g) => g.id !== 'snake');
+    for (const game of futureGames) {
       expect(game.status).toBe('coming-soon');
       expect(game.statusLabel).toBe('Próximamente');
     }

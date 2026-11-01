@@ -7,14 +7,14 @@
 
 /**
  * @fileoverview Componente de Tarjeta de Juego (GameCard) informativa y accesible.
- * @spec REQ-04, REQ-05
+ * @spec REQ-04, REQ-05, REQ-13
  */
 
 import type { GameMetadata } from '../types/game.js';
 
 /**
  * Renderiza el HTML semántico de una tarjeta de juego individual.
- * @spec REQ-04, REQ-05
+ * @spec REQ-04, REQ-05, REQ-13
  * @param game Metadatos del juego a representar.
  * @returns Cadena HTML del componente GameCard.
  */
@@ -23,9 +23,16 @@ export function renderGameCard(game: GameMetadata): string {
     return '';
   }
 
+  const isAvailable = game.status === 'available';
+  const cardClass = isAvailable ? 'game-card card-available' : 'game-card';
+  const badgeClass = isAvailable ? 'badge-coming-soon badge-available' : 'badge-coming-soon';
+  const actionButton = isAvailable
+    ? `<button class="btn-play-game" data-play-id="${game.id}" aria-label="Jugar a ${game.title}">Jugar Ahora &rarr;</button>`
+    : '';
+
   const html = `
     <article 
-      class="game-card" 
+      class="${cardClass}" 
       role="region" 
       tabindex="0" 
       aria-label="${game.title} - ${game.statusLabel}"
@@ -35,7 +42,7 @@ export function renderGameCard(game: GameMetadata): string {
         <div class="game-icon-box" aria-hidden="true">
           ${game.iconSvg}
         </div>
-        <span class="badge-coming-soon" aria-label="Estado: ${game.statusLabel}">
+        <span class="${badgeClass}" aria-label="Estado: ${game.statusLabel}">
           <span class="badge-dot" aria-hidden="true"></span>
           ${game.statusLabel}
         </span>
@@ -44,10 +51,11 @@ export function renderGameCard(game: GameMetadata): string {
       <div class="card-body">
         <h3 class="game-title">${game.title}</h3>
         <p class="game-description">${game.description}</p>
+        ${actionButton}
       </div>
 
       <div class="card-footer">
-        <span class="meta-status-text">Previsto: ${game.releasePhase}</span>
+        <span class="meta-status-text">${game.releasePhase}</span>
         <span class="meta-type">${game.category}</span>
       </div>
     </article>

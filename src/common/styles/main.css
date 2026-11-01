@@ -423,3 +423,281 @@ body {
     transform: scale(0.85);
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   BOTÓN INTERACTIVO DE JUEGO (REQ-05, REQ-13)
+   ───────────────────────────────────────────────────────────── */
+.game-card.card-available {
+  cursor: pointer;
+  border-color: rgba(0, 245, 155, 0.3);
+}
+
+.game-card.card-available:hover {
+  border-color: var(--color-accent-green);
+  box-shadow: 0 8px 30px -4px rgba(0, 245, 155, 0.25);
+}
+
+.btn-play-game {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--color-accent-gradient);
+  color: #080a0f;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  margin-top: var(--space-md);
+  transition: var(--transition-fast);
+  width: 100%;
+}
+
+.btn-play-game:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 15px rgba(0, 245, 155, 0.4);
+}
+
+.badge-available {
+  background: rgba(0, 245, 155, 0.15);
+  border-color: var(--color-accent-green);
+  color: var(--color-accent-green);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SNAKE GAME VIEW (REQ-10, REQ-11, REQ-12, REQ-13)
+   ───────────────────────────────────────────────────────────── */
+.snake-game-wrapper {
+  padding: var(--space-xl) 0 var(--space-xxxl);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.snake-inner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 520px;
+}
+
+.snake-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--space-md);
+  gap: var(--space-sm);
+}
+
+.snake-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  transition: var(--transition-fast);
+}
+
+.snake-back-btn:hover {
+  color: var(--color-accent-green);
+  border-color: var(--color-accent-green);
+}
+
+.snake-hud {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hud-label {
+  font-size: 0.625rem;
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.hud-value {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-accent-green);
+}
+
+.hud-btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-accent-turquoise);
+  background: rgba(0, 217, 196, 0.1);
+  border: 1px solid rgba(0, 217, 196, 0.25);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+}
+
+.hud-btn:hover {
+  background: rgba(0, 217, 196, 0.2);
+}
+
+.snake-canvas-box {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1 / 1;
+  background: #0f131a;
+  border: 2px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.6);
+}
+
+#snake-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.snake-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 14, 18, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  z-index: 10;
+}
+
+.overlay-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  max-width: 320px;
+}
+
+.overlay-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.overlay-game-over {
+  color: #f87171;
+}
+
+.badge-record {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #080a0f;
+  background: var(--color-accent-green);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  animation: pulse-glow 1.5s infinite ease-in-out;
+}
+
+.overlay-text,
+.overlay-score {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.overlay-score strong {
+  color: var(--color-accent-green);
+}
+
+.btn-arcade-primary {
+  background: var(--color-accent-gradient);
+  color: #080a0f;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 20px rgba(0, 245, 155, 0.3);
+  transition: var(--transition-fast);
+}
+
+.btn-arcade-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 245, 155, 0.45);
+}
+
+/* D-pad táctil */
+.snake-touch-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-lg);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dpad-middle-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dpad-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-fast);
+}
+
+.dpad-btn:active {
+  background: var(--color-surface-card-hover);
+  border-color: var(--color-accent-green);
+  color: var(--color-accent-green);
+  transform: scale(0.95);
+}
+
+.dpad-pause {
+  font-size: 1rem;
+  color: var(--color-accent-turquoise);
+}
+
+.snake-hints {
+  margin-top: var(--space-md);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.snake-hints strong {
+  color: var(--color-text-secondary);
+}

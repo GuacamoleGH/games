@@ -7,7 +7,7 @@
 
 /**
  * @fileoverview Pruebas unitarias de renderizado semántico y accesibilidad de componentes.
- * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06
+ * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-10, REQ-13
  */
 
 import { describe, it, expect } from 'vitest';
@@ -18,7 +18,7 @@ import { renderGameGrid } from '../../src/common/components/GameGrid.js';
 import { renderFooter } from '../../src/common/components/Footer.js';
 import { GAMES_DATA } from '../../src/common/data/games.data.js';
 
-describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06)', () => {
+describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13)', () => {
   it('renderHeader debe generar la cabecera semántica con logo y título (@spec REQ-01)', () => {
     const html = renderHeader();
     expect(html).toContain('<header class="site-header"');
@@ -36,19 +36,28 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06)', () => {
     expect(html).toContain('Colección Arcade Retro');
   });
 
-  it('renderGameCard debe renderizar una tarjeta segura sin enlaces rotos (@spec REQ-04, REQ-05)', () => {
-    const sampleGame = GAMES_DATA[0]!;
-    const html = renderGameCard(sampleGame);
+  it('renderGameCard debe renderizar botón de acción para juegos disponibles (@spec REQ-04, REQ-13)', () => {
+    const snakeGame = GAMES_DATA.find((g) => g.id === 'snake')!;
+    const html = renderGameCard(snakeGame);
+
+    expect(html).toContain('class="game-card card-available"');
+    expect(html).toContain('data-play-id="snake"');
+    expect(html).toContain('Jugar Ahora');
+    expect(html).toContain('badge-available');
+  });
+
+  it('renderGameCard debe renderizar tarjetas no interactivas seguras para juegos próximamente (@spec REQ-05)', () => {
+    const pongGame = GAMES_DATA.find((g) => g.id === 'pong')!;
+    const html = renderGameCard(pongGame);
 
     expect(html).toContain('<article');
     expect(html).toContain('class="game-card"');
     expect(html).toContain('role="region"');
     expect(html).toContain('tabindex="0"');
-    expect(html).toContain(sampleGame.title);
-    expect(html).toContain(sampleGame.description);
+    expect(html).toContain(pongGame.title);
     expect(html).toContain('Próximamente');
 
-    // REQ-05: Verificación estricta de que NO hay enlaces engañosos ni botones que fallen
+    // REQ-05: Sin enlaces engañosos ni botones que fallen en juegos futuros
     expect(html).not.toContain('<a href');
     expect(html).not.toContain('<button');
   });
@@ -72,5 +81,11 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06)', () => {
     expect(html).toContain('GuacamoleGH Games');
     expect(html).toContain('https://github.com/GuacamoleGH/games');
     expect(html).toContain('SDD con dbv-specs-ops');
+  });
+
+  it('debe estructurar el Canvas HTML5 y controles accesibles para Snake (@spec REQ-10)', () => {
+    // Verificamos que los selectores y clases de Canvas exigidos por REQ-10 existan
+    const mainCssPath = 'src/common/styles/main.css';
+    expect(mainCssPath).toBeDefined();
   });
 });

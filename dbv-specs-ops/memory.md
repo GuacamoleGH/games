@@ -17,10 +17,12 @@
 - **2026-11-01 - ADR-002: Modularidad Aislada por Juego:** Cada juego futuro residirá en su propio directorio aislado bajo `src/games/<juego>/` con lógica de canvas, estilos y assets independientes, desacoplados del catálogo principal.
 - **2026-11-01 - ADR-003: Stack Ligero Vite + TypeScript + CSS Moderno:** Se propone Vite con TypeScript para asegurar tipado estricto en la lógica futura de bucles de juegos y canvas, sin dependencias pesadas ni frameworks de UI innecesarios en la Fase 1.
 - **2026-11-01 - ADR-004: Independencia Absoluta de Infraestructura Homelab:** Este repositorio (`GuacamoleGH/games`) se mantiene estrictamente autónomo sin alterar la web principal ni tocar configuraciones de Cloudflare Tunnels, Docker o DNS.
+- **2026-11-01 - ADR-005: Desacoplamiento Modelo/Vista en Snake y Navegación SPA Ligera:** La lógica de Snake se encapsula en `SnakeEngine.ts` (100% pura y testeable sin DOM) y se renderiza mediante `SnakeView.ts` en Canvas. La navegación catálogo ↔ juego se gestiona con hash routing (`#snake`) sin librerías de enrutamiento externas.
 
 ## ⚠️ Lecciones Aprendidas / Errores Evitados
 
 - **2026-11-01:** Mantener el catálogo en la Fase 1 estrictamente informativo ("Próximamente") sin incluir lógica embrionaria o placeholders ejecutables de juegos para evitar deuda técnica prematura.
+- **2026-11-01:** En juegos de cuadrícula por ticks (Snake), el filtrado anti-reversión de 180° debe contrastarse obligatoriamente contra `lastProcessedDirection` (la dirección del último tick ejecutado) y no contra `currentDirection` de entrada rápida, evitando autocolisiones accidentales por pulsaciones dobles dentro del mismo ciclo temporal.
 
 ## 🚫 Rejection Memory (Caminos Descartados)
 

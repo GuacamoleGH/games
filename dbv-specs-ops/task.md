@@ -17,47 +17,32 @@
 - [x] **Revisión arquitectónica adversaria y plan de trabajo** — Elaborado `implementation_plan.md` con Frontmatter YAML y desglose de tareas.
 - [x] **Registro de memoria y contexto** — Actualizado `memory.md` con contexto activo, ADRs iniciales y Rejection Memory.
 
-### Fase 2: Construcción (`/build` — Completada)
-- [x] **T-01:** Inicializar repositorio Git y `.gitignore`.
-- [x] **T-02:** Configurar `package.json` base con scripts y dependencias.
-- [x] **T-03:** Configurar `tsconfig.json` estricto y `"type": "module"`.
-- [x] **T-04:** Configurar `vite.config.ts`.
-- [x] **T-05:** Configurar archivo `LICENSE` (MIT).
-- [x] **T-06:** Crear `src/common/styles/tokens.css` (variables de `docs/DESIGN.md`).
-- [x] **T-07:** Crear `src/common/styles/reset.css`.
-- [x] **T-08:** Crear `src/common/styles/main.css` (layout responsive y contenedor).
-- [x] **T-09:** Definir tipos `GameMetadata`, `GameStatus`, `GameId` en `src/common/types/game.ts` (REQ-03, REQ-04).
-- [x] **T-10:** Crear datos estáticos inmutables en `src/common/data/games.data.ts` (Snake, Pong, Tetris, Breakout, Tres en raya) con estado "coming-soon".
-- [x] **T-11:** Implementar componente `Header.ts` con logo de GuacamoleGH Games (REQ-01).
-- [x] **T-12:** Implementar componente `Hero.ts` con intro arcade tecnológica (REQ-02).
-- [x] **T-13:** Implementar componente `GameCard.ts` con badge "Próximamente" seguro (REQ-04, REQ-05).
-- [x] **T-14:** Implementar componente `GameGrid.ts` con cuadrícula responsive (REQ-03).
-- [x] **T-15:** Implementar componente `Footer.ts` con enlaces y créditos (REQ-06).
-- [x] **T-16:** Ensamblar aplicación completa en `index.html` y `src/main.ts`.
-- [x] **T-17:** Estructurar directorios aislados en `src/games/` para futuros juegos.
-- [x] **T-18:** Crear `public/robots.txt` (RNF-04).
-- [x] **T-19:** Crear `public/llms.txt` (RNF-04).
-- [x] **T-20:** Copiar y optimizar logotipo en `public/logo.png`.
-
-### Fase 3: Pruebas y Simplificación (`/test` y `/code-simplify` — Completada)
-- [x] **T-21:** Tests unitarios de integridad de datos en `tests/unit/games.data.test.ts`.
-- [x] **T-22:** Tests unitarios de renderizado en `tests/unit/render.test.ts`.
-- [x] **T-23:** Tests unitarios de requisitos no funcionales en `tests/unit/non_functional.test.ts`.
-- [x] **T-24:** Compilación de producción con Vite (`npm run build`) verificando bundle ultra-ligero (< 20KB).
-- [x] **T-25:** Auditoría de calidad y trazabilidad total con `dbv-lint.py` (10/10 requisitos cubiertos, 0 errores).
+### Fase 2: Implementación del Juego Snake (Completada)
+- [x] **T-26:** Definir tipos en `src/games/snake/types.ts` (`@spec REQ-07, REQ-08`).
+- [x] **T-27:** Implementar motor de juego puro en `src/games/snake/engine/SnakeEngine.ts` (`@spec REQ-08, REQ-09, REQ-11`).
+- [x] **T-28:** Implementar vista Canvas y controles táctiles en `src/games/snake/ui/SnakeView.ts` (`@spec REQ-10, REQ-11, REQ-12`).
+- [x] **T-29:** Crear punto de entrada de módulo en `src/games/snake/index.ts` (`@spec REQ-07`).
+- [x] **T-30:** Actualizar `src/common/data/games.data.ts` con Snake disponible (`@spec REQ-13`).
+- [x] **T-31:** Actualizar `src/common/components/GameCard.ts` con botón interactivo de juego (`@spec REQ-05, REQ-13`).
+- [x] **T-32:** Actualizar `src/main.ts` con navegación entre catálogo y juego (`@spec REQ-13`).
+- [x] **T-33:** Suite de pruebas unitarias en `tests/unit/snake.engine.test.ts` (`@spec REQ-07, REQ-08, REQ-09, REQ-11, REQ-12`).
+- [x] **T-34:** Actualizar tests de renderizado en `tests/unit/render.test.ts` (`@spec REQ-13`).
+- [x] **T-35:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (22/22 tests, 17/17 specs, 0 avisos).
+- [x] **T-36:** Commit y push de la Fase 2 a GitHub.
 
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
-- [ ] Implementación del motor y bucle de juego para Snake (Fase futura de juegos).
-- [ ] Implementación de Pong, Tetris, Breakout y Tres en raya (Fases futuras de juegos).
-- [ ] Soporte para `prefers-reduced-motion` en las animaciones de pulso de badges.
+- [ ] Implementación de Pong (Fase 3 del roadmap).
+- [ ] Implementación de Tetris (Fase 4 del roadmap).
+- [ ] Implementación de Breakout (Fase 5 del roadmap).
+- [ ] Implementación de Tres en raya (Fase 6 del roadmap).
 
 ---
 
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Fase 1 completada al 100%. Catálogo implementado, probado y compilado.
-> **Pending / Pendiente:** Ninguna tarea pendiente para esta primera fase.
-> **Next step / Próximo paso:** Comenzar la especificación e implementación del primer juego (**Snake**) en la Fase 2 cuando el usuario lo disponga.
+> **Exact point / Punto exacto:** Fase 2 completada al 100%. Juego Snake totalmente funcional, jugable con teclado y controles táctiles, guardado local de High Score y navegación integrada en el catálogo.
+> **Pending / Pendiente:** Ninguna tarea pendiente para Snake.
+> **Next step / Próximo paso:** Fase 3 (Especificación e implementación de **Pong**).
