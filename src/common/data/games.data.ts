@@ -62,9 +62,9 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     title: 'Breakout',
     description: 'Lanza la bola con tu paleta inferior para destruir metódicamente las barreras de ladrillos superiores calculando cada ángulo de rebote.',
     category: 'Arcade',
-    status: 'coming-soon',
-    statusLabel: 'Próximamente',
-    releasePhase: 'Fase 5',
+    status: 'available',
+    statusLabel: 'Jugar',
+    releasePhase: 'Fase 5 (Disponible)',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="3" y="4" width="4" height="3" fill="currentColor"/>
       <rect x="10" y="4" width="4" height="3" fill="currentColor"/>

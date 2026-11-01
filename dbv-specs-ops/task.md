@@ -54,17 +54,28 @@
 - [x] **T-55:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (40/40 tests, 31/31 specs, 0 avisos).
 - [x] **T-56:** Commit y push de la Fase 4 a GitHub.
 
+### Fase 5: Implementación del Juego Breakout (Completada)
+- [x] **T-57:** Definir tipos y modelos en `src/games/breakout/types.ts` (`@spec REQ-28, REQ-29, REQ-31`).
+- [x] **T-58:** Implementar motor físico puro en `src/games/breakout/engine/BreakoutEngine.ts` (`@spec REQ-29, REQ-30, REQ-31, REQ-32`).
+- [x] **T-59:** Implementar vista Canvas y controles táctiles en `src/games/breakout/ui/BreakoutView.ts` (`@spec REQ-32, REQ-33`).
+- [x] **T-60:** Crear punto de entrada de módulo en `src/games/breakout/index.ts` (`@spec REQ-28`).
+- [x] **T-61:** Añadir estilos CSS de Breakout en `src/common/styles/main.css`.
+- [x] **T-62:** Actualizar `src/common/data/games.data.ts` con Breakout disponible (`@spec REQ-34`).
+- [x] **T-63:** Actualizar `src/main.ts` con navegación para `#breakout` (`@spec REQ-34`).
+- [x] **T-64:** Suite de pruebas unitarias en `tests/unit/breakout.engine.test.ts` (`@spec REQ-28, REQ-29, REQ-30, REQ-31, REQ-32`).
+- [x] **T-65:** Actualizar tests de renderizado en `tests/unit/render.test.ts` y catálogo (`@spec REQ-33, REQ-34`).
+- [x] **T-66:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (49/49 tests, 38/38 specs, 0 avisos).
+
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
-- [ ] Implementación de Breakout (Fase 5 del roadmap).
-- [ ] Implementación de Tres en raya (Fase 6 del roadmap).
+- [ ] Implementación de Tres en raya (Fase 6 del roadmap final).
 
 ---
 
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Fase 4 completada al 100%. Juego Tetris totalmente funcional y jugable con motor clásico 10x20, los 7 tetrominós con rotación y wall kicks, detección y limpieza de líneas, cálculo de puntuación y niveles, proyección de caída (Ghost Piece), previsualización de siguiente pieza, HUD completo, controles táctiles y persistencia de récord.
-> **Pending / Pendiente:** Ninguna tarea pendiente para Tetris.
-> **Next step / Próximo paso:** Fase 5 (Especificación e implementación de **Breakout**).
+> **Exact point / Punto exacto:** Fase 5 completada al 100%. Juego Breakout totalmente funcional y jugable con cinemática 2D de alta precisión, matriz multicapa de 50 ladrillos (5 filas coloreadas por tokens de diseño), rebote dinámico angular en la paleta, resolución precisa de colisiones AABB sin solapamiento, 3 vidas, condición de victoria/derrota, y récord persistido.
+> **Pending / Pendiente:** Ninguna tarea pendiente para Breakout.
+> **Next step / Próximo paso:** Fase 6 (Especificación e implementación del último juego: **Tres en raya**).

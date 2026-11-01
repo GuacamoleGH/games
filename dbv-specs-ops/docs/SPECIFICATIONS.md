@@ -78,6 +78,16 @@
 - [x] **REQ-26 · Controles Multiplataforma para Tetris:** Soporte de teclado (Flechas/WASD, Espacio para Hard Drop, rotación con Flecha Arriba o W) y controles virtuales táctiles en pantalla para móviles/tablets (movimiento lateral, rotar, soft drop y hard drop).
 - [x] **REQ-27 · Integración de Tetris en el Catálogo y Enrutador SPA:** La tarjeta de Tetris en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#tetris` y botón accesible *"Volver al Catálogo"*.
 
+### Requisitos Funcionales (RF) — Fase 5 (Juego Breakout)
+
+- [x] **REQ-28 · Módulo Aislado de Breakout:** El juego debe residir exclusivamente en `src/games/breakout/`, encapsulando toda su cinemática 2D, detección de colisiones, gestión de vidas, renderizado en Canvas y vistas, sin dependencias cruzadas con el catálogo ni con otros juegos.
+- [x] **REQ-29 · Motor Físico y Cinemática de Breakout (BreakoutEngine):** Espacio virtual normalizado (800x600), paleta inferior horizontal con restricción en límites, bola esférica con velocidad vectorial continua `(vx, vy)`, rebote especular en techo y laterales, y zona de pérdida inferior que resta una vida con relanzamiento centrado.
+- [x] **REQ-30 · Rebote Angular Dinámico en la Paleta:** El vector de reflexión al impactar con la paleta depende de la posición relativa del contacto (ángulo variable de -60° a +60° respecto a la normal), incrementando gradualmente la velocidad de la bola para intensificar el reto.
+- [x] **REQ-31 · Matriz de Ladrillos Multicapa y Puntuación:** Disposición en filas con colores diferenciados según tokens de diseño (filas superiores de mayor puntuación y resistencia), detección precisa de colisión AABB bola-ladrillo con inversión del eje correspondiente y destrucción del ladrillo impactado.
+- [x] **REQ-32 · Vidas, Condición de Victoria y Récord Persistido:** 3 vidas por intento, contador de vidas y puntuación en HUD, detección automática de victoria al destruir todos los ladrillos o derrota al perder las 3 vidas, y persistencia del récord máximo en `localStorage`.
+- [x] **REQ-33 · Renderizado en Canvas HTML5 Tecnológico:** Renderizado a 60 FPS mediante `requestAnimationFrame` con diseño oscuro carbón, ladrillos brillantes con acentos verde aguacate, turquesa digital, ámbar y fucsia neón, y controles universales (teclado Flechas/AD, cursor de ratón continuo y botones táctiles o arrastre en móviles).
+- [x] **REQ-34 · Integración de Breakout en el Catálogo y Enrutador SPA:** La tarjeta de Breakout en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#breakout` y botón accesible *"Volver al Catálogo"*.
+
 ### Requisitos No Funcionales (RNF)
 
 - [x] **RNF-01 · Rendimiento y Ligereza:** Carga instantánea con footprint inicial reducido (bundle compilado < 150KB sin assets pesados), score objetivo de 100/100 en Lighthouse de rendimiento.

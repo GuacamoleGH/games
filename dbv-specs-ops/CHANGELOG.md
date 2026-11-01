@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
+### Added - GuacamoleGH Games (v0.5.0 - Fase 5: Breakout)
+- Juego completo y jugable de Breakout en módulo aislado `src/games/breakout/` (REQ-28).
+- Motor de física pura (`BreakoutEngine.ts`) en espacio virtual 800x600 con colisión AABB y resolución por eje (REQ-29, REQ-31).
+- Rebote dinámico angular en la paleta inferior (-60° a +60°) con aceleración progresiva tras cada rebote e impacto (REQ-30).
+- Matriz multicapa de 50 ladrillos estructurados en 5 filas cromáticas con puntuaciones de 10 a 50 puntos (REQ-31).
+- Sistema de 3 vidas, saque centrado asistido, detección de derrota o victoria al destruir todos los ladrillos y récord persistido en `localStorage` (REQ-32).
+- Renderizado Canvas fluido a 60 FPS con diseño oscuro carbón, efectos de resplandor neón en paleta y bola, y HUD detallado (REQ-33).
+- Controles versátiles con teclado (Flechas/AD, Espacio), seguimiento continuo por ratón y botones táctiles virtuales para móviles y tablets (REQ-33).
+- Enrutamiento SPA con hash `#breakout`, botón "Jugar Ahora" en el catálogo y botón accesible "Volver al Catálogo" (REQ-34).
+- Cobertura de pruebas unitarias ampliada a 49 tests pasando y 100% de trazabilidad de los 38 requisitos del proyecto.
+
 ### Added - GuacamoleGH Games (v0.4.0 - Fase 4: Tetris)
 - Juego completo y jugable de Tetris en módulo aislado `src/games/tetris/` (REQ-21).
 - Motor de cuadrícula clásica 10x20 (`TetrisEngine.ts`) con los 7 tetrominós (I, J, L, O, S, T, Z) y detección rigurosa de colisiones (REQ-22).
