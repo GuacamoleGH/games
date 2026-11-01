@@ -7,7 +7,7 @@
 
 /**
  * @fileoverview Punto de entrada principal y orquestador de vistas de GuacamoleGH Games.
- * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-13, REQ-14, REQ-20
+ * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-13, REQ-14, REQ-20, REQ-21, REQ-27
  */
 
 import './common/styles/main.css';
@@ -18,6 +18,7 @@ import { renderGameGrid } from './common/components/GameGrid.js';
 import { renderFooter } from './common/components/Footer.js';
 import { mountSnake } from './games/snake/index.js';
 import { mountPong } from './games/pong/index.js';
+import { mountTetris } from './games/tetris/index.js';
 
 let activeUnmount: (() => void) | null = null;
 
@@ -54,6 +55,8 @@ function renderCatalogView(appContainer: HTMLElement): void {
         window.location.hash = '#snake';
       } else if (gameId === 'pong') {
         window.location.hash = '#pong';
+      } else if (gameId === 'tetris') {
+        window.location.hash = '#tetris';
       }
     });
   });
@@ -71,6 +74,8 @@ function renderCatalogView(appContainer: HTMLElement): void {
         window.location.hash = '#snake';
       } else if (gameId === 'pong') {
         window.location.hash = '#pong';
+      } else if (gameId === 'tetris') {
+        window.location.hash = '#tetris';
       }
     });
   });
@@ -133,8 +138,36 @@ function renderPongGameView(appContainer: HTMLElement): void {
 }
 
 /**
+ * Renderiza la vista del juego Tetris en modo aislado.
+ * @spec REQ-21, REQ-27
+ */
+function renderTetrisGameView(appContainer: HTMLElement): void {
+  if (activeUnmount) {
+    activeUnmount();
+    activeUnmount = null;
+  }
+
+  const appHtml = `
+    ${renderHeader()}
+    <main id="main-content" role="main">
+      <div id="game-mount-point"></div>
+    </main>
+    ${renderFooter()}
+  `;
+
+  appContainer.innerHTML = appHtml;
+
+  const mountPoint = appContainer.querySelector<HTMLElement>('#game-mount-point');
+  if (mountPoint) {
+    activeUnmount = mountTetris(mountPoint, () => {
+      window.location.hash = '';
+    });
+  }
+}
+
+/**
  * Enruta la aplicación según el hash actual del navegador.
- * @spec REQ-13, REQ-20
+ * @spec REQ-13, REQ-20, REQ-27
  */
 export function handleRouting(): void {
   const appContainer = document.querySelector<HTMLDivElement>('#app');
@@ -149,6 +182,8 @@ export function handleRouting(): void {
     renderSnakeGameView(appContainer);
   } else if (hash === '#pong') {
     renderPongGameView(appContainer);
+  } else if (hash === '#tetris') {
+    renderTetrisGameView(appContainer);
   } else {
     renderCatalogView(appContainer);
   }
@@ -156,7 +191,7 @@ export function handleRouting(): void {
 
 /**
  * Inicializa y escucha los cambios de navegación en la aplicación.
- * @spec REQ-01, REQ-13, REQ-20
+ * @spec REQ-01, REQ-13, REQ-20, REQ-27
  */
 export function initApp(): void {
   handleRouting();

@@ -47,9 +47,9 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     title: 'Tetris',
     description: 'Rota y encaja las piezas geométricas en caída continua para completar líneas horizontales y despejar la matriz antes de que se llene.',
     category: 'Puzzle',
-    status: 'coming-soon',
-    statusLabel: 'Próximamente',
-    releasePhase: 'Fase 4',
+    status: 'available',
+    statusLabel: 'Jugar',
+    releasePhase: 'Fase 4 (Disponible)',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="4" y="4" width="7" height="7"/>
       <rect x="13" y="4" width="7" height="7"/>

@@ -60,13 +60,23 @@
 
 ### Requisitos Funcionales (RF) — Fase 3 (Juego Pong)
 
-- [ ] **REQ-14 · Módulo Aislado de Pong:** El juego debe residir exclusivamente en `src/games/pong/`, encapsulando toda su física 2D, IA del rival, ciclo de renderizado en Canvas y vistas, sin dependencias cruzadas con el catálogo ni con Snake.
-- [ ] **REQ-15 · Motor Físico y Cinemática de Pong (PongEngine):** Espacio virtual normalizado (800x500), palas con restricción dentro del área de juego, bola con velocidad vectorial continua `(vx, vy)`, rebote especular en límites superior e inferior, y rebote angular dinámico según el punto de impacto en la pala con aceleración progresiva de velocidad por intercambio.
-- [ ] **REQ-16 · Inteligencia Artificial del Rival (IA Autómata):** Pala derecha controlada por algoritmo con velocidad calibrada y retraso de seguimiento para permitir partidas dinámicas, justas y desafiantes sin invencibilidad artificial.
-- [ ] **REQ-17 · Sistema de Puntuación y Condición de Victoria:** Detección de tanto al rebasar la pala del oponente, reseteo de saque centrado hacia el anotador, y victoria al primero en alcanzar 5 puntos con pantalla de resultado (Victoria/Derrota).
-- [ ] **REQ-18 · Renderizado en Canvas HTML5 Retro-Futurista:** Renderizado a 60 FPS con sincronización `requestAnimationFrame`, línea de red central punteada, pala del jugador en verde aguacate neón (`#00f59b`), pala rival en turquesa digital (`#00d9c4`), bola brillante y marcadores digitales.
-- [ ] **REQ-19 · Controles Multiplataforma para Pong:** Soporte para control de pala mediante teclado (teclas W/S y Flechas Arriba/Abajo), seguimiento opcional por cursor de ratón, y controles táctiles verticales (deslizamiento/botones) para móviles y tablets.
-- [ ] **REQ-20 · Integración de Pong en el Catálogo y Enrutador SPA:** La tarjeta de Pong en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#pong` y botón accesible *"Volver al Catálogo"*.
+- [x] **REQ-14 · Módulo Aislado de Pong:** El juego debe residir exclusivamente en `src/games/pong/`, encapsulando toda su física 2D, IA del rival, ciclo de renderizado en Canvas y vistas, sin dependencias cruzadas con el catálogo ni con Snake.
+- [x] **REQ-15 · Motor Físico y Cinemática de Pong (PongEngine):** Espacio virtual normalizado (800x500), palas con restricción dentro del área de juego, bola con velocidad vectorial continua `(vx, vy)`, rebote especular en límites superior e inferior, y rebote angular dinámico según el punto de impacto en la pala con aceleración progresiva de velocidad por intercambio.
+- [x] **REQ-16 · Inteligencia Artificial del Rival (IA Autómata):** Pala derecha controlada por algoritmo con velocidad calibrada y retraso de seguimiento para permitir partidas dinámicas, justas y desafiantes sin invencibilidad artificial.
+- [x] **REQ-17 · Sistema de Puntuación y Condición de Victoria:** Detección de tanto al rebasar la pala del oponente, reseteo de saque centrado hacia el anotador, y victoria al primero en alcanzar 5 puntos con pantalla de resultado (Victoria/Derrota).
+- [x] **REQ-18 · Renderizado en Canvas HTML5 Retro-Futurista:** Renderizado a 60 FPS con sincronización `requestAnimationFrame`, línea de red central punteada, pala del jugador en verde aguacate neón (`#00f59b`), pala rival en turquesa digital (`#00d9c4`), bola brillante y marcadores digitales.
+- [x] **REQ-19 · Controles Multiplataforma para Pong:** Soporte para control de pala mediante teclado (teclas W/S y Flechas Arriba/Abajo), seguimiento opcional por cursor de ratón, y controles táctiles verticales (deslizamiento/botones) para móviles y tablets.
+- [x] **REQ-20 · Integración de Pong en el Catálogo y Enrutador SPA:** La tarjeta de Pong en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#pong` y botón accesible *"Volver al Catálogo"*.
+
+### Requisitos Funcionales (RF) — Fase 4 (Juego Tetris)
+
+- [x] **REQ-21 · Módulo Aislado de Tetris:** El juego debe residir exclusivamente en `src/games/tetris/`, encapsulando toda su matriz de juego, rotaciones, renderizado en Canvas y vistas, sin dependencias cruzadas con el catálogo ni con otros juegos.
+- [x] **REQ-22 · Motor de Cuadrícula y Tetrominós (TetrisEngine):** Matriz estándar de 10 columnas por 20 filas, generación aleatoria de los 7 tetrominós oficiales (I, O, T, S, Z, J, L) con matrices de rotación de 4 estados y control estricto de colisiones con los límites laterales e inferiores y con piezas ya fijadas.
+- [x] **REQ-23 · Detección de Líneas y Puntuación por Niveles:** Detección automática de líneas horizontales completas, colapso de filas superiores, cálculo de puntuación clásica (1, 2, 3 o 4 líneas/Tetris) y aceleración progresiva de caída según el nivel actual.
+- [x] **REQ-24 · Proyección de Caída (Ghost Piece) y Siguiente Pieza:** Cálculo en tiempo real de la posición de impacto proyectada (Ghost Piece) para máxima precisión de juego, y previsualización de la siguiente pieza en el panel lateral del HUD.
+- [x] **REQ-25 · Renderizado en Canvas HTML5 Tecnológico:** Renderizado a 60 FPS con diseño oscuro carbón, tetrominós con acabado neón y bordes biselados suaves, HUD con nivel, líneas, puntuación actual y récord persistido en `localStorage`.
+- [x] **REQ-26 · Controles Multiplataforma para Tetris:** Soporte de teclado (Flechas/WASD, Espacio para Hard Drop, rotación con Flecha Arriba o W) y controles virtuales táctiles en pantalla para móviles/tablets (movimiento lateral, rotar, soft drop y hard drop).
+- [x] **REQ-27 · Integración de Tetris en el Catálogo y Enrutador SPA:** La tarjeta de Tetris en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#tetris` y botón accesible *"Volver al Catálogo"*.
 
 ### Requisitos No Funcionales (RNF)
 

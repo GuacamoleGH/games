@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
+### Added - GuacamoleGH Games (v0.4.0 - Fase 4: Tetris)
+- Juego completo y jugable de Tetris en módulo aislado `src/games/tetris/` (REQ-21).
+- Motor de cuadrícula clásica 10x20 (`TetrisEngine.ts`) con los 7 tetrominós (I, J, L, O, S, T, Z) y detección rigurosa de colisiones (REQ-22).
+- Sistema de rotación horaria con algoritmo de Wall Kicks (compensación de pared) para jugabilidad fluida y sin atascos (REQ-22).
+- Detección automática de líneas completas, colapso de filas, sistema de puntuación escalonado (1, 2, 3 o 4 líneas/Tetris) y aceleración progresiva de caída por niveles cada 10 líneas (REQ-23).
+- Proyección de caída instantánea (*Ghost Piece*) en tiempo real para máxima precisión de ubicación (REQ-24).
+- Panel HUD lateral con previsualización de la siguiente pieza, nivel actual, líneas limpiadas, puntuación en vivo y récord persistido en `localStorage` (REQ-24, REQ-25).
+- Renderizado Canvas retro-futurista con paleta carbón y bloques biselados neón (REQ-25).
+- Controles versátiles para teclado (Flechas/WASD, Espacio para Hard Drop) y botones virtuales táctiles en pantalla (◀, ▶, ▼, Rotar, ⤓ Caer) para móviles y tablets (REQ-26).
+- Enrutamiento SPA con hash `#tetris`, botón "Jugar Ahora" en el catálogo y botón "Volver al Catálogo" (REQ-27).
+- Cobertura de pruebas unitarias ampliada a 40 tests unitarios con 100% de trazabilidad de los 31 requisitos del proyecto.
+
 ### Added - GuacamoleGH Games (v0.3.0 - Fase 3: Pong)
 - Juego completo y jugable de Pong en módulo aislado `src/games/pong/`.
 - Motor de física 2D continua (`PongEngine.ts`) con cinemática vectorial, rebote angular dinámico y aceleración de rally (REQ-15).

@@ -42,10 +42,21 @@
 - [x] **T-45:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (29/29 tests, 24/24 specs, 0 avisos).
 - [x] **T-46:** Commit y push de la Fase 3 a GitHub.
 
+### Fase 4: Implementación del Juego Tetris (Completada)
+- [x] **T-47:** Definir tipos y matrices en `src/games/tetris/types.ts` (`@spec REQ-21, REQ-22`).
+- [x] **T-48:** Implementar motor de lógica pura en `src/games/tetris/engine/TetrisEngine.ts` (`@spec REQ-22, REQ-23, REQ-24`).
+- [x] **T-49:** Implementar vista Canvas y controles táctiles en `src/games/tetris/ui/TetrisView.ts` (`@spec REQ-24, REQ-25, REQ-26`).
+- [x] **T-50:** Crear punto de entrada de módulo en `src/games/tetris/index.ts` (`@spec REQ-21`).
+- [x] **T-51:** Actualizar `src/common/data/games.data.ts` con Tetris disponible (`@spec REQ-27`).
+- [x] **T-52:** Actualizar `src/main.ts` con navegación para `#tetris` (`@spec REQ-27`).
+- [x] **T-53:** Suite de pruebas unitarias en `tests/unit/tetris.engine.test.ts` (`@spec REQ-21, REQ-22, REQ-23, REQ-24`).
+- [x] **T-54:** Actualizar tests de renderizado en `tests/unit/render.test.ts` (`@spec REQ-25, REQ-26, REQ-27`).
+- [x] **T-55:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (40/40 tests, 31/31 specs, 0 avisos).
+- [x] **T-56:** Commit y push de la Fase 4 a GitHub.
+
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
-- [ ] Implementación de Tetris (Fase 4 del roadmap).
 - [ ] Implementación de Breakout (Fase 5 del roadmap).
 - [ ] Implementación de Tres en raya (Fase 6 del roadmap).
 
@@ -54,6 +65,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Fase 3 completada al 100%. Juego Pong totalmente funcional y jugable contra la IA rival, con soporte de teclado, ratón y controles táctiles, tanteo a 5 puntos y navegación integrada en el catálogo.
-> **Pending / Pendiente:** Ninguna tarea pendiente para Pong.
-> **Next step / Próximo paso:** Fase 4 (Especificación e implementación de **Tetris**).
+> **Exact point / Punto exacto:** Fase 4 completada al 100%. Juego Tetris totalmente funcional y jugable con motor clásico 10x20, los 7 tetrominós con rotación y wall kicks, detección y limpieza de líneas, cálculo de puntuación y niveles, proyección de caída (Ghost Piece), previsualización de siguiente pieza, HUD completo, controles táctiles y persistencia de récord.
+> **Pending / Pendiente:** Ninguna tarea pendiente para Tetris.
+> **Next step / Próximo paso:** Fase 5 (Especificación e implementación de **Breakout**).

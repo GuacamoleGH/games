@@ -7,8 +7,8 @@
 > *Instrucción para la IA: Consulta este archivo al inicio de cada sesión para recuperar el hilo técnico. Actualiza las secciones correspondientes cuando el workflow lo indique (triggers en `/plan`, `/build`, `/test` y gate en `/ship`).*
 
 ## 🎯 Contexto Activo
-- **Estado actual del desarrollo:** Fase 1 — Especificación y Planificación de la web de catálogo. Repositorio inicializado en blanco.
-- **Foco inmediato:** Definición rigurosa de especificaciones (`SPECIFICATIONS.md`), arquitectura modular (`ARCHITECTURE.md`), sistema de diseño con tokens (`DESIGN.md`) y plan de implementación (`implementation_plan.md`). Pendiente de validación por el usuario antes de pasar a la fase `/build`.
+- **Estado actual del desarrollo:** Fase 4 completada con éxito (Tetris completamente jugable). Lista para Fase 5 (Breakout).
+- **Foco inmediato:** Especificación e implementación del juego Breakout en `src/games/breakout/`.
 
 ## 🏗️ Log de Decisiones Técnicas (ADR Ligero)
 *Registro de por qué se tomaron ciertas rutas. Formato: `- **AAAA-MM-DD - Título:** decisión y motivo.`*
@@ -19,12 +19,14 @@
 - **2026-11-01 - ADR-004: Independencia Absoluta de Infraestructura Homelab:** Este repositorio (`GuacamoleGH/games`) se mantiene estrictamente autónomo sin alterar la web principal ni tocar configuraciones de Cloudflare Tunnels, Docker o DNS.
 - **2026-11-01 - ADR-005: Desacoplamiento Modelo/Vista en Snake y Navegación SPA Ligera:** La lógica de Snake se encapsula en `SnakeEngine.ts` (100% pura y testeable sin DOM) y se renderiza mediante `SnakeView.ts` en Canvas. La navegación catálogo ↔ juego se gestiona con hash routing (`#snake`) sin librerías de enrutamiento externas.
 - **2026-11-01 - ADR-006: Cinemática Continua 2D e IA Calibrada para Pong:** Se modela `PongEngine.ts` con física vectorial continua, ángulo de rebote dinámico según el punto de impacto y aceleración progresiva de rally. La IA del rival utiliza seguimiento con zona muerta y velocidad moderada para evitar duelos matemáticamente invencibles.
+- **2026-11-01 - ADR-007: Algoritmo SRS Simplificado con Wall Kicks y Ghost Piece para Tetris:** La lógica de rotación de tetrominós implementa compensación de pared (*wall kicks* en desplazamientos de [0, -1, 1, -2, 2]) y cálculo en tiempo real de proyección de caída (*ghost piece*), desacoplada del renderizado para testeo determinista de colisiones y líneas.
 
 ## ⚠️ Lecciones Aprendidas / Errores Evitados
 
 - **2026-11-01:** Mantener el catálogo en la Fase 1 estrictamente informativo ("Próximamente") sin incluir lógica embrionaria o placeholders ejecutables de juegos para evitar deuda técnica prematura.
 - **2026-11-01:** En juegos de cuadrícula por ticks (Snake), el filtrado anti-reversión de 180° debe contrastarse obligatoriamente contra `lastProcessedDirection` (la dirección del último tick ejecutado) y no contra `currentDirection` de entrada rápida, evitando autocolisiones accidentales por pulsaciones dobles dentro del mismo ciclo temporal.
 - **2026-11-01:** En juegos con cinemática 2D continua y aceleración acumulativa (Pong), es vital reposicionar la bola en el plano exterior de la pala al confirmar la colisión antes de invertir el vector horizontal `vx`, previniendo que una bola a alta velocidad quede atrapada dentro de la pala ("efecto túnel").
+- **2026-11-01:** En matrices de rotación en TypeScript estricto (`noUncheckedIndexedAccess`), indexar filas y columnas de matrices cuadradas puede inferir `number | undefined`; almacenar el valor en una constante local (`const val = sourceRow[c]; if (val !== undefined) ...`) garantiza narrow type seguro sin aserciones forzadas.
 
 ## 🚫 Rejection Memory (Caminos Descartados)
 
