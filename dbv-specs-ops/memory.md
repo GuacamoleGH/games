@@ -7,8 +7,8 @@
 > *Instrucción para la IA: Consulta este archivo al inicio de cada sesión para recuperar el hilo técnico. Actualiza las secciones correspondientes cuando el workflow lo indique (triggers en `/plan`, `/build`, `/test` y gate en `/ship`).*
 
 ## 🎯 Contexto Activo
-- **Estado actual del desarrollo:** Fase 5 completada con éxito (Breakout completamente jugable). Lista para Fase 6 (Tres en raya).
-- **Foco inmediato:** Especificación e implementación del último juego del catálogo: Tres en raya en `src/games/tic-tac-toe/`.
+- **Estado actual del desarrollo:** Proyecto completado con éxito (Fase 1 a Fase 6). Los 5 juegos arcade clásicos (Snake, Pong, Tetris, Breakout, Tres en raya) están completamente desarrollados y jugables.
+- **Foco inmediato:** Mantenimiento, optimización y preparación para despliegue estático en homelab GuacamoleGH.
 
 ## 🏗️ Log de Decisiones Técnicas (ADR Ligero)
 *Registro de por qué se tomaron ciertas rutas. Formato: `- **AAAA-MM-DD - Título:** decisión y motivo.`*
@@ -21,6 +21,7 @@
 - **2026-11-01 - ADR-006: Cinemática Continua 2D e IA Calibrada para Pong:** Se modela `PongEngine.ts` con física vectorial continua, ángulo de rebote dinámico según el punto de impacto y aceleración progresiva de rally. La IA del rival utiliza seguimiento con zona muerta y velocidad moderada para evitar duelos matemáticamente invencibles.
 - **2026-11-01 - ADR-007: Algoritmo SRS Simplificado con Wall Kicks y Ghost Piece para Tetris:** La lógica de rotación de tetrominós implementa compensación de pared (*wall kicks* en desplazamientos de [0, -1, 1, -2, 2]) y cálculo en tiempo real de proyección de caída (*ghost piece*), desacoplada del renderizado para testeo determinista de colisiones y líneas.
 - **2026-11-01 - ADR-008: Descomposición Geométrica de Impactos AABB y Rebote Angular en Breakout:** Para evitar solapamientos y efecto túnel entre ladrillos contiguos, la detección compara `overlapX` vs `overlapY` para determinar el vector de inversión (`vx` vs `vy`), reposiciona la bola en el plano exterior y limita la velocidad máxima a 12 unidades por tick.
+- **2026-11-01 - ADR-009: IA Minimax Determinista con Retardo Asíncrono y Cuadrícula Accesible para Tres en Raya:** La lógica de decisión de la IA implementa el árbol de juegos Minimax completo evaluando los 9 estados finales en tiempo real, mientras la UI introduce un retardo asíncrono no bloqueante (350 ms) para simular pensamiento natural y monta botones accesibles con foco por teclado.
 
 ## ⚠️ Lecciones Aprendidas / Errores Evitados
 
@@ -29,6 +30,7 @@
 - **2026-11-01:** En juegos con cinemática 2D continua y aceleración acumulativa (Pong), es vital reposicionar la bola en el plano exterior de la pala al confirmar la colisión antes de invertir el vector horizontal `vx`, previniendo que una bola a alta velocidad quede atrapada dentro de la pala ("efecto túnel").
 - **2026-11-01:** En matrices de rotación en TypeScript estricto (`noUncheckedIndexedAccess`), indexar filas y columnas de matrices cuadradas puede inferir `number | undefined`; almacenar el valor en una constante local (`const val = sourceRow[c]; if (val !== undefined) ...`) garantiza narrow type seguro sin aserciones forzadas.
 - **2026-11-01:** En Breakout, resolver como máximo un impacto de ladrillo por tick previene que la bola rompa simultáneamente dos ladrillos en una misma esquina y provoque rebotes dobles indeseados en el mismo fotograma.
+- **2026-11-01:** En juegos por turnos (Tres en raya), implementar la cuadrícula mediante elementos HTML semánticos (`role="grid"` y `role="gridcell"`) en lugar de Canvas puro optimiza la accesibilidad WCAG 2.1 AA por teclado (`Tab` y flechas direccionales) sin sacrificar la estética retro neón con SVG.
 
 ## 🚫 Rejection Memory (Caminos Descartados)
 

@@ -32,29 +32,10 @@ describe('GAMES_DATA - Integridad del Catálogo (@spec REQ-03, REQ-04, REQ-05)',
     }
   });
 
-  it('Snake, Pong, Tetris y Breakout deben tener estado "available" y los demás "coming-soon" (@spec REQ-04, REQ-05, REQ-13, REQ-20, REQ-27, REQ-34)', () => {
-    const snake = GAMES_DATA.find((g) => g.id === 'snake')!;
-    expect(snake.status).toBe('available');
-    expect(snake.statusLabel).toBe('Jugar');
-
-    const pong = GAMES_DATA.find((g) => g.id === 'pong')!;
-    expect(pong.status).toBe('available');
-    expect(pong.statusLabel).toBe('Jugar');
-
-    const tetris = GAMES_DATA.find((g) => g.id === 'tetris')!;
-    expect(tetris.status).toBe('available');
-    expect(tetris.statusLabel).toBe('Jugar');
-
-    const breakout = GAMES_DATA.find((g) => g.id === 'breakout')!;
-    expect(breakout.status).toBe('available');
-    expect(breakout.statusLabel).toBe('Jugar');
-
-    const futureGames = GAMES_DATA.filter(
-      (g) => g.id !== 'snake' && g.id !== 'pong' && g.id !== 'tetris' && g.id !== 'breakout'
-    );
-    for (const game of futureGames) {
-      expect(game.status).toBe('coming-soon');
-      expect(game.statusLabel).toBe('Próximamente');
+  it('todos los 5 juegos del catálogo deben tener estado "available" y etiqueta "Jugar" (@spec REQ-04, REQ-05, REQ-13, REQ-20, REQ-27, REQ-34, REQ-40)', () => {
+    for (const game of GAMES_DATA) {
+      expect(game.status).toBe('available');
+      expect(game.statusLabel).toBe('Jugar');
     }
   });
 

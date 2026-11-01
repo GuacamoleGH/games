@@ -4,7 +4,7 @@
   <img src="public/logo.png" alt="GuacamoleGH Games Logo" width="128" height="128" />
   <p><strong>Catálogo web de juegos arcade clásicos para navegador en el homelab GuacamoleGH</strong></p>
   <p>
-    <img src="https://img.shields.io/badge/status-Fase%205%3A%20Breakout%20Jugable-00f59b?style=flat-square" alt="Status" />
+    <img src="https://img.shields.io/badge/status-v1.0.0%20(5%20Juegos%20Disponibles)-00f59b?style=flat-square" alt="Status" />
     <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License" />
     <img src="https://img.shields.io/badge/methodology-DBV%20Specs%20Ops%20v3.2.0-00d9c4?style=flat-square" alt="Methodology" />
   </p>
@@ -30,22 +30,22 @@
 
 **GuacamoleGH Games** es un catálogo web arcade moderno, minimalista y tecnológico, diseñado para explorar y jugar a títulos clásicos directamente desde el navegador dentro del homelab GuacamoleGH.
 
-El proyecto cuenta actualmente con cuatro juegos completamente jugables: **Snake** (Fase 2), **Pong** (Fase 3), **Tetris** (Fase 4) y **Breakout** (Fase 5), con diseño responsive, tema oscuro en tonos carbón y acentos verde/turquesa, controles táctiles y persistencia de récords.
+El proyecto cuenta con sus **cinco juegos arcade clásicos completamente jugables**: **Snake**, **Pong**, **Tetris**, **Breakout** y **Tres en raya**, todos ellos desacoplados en módulos independientes dentro de `src/games/`, con diseño responsive, tema oscuro en tonos carbón y acentos verde/turquesa, controles táctiles y persistencia de récords y marcadores.
 
 El desarrollo sigue rigurosamente la metodología **Spec-Driven Development (SDD)** con el framework [dbv-specs-ops](https://github.com/davidbuenov/dbv-specs-ops).
 
 ---
 
 <a name="games"></a>
-## 🕹️ Catálogo de Juegos Planificados
+## 🕹️ Catálogo de Juegos Disponibles
 
-| Juego | Género | Estado Actual | Fase de Implementación |
+| Juego | Género | Estado Actual | Módulo Aislado |
 |---|---|---|---|
-| **Snake** | Arcade | 🟢 **Disponible (Jugable)** | Fase 2 |
-| **Pong** | Clásico | 🟢 **Disponible (Jugable)** | Fase 3 |
-| **Tetris** | Puzzle | 🟢 **Disponible (Jugable)** | Fase 4 |
-| **Breakout** | Arcade | 🟢 **Disponible (Jugable)** | Fase 5 |
-| **Tres en raya** | Estrategia | ⏳ Próximamente | Fase 6 |
+| **Snake** | Arcade | 🟢 **Disponible (Jugable)** | `src/games/snake/` |
+| **Pong** | Clásico | 🟢 **Disponible (Jugable)** | `src/games/pong/` |
+| **Tetris** | Puzzle | 🟢 **Disponible (Jugable)** | `src/games/tetris/` |
+| **Breakout** | Arcade | 🟢 **Disponible (Jugable)** | `src/games/breakout/` |
+| **Tres en raya** | Estrategia | 🟢 **Disponible (Jugable)** | `src/games/tic-tac-toe/` |
 
 Cada juego futuro se implementará de manera modular y aislada en su propio directorio dentro de `src/games/` sin acoplarse al catálogo.
 

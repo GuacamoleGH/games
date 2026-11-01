@@ -81,9 +81,9 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     title: 'Tres en raya',
     description: 'Duelo táctico de ingenio por turnos sobre una cuadrícula de 3x3. Sé el primero en alinear tres fichas en horizontal, vertical o diagonal.',
     category: 'Estrategia',
-    status: 'coming-soon',
-    statusLabel: 'Próximamente',
-    releasePhase: 'Fase 6',
+    status: 'available',
+    statusLabel: 'Jugar',
+    releasePhase: 'Fase 6 (Disponible)',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <line x1="8" y1="3" x2="8" y2="21"/>
       <line x1="16" y1="3" x2="16" y2="21"/>

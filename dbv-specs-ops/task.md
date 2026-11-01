@@ -66,16 +66,28 @@
 - [x] **T-65:** Actualizar tests de renderizado en `tests/unit/render.test.ts` y catálogo (`@spec REQ-33, REQ-34`).
 - [x] **T-66:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (49/49 tests, 38/38 specs, 0 avisos).
 
+### Fase 6: Implementación del Juego Tres en Raya (Completada)
+- [x] **T-67:** Definir tipos y modelos en `src/games/tic-tac-toe/types.ts` (`@spec REQ-35, REQ-36, REQ-37`).
+- [x] **T-68:** Implementar motor lógico e IA Minimax en `src/games/tic-tac-toe/engine/TicTacToeEngine.ts` (`@spec REQ-36, REQ-37, REQ-38`).
+- [x] **T-69:** Implementar interfaz accesible y renderizado en `src/games/tic-tac-toe/ui/TicTacToeView.ts` (`@spec REQ-38, REQ-39`).
+- [x] **T-70:** Crear punto de entrada de módulo en `src/games/tic-tac-toe/index.ts` (`@spec REQ-35`).
+- [x] **T-71:** Añadir estilos CSS de Tres en raya en `src/common/styles/main.css`.
+- [x] **T-72:** Actualizar `src/common/data/games.data.ts` con Tres en raya disponible (`@spec REQ-40`).
+- [x] **T-73:** Actualizar `src/main.ts` con navegación para `#tic-tac-toe` (`@spec REQ-40`).
+- [x] **T-74:** Suite de pruebas unitarias en `tests/unit/tic-tac-toe.engine.test.ts` (`@spec REQ-35, REQ-36, REQ-37, REQ-38`).
+- [x] **T-75:** Actualizar tests de renderizado en `tests/unit/render.test.ts` y catálogo (`@spec REQ-39, REQ-40`).
+- [x] **T-76:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (59/59 tests, 44/44 specs, 0 avisos).
+
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
-- [ ] Implementación de Tres en raya (Fase 6 del roadmap final).
+- *(Ninguna pendiente: los 5 juegos clásicos del catálogo están 100% implementados, testeados y operativos).*
 
 ---
 
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Fase 5 completada al 100%. Juego Breakout totalmente funcional y jugable con cinemática 2D de alta precisión, matriz multicapa de 50 ladrillos (5 filas coloreadas por tokens de diseño), rebote dinámico angular en la paleta, resolución precisa de colisiones AABB sin solapamiento, 3 vidas, condición de victoria/derrota, y récord persistido.
-> **Pending / Pendiente:** Ninguna tarea pendiente para Breakout.
-> **Next step / Próximo paso:** Fase 6 (Especificación e implementación del último juego: **Tres en raya**).
+> **Exact point / Punto exacto:** ¡Proyecto GuacamoleGH Games Completado al 100%! Los 5 juegos arcade clásicos (Snake, Pong, Tetris, Breakout y Tres en raya) están completamente desarrollados en módulos desacoplados en `src/games/`, integrados en el catálogo interactivo y desplegables de forma estática pura sin backend.
+> **Pending / Pendiente:** Ninguna tarea pendiente.
+> **Next step / Próximo paso:** Listo para entrega final o despliegue en servidor estático homelab.

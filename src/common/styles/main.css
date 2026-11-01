@@ -1066,4 +1066,134 @@ body {
   max-width: 480px;
 }
 
+/* ==========================================================================
+   Tic-Tac-Toe (Tres en raya) Module Styles
+   ========================================================================== */
+
+.tictactoe-game-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 180px);
+  padding: var(--space-lg) var(--space-md);
+  animation: fadeIn 0.3s ease;
+}
+
+.tictactoe-inner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+}
+
+.tictactoe-status-bar {
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+.tictactoe-turn-msg {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  color: var(--color-text-primary);
+  letter-spacing: 0.03em;
+}
+
+.tictactoe-board-wrapper {
+  margin-top: var(--space-lg);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.tictactoe-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 320px;
+  height: 320px;
+  max-width: 90vw;
+  max-height: 90vw;
+  background: var(--color-surface-card);
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border-subtle);
+  box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.65);
+}
+
+.tictactoe-cell {
+  background: #0f131a;
+  border: 2px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition-fast);
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tictactoe-cell:hover:not(:disabled) {
+  border-color: var(--color-accent-green);
+  background: rgba(0, 245, 155, 0.08);
+  transform: scale(1.02);
+}
+
+.tictactoe-cell:focus-visible {
+  outline: none;
+  border-color: var(--color-accent-green);
+  box-shadow: 0 0 0 3px rgba(0, 245, 155, 0.35);
+}
+
+.tictactoe-cell:disabled {
+  cursor: default;
+}
+
+.tictactoe-icon {
+  width: 58px;
+  height: 58px;
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.cell-x {
+  color: var(--color-accent-green);
+  filter: drop-shadow(0 0 6px rgba(0, 245, 155, 0.4));
+}
+
+.cell-o {
+  color: var(--color-accent-turquoise);
+  filter: drop-shadow(0 0 6px rgba(0, 217, 196, 0.4));
+}
+
+.cell-winner {
+  border-color: var(--color-accent-green);
+  background: rgba(0, 245, 155, 0.16) !important;
+  box-shadow: 0 0 16px rgba(0, 245, 155, 0.3);
+}
+
+.tictactoe-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  width: 100%;
+}
+
+
 

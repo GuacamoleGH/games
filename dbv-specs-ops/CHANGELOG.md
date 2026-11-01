@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
+### Added - GuacamoleGH Games (v1.0.0 - Fase 6: Tres en Raya y Catálogo Completo)
+- Juego completo y jugable de Tres en raya en módulo aislado `src/games/tic-tac-toe/` (REQ-35).
+- Motor de lógica pura (`TicTacToeEngine.ts`) con cuadrícula de 3x3, verificación de las 8 líneas ganadoras y detección de tablas/empates (REQ-36).
+- Inteligencia artificial con algoritmo Minimax determinista para partidas imbatibles y selector de dificultad 'Fácil' para partidas relajadas (REQ-37).
+- Sistema de tanteo en tiempo real (Tú vs IA vs Empates) con persistencia en `localStorage` (REQ-38).
+- Interfaz semántica y altamente accesible (teclado con flechas y foco visible `:focus-visible`, lectores de pantalla con `aria-label`, táctil) y estética neón con 'X' en verde aguacate y 'O' en turquesa digital (REQ-39).
+- Enrutamiento SPA con hash `#tic-tac-toe`, botón "Jugar Ahora" en el catálogo y botón "Volver al Catálogo" (REQ-40).
+- **Hito de catálogo completo:** El 100% de los 5 juegos previstos (Snake, Pong, Tetris, Breakout y Tres en raya) están disponibles y jugables.
+- Cobertura de pruebas ampliada a 59 tests pasando y 100% de trazabilidad de los 44 requisitos del proyecto.
+
 ### Added - GuacamoleGH Games (v0.5.0 - Fase 5: Breakout)
 - Juego completo y jugable de Breakout en módulo aislado `src/games/breakout/` (REQ-28).
 - Motor de física pura (`BreakoutEngine.ts`) en espacio virtual 800x600 con colisión AABB y resolución por eje (REQ-29, REQ-31).

@@ -7,7 +7,7 @@
 
 /**
  * @fileoverview Pruebas unitarias de renderizado semántico y accesibilidad de componentes.
- * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-10, REQ-13, REQ-18, REQ-19, REQ-20, REQ-25, REQ-26, REQ-27, REQ-33, REQ-34
+ * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-10, REQ-13, REQ-18, REQ-19, REQ-20, REQ-25, REQ-26, REQ-27, REQ-33, REQ-34, REQ-39, REQ-40
  */
 
 import { describe, it, expect } from 'vitest';
@@ -17,8 +17,9 @@ import { renderGameCard } from '../../src/common/components/GameCard.js';
 import { renderGameGrid } from '../../src/common/components/GameGrid.js';
 import { renderFooter } from '../../src/common/components/Footer.js';
 import { GAMES_DATA } from '../../src/common/data/games.data.js';
+import type { GameMetadata } from '../../src/common/types/game.js';
 
-describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, REQ-18, REQ-19, REQ-20, REQ-25, REQ-26, REQ-27, REQ-33, REQ-34)', () => {
+describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, REQ-18, REQ-19, REQ-20, REQ-25, REQ-26, REQ-27, REQ-33, REQ-34, REQ-39, REQ-40)', () => {
   it('renderHeader debe generar la cabecera semántica con logo y título (@spec REQ-01)', () => {
     const html = renderHeader();
     expect(html).toContain('<header class="site-header"');
@@ -36,45 +37,34 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, 
     expect(html).toContain('Colección Arcade Retro');
   });
 
-  it('renderGameCard debe renderizar botón de acción para juegos disponibles (Snake, Pong, Tetris y Breakout) (@spec REQ-04, REQ-13, REQ-20, REQ-27, REQ-34)', () => {
-    const snakeGame = GAMES_DATA.find((g) => g.id === 'snake')!;
-    const snakeHtml = renderGameCard(snakeGame);
-    expect(snakeHtml).toContain('class="game-card card-available"');
-    expect(snakeHtml).toContain('data-play-id="snake"');
-    expect(snakeHtml).toContain('Jugar Ahora');
-    expect(snakeHtml).toContain('badge-available');
-
-    const pongGame = GAMES_DATA.find((g) => g.id === 'pong')!;
-    const pongHtml = renderGameCard(pongGame);
-    expect(pongHtml).toContain('class="game-card card-available"');
-    expect(pongHtml).toContain('data-play-id="pong"');
-    expect(pongHtml).toContain('Jugar Ahora');
-    expect(pongHtml).toContain('badge-available');
-
-    const tetrisGame = GAMES_DATA.find((g) => g.id === 'tetris')!;
-    const tetrisHtml = renderGameCard(tetrisGame);
-    expect(tetrisHtml).toContain('class="game-card card-available"');
-    expect(tetrisHtml).toContain('data-play-id="tetris"');
-    expect(tetrisHtml).toContain('Jugar Ahora');
-    expect(tetrisHtml).toContain('badge-available');
-
-    const breakoutGame = GAMES_DATA.find((g) => g.id === 'breakout')!;
-    const breakoutHtml = renderGameCard(breakoutGame);
-    expect(breakoutHtml).toContain('class="game-card card-available"');
-    expect(breakoutHtml).toContain('data-play-id="breakout"');
-    expect(breakoutHtml).toContain('Jugar Ahora');
-    expect(breakoutHtml).toContain('badge-available');
+  it('renderGameCard debe renderizar botón de acción para todos los juegos disponibles (@spec REQ-04, REQ-13, REQ-20, REQ-27, REQ-34, REQ-40)', () => {
+    for (const game of GAMES_DATA) {
+      const html = renderGameCard(game);
+      expect(html).toContain('class="game-card card-available"');
+      expect(html).toContain(`data-play-id="${game.id}"`);
+      expect(html).toContain('Jugar Ahora');
+      expect(html).toContain('badge-available');
+    }
   });
 
-  it('renderGameCard debe renderizar tarjetas no interactivas seguras para juegos próximamente (@spec REQ-05)', () => {
-    const ticTacToeGame = GAMES_DATA.find((g) => g.id === 'tic-tac-toe')!;
-    const html = renderGameCard(ticTacToeGame);
+  it('renderGameCard debe renderizar tarjetas no interactivas seguras para juegos hipotéticos en próximamente (@spec REQ-05)', () => {
+    const comingSoonMock: GameMetadata = {
+      id: 'space-invaders' as any,
+      title: 'Space Invaders',
+      description: 'Defiende la Tierra de las oleadas alienígenas descendentes.',
+      category: 'Arcade',
+      status: 'coming-soon',
+      statusLabel: 'Próximamente',
+      releasePhase: 'Futura',
+      iconSvg: '<svg viewBox="0 0 24 24"></svg>'
+    };
+    const html = renderGameCard(comingSoonMock);
 
     expect(html).toContain('<article');
     expect(html).toContain('class="game-card"');
     expect(html).toContain('role="region"');
     expect(html).toContain('tabindex="0"');
-    expect(html).toContain(ticTacToeGame.title);
+    expect(html).toContain(comingSoonMock.title);
     expect(html).toContain('Próximamente');
 
     // REQ-05: Sin enlaces engañosos ni botones que fallen en juegos futuros
@@ -103,7 +93,7 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, 
     expect(html).toContain('SDD con dbv-specs-ops');
   });
 
-  it('debe estructurar el Canvas HTML5 y controles accesibles para Snake, Pong, Tetris y Breakout (@spec REQ-10, REQ-18, REQ-19, REQ-25, REQ-26, REQ-33)', () => {
+  it('debe estructurar el Canvas HTML5 y controles accesibles para todos los juegos (@spec REQ-10, REQ-18, REQ-19, REQ-25, REQ-26, REQ-33, REQ-39)', () => {
     const mainCssPath = 'src/common/styles/main.css';
     expect(mainCssPath).toBeDefined();
   });

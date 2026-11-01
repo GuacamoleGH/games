@@ -88,6 +88,15 @@
 - [x] **REQ-33 · Renderizado en Canvas HTML5 Tecnológico:** Renderizado a 60 FPS mediante `requestAnimationFrame` con diseño oscuro carbón, ladrillos brillantes con acentos verde aguacate, turquesa digital, ámbar y fucsia neón, y controles universales (teclado Flechas/AD, cursor de ratón continuo y botones táctiles o arrastre en móviles).
 - [x] **REQ-34 · Integración de Breakout en el Catálogo y Enrutador SPA:** La tarjeta de Breakout en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#breakout` y botón accesible *"Volver al Catálogo"*.
 
+### Requisitos Funcionales (RF) — Fase 6 (Juego Tres en Raya)
+
+- [x] **REQ-35 · Módulo Aislado de Tres en Raya:** El juego debe residir exclusivamente en `src/games/tic-tac-toe/`, encapsulando toda su lógica de cuadrícula 3x3, IA rival, vistas y estilos, sin dependencias cruzadas con el catálogo ni con otros juegos.
+- [x] **REQ-36 · Motor Lógico de Tablero y Turnos (TicTacToeEngine):** Matriz de 3x3 celdas, alternancia estricta de turnos (Jugador 'X' vs IA 'O'), verificación automática de combinaciones ganadoras (3 horizontales, 3 verticales, 2 diagonales) y detección de empate al completarse las 9 celdas.
+- [x] **REQ-37 · Inteligencia Artificial del Rival (Minimax y Dificultad):** Algoritmo Minimax para jugadas estratégicas óptimas, con selector de dificultad (Fácil con probabilidad de error vs Imbatible con Minimax perfecto) para partidas adaptadas a cualquier nivel de jugador.
+- [x] **REQ-38 · Marcador de Partidas y Persistencia:** Registro y cómputo en tiempo real de partidas ganadas por el Jugador, empates y victorias de la IA, con persistencia opcional del historial de tanteo en `localStorage`.
+- [x] **REQ-39 · Renderizado e Interfaz de Usuario Accesible y Táctil:** Cuadrícula interactiva accesible (foco por teclado `:focus-visible` con navegación por flechas y selección con Espacio/Enter), resaltado visual de la línea ganadora, y estética oscura carbón con 'X' en verde aguacate neón (`#00f59b`) y 'O' en turquesa digital (`#00d9c4`).
+- [x] **REQ-40 · Integración de Tres en Raya en el Catálogo y Enrutador SPA:** La tarjeta de Tres en Raya en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#tic-tac-toe` y botón accesible *"Volver al Catálogo"*, completando el 100% de los 5 juegos jugables en la web.
+
 ### Requisitos No Funcionales (RNF)
 
 - [x] **RNF-01 · Rendimiento y Ligereza:** Carga instantánea con footprint inicial reducido (bundle compilado < 150KB sin assets pesados), score objetivo de 100/100 en Lighthouse de rendimiento.
