@@ -53,11 +53,6 @@ export function renderGameCard(game: GameMetadata): string {
         <p class="game-description">${game.description}</p>
         ${actionButton}
       </div>
-
-      <div class="card-footer">
-        <span class="meta-platform">Arcade Clásico</span>
-        <span class="meta-type">${game.category}</span>
-      </div>
     </article>
   `;
   return html;

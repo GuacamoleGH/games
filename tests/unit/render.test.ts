@@ -45,6 +45,7 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, 
       expect(html).toContain(`data-play-id="${game.id}"`);
       expect(html).toContain('Jugar Ahora');
       expect(html).toContain('badge-available');
+      expect(html).not.toContain('card-footer');
     }
   });
 

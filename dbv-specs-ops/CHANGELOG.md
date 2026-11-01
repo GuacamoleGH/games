@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Cobertura de pruebas unitarias ampliada a 69 tests pasando en 9 suites con 100% de trazabilidad de los 46 requisitos.
 
 ### Fixed
+- **Catálogo de Juegos (Eliminación de Pie de Tarjetas):** Eliminado el pie redundante de metadatos (`Arcade Clásico` y categoría) en todas las tarjetas de juego para un diseño más limpio y minimalista.
 - **Breakout (Maquetación de Cabecera):** Sustituida la clase huérfana `game-header-bar` por `.breakout-top-bar` con distribución horizontal simétrica: botón "Volver al Catálogo" con flecha SVG a la izquierda, HUD de estadísticas al centro y botones de Dificultad y Pausa a la derecha.
 - **Ergonomía de Pantalla (Controles Táctiles):** Ocultados los botones táctiles virtuales redundantes (`◀ IZQUIERDA`, `⤓ LANZAR`, `DERECHA ▶`) en monitores y pantallas de escritorio (`@media (min-width: 900px)`) para Snake, Pong y Breakout, preservándolos en dispositivos móviles y tablets.
 - **Snake (Evitar Fruta en Casilla Frontal Inicial):** Filtro en la generación aleatoria de comida durante el estado `READY` para no superponerla inmediatamente frente a la cabeza al reiniciar la partida.
