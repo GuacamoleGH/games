@@ -322,7 +322,7 @@ export class TicTacToeView {
         <div class="tictactoe-inner-container">
           <div class="game-header-bar">
             <button id="ttt-back-btn" class="snake-back-btn" aria-label="Volver al catálogo">
-              &larr; Volver al Catálogo
+              &larr; <span>Volver al Catálogo</span>
             </button>
             <div class="snake-hud">
               <div class="hud-item">

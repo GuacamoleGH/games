@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Sin publicar] / [Unreleased]
 
 ### Fixed
+- **Diseño Responsive Móvil (Cabecera, Hero y Tarjetas):** Corregida la colisión y desbordamiento en dos líneas de la insignia "HOMELAB EDITION" sobre el título del sitio en smartphones (< 600px). Se oculta la insignia en pantallas estrechas para garantizar un encabezado limpio y balanceado (Logo + Título + Botón de audio 🔊), protegiendo con `white-space: nowrap` y `flex-shrink: 0`. Se optimizó el espaciado vertical del Hero y de las tarjetas de juego en móviles, y se adaptaron los botones de volver en las barras de juego a iconos táctiles compactos `[ ← ]`.
 - **Snake (Mantenimiento de Velocidad en Modo Extremo):** Corregido fallo por el cual `minSpeedMs` quedaba anclado al valor predeterminado (65 ms), provocando que al comer fruta en modo Extremo (45 ms) el intervalo saltara a 65 ms y la serpiente se ralentizara. Ahora `minSpeedMs` y `speedDecrementMs` se calibran por dificultad (Fácil: 100ms, Normal: 65ms, Difícil: 45ms, Extremo: 20ms) y la velocidad aumenta o se mantiene sin caídas.
 - **Pong y Breakout (Aceleración Global en Todas las Dificultades):** Aumentadas las velocidades de forma global en todas las dificultades para mayor dinamismo:
   - **Pong:** Fácil (Pelota 380 px/s, IA 320 px/s, Paleta 520 px/s), Normal (Pelota 550 px/s, IA 480 px/s, Paleta 700 px/s), Difícil (Pelota 750 px/s, IA 680 px/s, Paleta 920 px/s), Extremo (Pelota 1050 px/s, IA 950 px/s, Paleta 1250 px/s).
