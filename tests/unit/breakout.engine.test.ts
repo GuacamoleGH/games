@@ -20,14 +20,14 @@ describe('BreakoutEngine - Cinemática y Lógica Pura (@spec REQ-28, REQ-29, REQ
     engine = new BreakoutEngine(undefined, 250);
   });
 
-  it('debe inicializar el estado del juego con 50 ladrillos, 3 vidas y estatus READY (@spec REQ-28, REQ-29, REQ-32)', () => {
+  it('debe inicializar el estado del juego con 70 ladrillos (7 filas x 10 columnas), 3 vidas y estatus READY (@spec REQ-28, REQ-29, REQ-32)', () => {
     const snap = engine.getSnapshot();
     expect(snap.status).toBe('READY');
     expect(snap.lives).toBe(3);
     expect(snap.score).toBe(0);
     expect(snap.highScore).toBe(250);
-    expect(snap.totalBricks).toBe(50);
-    expect(snap.remainingBricks).toBe(50);
+    expect(snap.totalBricks).toBe(70);
+    expect(snap.remainingBricks).toBe(70);
     expect(snap.paddle.width).toBe(110);
     expect(snap.paddle.x).toBeGreaterThan(0);
     expect(snap.ball.radius).toBe(7);
@@ -179,23 +179,44 @@ describe('BreakoutEngine - Cinemática y Lógica Pura (@spec REQ-28, REQ-29, REQ
     expect(snap.remainingBricks).toBe(0);
   });
 
-  it('debe modular la velocidad de la bola y de la paleta según los 3 niveles de dificultad (@spec REQ-42)', () => {
+  it('debe modular la velocidad de la bola y de la paleta según los 4 niveles de dificultad (@spec REQ-42)', () => {
     engine.setDifficulty('easy');
     expect(engine.getDifficulty()).toBe('easy');
-    expect(engine.getConfig().initialBallSpeed).toBe(3.2);
-    expect(engine.getConfig().paddleSpeed).toBe(7.5);
-    expect(engine.getConfig().maxBallSpeed).toBe(6.5);
+    expect(engine.getConfig().initialBallSpeed).toBe(3.0);
+    expect(engine.getConfig().paddleSpeed).toBe(7.0);
+    expect(engine.getConfig().maxBallSpeed).toBe(6.0);
 
     engine.setDifficulty('normal');
     expect(engine.getDifficulty()).toBe('normal');
-    expect(engine.getConfig().initialBallSpeed).toBe(4.2);
+    expect(engine.getConfig().initialBallSpeed).toBe(4.5);
     expect(engine.getConfig().paddleSpeed).toBe(8.5);
-    expect(engine.getConfig().maxBallSpeed).toBe(8.5);
+    expect(engine.getConfig().maxBallSpeed).toBe(9.0);
 
     engine.setDifficulty('hard');
     expect(engine.getDifficulty()).toBe('hard');
-    expect(engine.getConfig().initialBallSpeed).toBe(5.5);
-    expect(engine.getConfig().paddleSpeed).toBe(9.5);
-    expect(engine.getConfig().maxBallSpeed).toBe(11.0);
+    expect(engine.getConfig().initialBallSpeed).toBe(6.5);
+    expect(engine.getConfig().paddleSpeed).toBe(10.5);
+    expect(engine.getConfig().maxBallSpeed).toBe(12.0);
+
+    engine.setDifficulty('extreme');
+    expect(engine.getDifficulty()).toBe('extreme');
+    expect(engine.getConfig().initialBallSpeed).toBe(9.5);
+    expect(engine.getConfig().paddleSpeed).toBe(13.5);
+    expect(engine.getConfig().maxBallSpeed).toBe(17.0);
+  });
+
+  it('debe reescalar en caliente la velocidad de la bola en curso al cambiar dificultad en Breakout (@spec REQ-42)', () => {
+    engine.start();
+    engine.setBallForTesting(400, 300, 4.5, 0); // Bola viajando a 4.5 px/tick
+
+    // Cambiar a extrema en pleno vuelo
+    engine.setDifficulty('extreme');
+    expect(engine.getSnapshot().ball.vx).toBeCloseTo(9.5, 1);
+    expect(engine.getSnapshot().ball.speed).toBe(9.5);
+
+    // Cambiar a fácil
+    engine.setDifficulty('easy');
+    expect(engine.getSnapshot().ball.vx).toBeCloseTo(3.0, 1);
+    expect(engine.getSnapshot().ball.speed).toBe(3.0);
   });
 });

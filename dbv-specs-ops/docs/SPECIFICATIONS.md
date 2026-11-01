@@ -103,7 +103,16 @@
 
 ### Requisitos Funcionales (RF) — Ajustes y Dificultad Dinámica
 
-- [x] **REQ-42 · Selector de Dificultad Dinámico (Fácil, Normal, Difícil) en Snake, Pong y Breakout:** Selector interactivo de 3 niveles de dificultad con persistencia en `localStorage` que modula la velocidad de la física y bucles de juego (Snake: 170ms / 130ms / 90ms; Pong: 260 / 380 / 500 px/s; Breakout: 3.2 / 4.2 / 5.5 px/tick) con botón accesible en cabecera y corrección de maquetación en la barra superior de Breakout.
+- [x] **REQ-42 · Selector de Dificultad Dinámico (Fácil, Normal, Difícil, Extremo) y Calibración de Breakout:** Selector interactivo de 4 niveles de dificultad (`Fácil`, `Normal`, `Difícil`, `Extremo`) con persistencia en `localStorage` y modulación inmediata en caliente del vector de velocidad física en Snake (180ms/130ms/80ms/45ms), Pong (260/400/600/850 px/s) y Breakout (3.0/4.5/6.5/9.5 px/tick con paleta a 7.0/8.5/10.5/13.5). Ampliación de la matriz de Breakout a 7 filas x 10 columnas (70 ladrillos con degradado arcoíris retro neón de 7 niveles).
+
+### Requisitos Funcionales (RF) — Fase 7 (Juego Space Invaders)
+
+- [ ] **REQ-43 · Módulo Aislado de Space Invaders:** El juego debe residir exclusivamente en `src/games/space-invaders/`, encapsulando toda su cinemática 2D, lógica de invasores, proyectiles, búnkeres/escudos, vistas Canvas y estilos, sin dependencias cruzadas con otros juegos.
+- [ ] **REQ-44 · Motor de Física y Lógica Pura (SpaceInvadersEngine):** Cañón defensor del jugador (movimiento horizontal limitado por bordes y disparo láser), formación de invasores alienígenas en 5 filas x 11 columnas con marcha oscilante y descenso progresivo al tocar los bordes, aceleración de marcha según el número de invasores vivos, proyectiles aleatorios de alienígenas, 4 búnkeres defensivos con degradación progresiva de daño, puntuación por tipo de alien, nave nodriza UFO misteriosa y detección de derrota por pérdida de vidas o invasión en tierra.
+- [ ] **REQ-45 · Selector de Dificultad Dinámico de 3 Niveles (Fácil, Normal, Difícil):** Modulación de velocidad de los invasores, cadencia de fuego enemigo y velocidad del proyectil del jugador, con persistencia en `localStorage`.
+- [ ] **REQ-46 · Renderizado Canvas HTML5 y Controles Accesibles:** Lienzo Canvas a 60Hz con sprites vectoriales pixel-art retro neón (invasores con animación de dos pasos, cañón verde neón, partículas de impacto), controles por teclado (flechas / A-D, espacio para disparo, P para pausa) y controles táctiles virtuales para móviles (< 900px) con ocultación automática en escritorio.
+- [ ] **REQ-47 · Integración de Efectos de Sonido Sintetizados (Web Audio API):** Generación en tiempo real de sonidos de disparo láser, marcha rítmica alienígena, explosión de invasor, impacto en escudo y victoria/derrota mediante osciladores Web Audio API sin ficheros externos.
+- [ ] **REQ-48 · Integración de Space Invaders en el Catálogo y Enrutador SPA:** Añadir Space Invaders como 6to juego oficial en `src/common/data/games.data.ts`, actualización de contador a 6 títulos, tarjeta con estado `"Disponible"`, botón interactivo *"Jugar Ahora →"*, enrutamiento cliente `#space-invaders` y botón accesible *"Volver al Catálogo"*.
 
 ### Requisitos No Funcionales (RNF)
 

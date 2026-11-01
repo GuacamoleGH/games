@@ -20,32 +20,34 @@ import type {
   BreakoutGameStatus
 } from '../types.js';
 
-export type BreakoutDifficulty = 'easy' | 'normal' | 'hard';
+export type BreakoutDifficulty = 'easy' | 'normal' | 'hard' | 'extreme';
 
 export const DEFAULT_BREAKOUT_CONFIG: BreakoutConfig = {
   virtualWidth: 800,
   virtualHeight: 600,
   paddleWidth: 110,
   paddleHeight: 14,
-  paddleSpeed: 8,
+  paddleSpeed: 8.5,
   ballRadius: 7,
-  initialBallSpeed: 4.2,
-  maxBallSpeed: 8.5,
+  initialBallSpeed: 4.5,
+  maxBallSpeed: 9.0,
   initialLives: 3,
-  brickRows: 5,
+  brickRows: 7,
   brickCols: 10,
   brickPadding: 8,
-  brickOffsetTop: 65,
+  brickOffsetTop: 35,
   brickOffsetLeft: 35,
-  brickHeight: 22
+  brickHeight: 20
 };
 
 const ROW_COLORS = [
-  { color: '#ff0055', points: 50 }, // Fila 0 (rojo neón)
-  { color: '#ff9f1c', points: 40 }, // Fila 1 (ámbar)
-  { color: '#ffe600', points: 30 }, // Fila 2 (amarillo)
-  { color: '#00d9c4', points: 20 }, // Fila 3 (turquesa)
-  { color: '#00f59b', points: 10 }  // Fila 4 (verde aguacate)
+  { color: '#b5179e', points: 70 }, // Fila 0 (magenta retro)
+  { color: '#7209b7', points: 60 }, // Fila 1 (violeta neón)
+  { color: '#ff0055', points: 50 }, // Fila 2 (rojo neón)
+  { color: '#ff9f1c', points: 40 }, // Fila 3 (ámbar)
+  { color: '#ffe600', points: 30 }, // Fila 4 (amarillo)
+  { color: '#00d9c4', points: 20 }, // Fila 5 (turquesa)
+  { color: '#00f59b', points: 10 }  // Fila 6 (verde aguacate)
 ];
 
 export class BreakoutEngine {
@@ -94,24 +96,40 @@ export class BreakoutEngine {
   public setDifficulty(diff: BreakoutDifficulty): void {
     this.difficulty = diff;
     if (diff === 'easy') {
-      this.config.initialBallSpeed = 3.2;
-      this.config.paddleSpeed = 7.5;
-      this.config.maxBallSpeed = 6.5;
+      this.config.initialBallSpeed = 3.0;
+      this.config.paddleSpeed = 7.0;
+      this.config.maxBallSpeed = 6.0;
     } else if (diff === 'hard') {
-      this.config.initialBallSpeed = 5.5;
-      this.config.paddleSpeed = 9.5;
-      this.config.maxBallSpeed = 11.0;
+      this.config.initialBallSpeed = 6.5;
+      this.config.paddleSpeed = 10.5;
+      this.config.maxBallSpeed = 12.0;
+    } else if (diff === 'extreme') {
+      this.config.initialBallSpeed = 9.5;
+      this.config.paddleSpeed = 13.5;
+      this.config.maxBallSpeed = 17.0;
     } else {
-      this.config.initialBallSpeed = 4.2;
+      this.config.initialBallSpeed = 4.5;
       this.config.paddleSpeed = 8.5;
-      this.config.maxBallSpeed = 8.5;
+      this.config.maxBallSpeed = 9.0;
     }
 
     if (this.paddle) {
       this.paddle.speed = this.config.paddleSpeed;
     }
-    if (this.status === 'READY' && this.ball) {
-      this.initBall();
+
+    // Reescalar la velocidad de la bola en caliente o reposicionar si no ha sido lanzada
+    if (this.ball) {
+      if (this.status === 'READY') {
+        this.initBall();
+      } else {
+        const currentSpeed = Math.hypot(this.ball.vx, this.ball.vy);
+        if (currentSpeed > 0) {
+          const ratio = this.config.initialBallSpeed / currentSpeed;
+          this.ball.vx *= ratio;
+          this.ball.vy *= ratio;
+          this.ball.speed = this.config.initialBallSpeed;
+        }
+      }
     }
   }
 

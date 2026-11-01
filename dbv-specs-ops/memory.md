@@ -39,6 +39,7 @@
 - **2026-11-01:** En juegos por turnos contra IA (Tres en raya), los estados temporales de UI como `isAiThinking` no deben colocarse como cláusulas de bloqueo dentro de métodos atómicos del motor (`makeMove`), pues causan el autorechazo del propio movimiento de la IA. El bloqueo por turno o pensamiento debe gestionarse en la capa de interacción del usuario.
 - **2026-11-01:** En Snake, al colocar la comida en el estado inicial (`READY`), excluir la casilla adyacente frontal de la cabeza previene que la partida inicie con consumo inmediato involuntario antes de que el jugador interactúe y elimina aleatoriedades en pruebas de avance inicial.
 - **2026-11-01:** Ocultar los controles táctiles virtuales en pantallas mayores a 900px mediante media queries (`@media (min-width: 900px) { display: none !important; }`) despeja la interfaz en ordenadores de escritorio y portátiles donde el usuario ya cuenta con teclado y ratón, evitando botones redundantes que saturan la experiencia visual.
+- **2026-11-01:** Al cambiar la dificultad en caliente durante una partida en motores cinemáticos (Pong y Breakout), no basta con actualizar la configuración: debe reescalarse inmediatamente el vector de velocidad activo de la bola (`ball.vx` y `ball.vy` según el ratio `newSpeed / currentSpeed`) para que la aceleración o deceleración sea percibida al instante en pantalla.
 
 ## 🚫 Rejection Memory (Caminos Descartados)
 

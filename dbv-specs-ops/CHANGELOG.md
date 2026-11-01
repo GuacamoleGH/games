@@ -9,13 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
-### Added - GuacamoleGH Games (Selector de Dificultad Dinámica y Ergonomía de Pantalla - REQ-42)
-- Selector de dificultad de 3 niveles (`Fácil`, `Normal`, `Difícil`) integrado en la barra de controles superior de **Snake**, **Pong** y **Breakout** con persistencia en `localStorage` (REQ-42).
-- Modulación dinámica de parámetros de velocidad y tiempo por dificultad:
-  - **Snake:** Fácil (170 ms/tick), Normal (130 ms/tick), Difícil (90 ms/tick).
-  - **Pong:** Fácil (Pelota 260 px/s, IA 220 px/s), Normal (Pelota 380 px/s, IA 320 px/s), Difícil (Pelota 500 px/s, IA 440 px/s).
-  - **Breakout:** Fácil (Pelota 3.2 px/tick, Paleta 7.5), Normal (Pelota 4.2 px/tick, Paleta 8.5), Difícil (Pelota 5.5 px/tick, Paleta 9.5).
-- Cobertura de pruebas unitarias ampliada a 69 tests pasando en 9 suites con 100% de trazabilidad de los 46 requisitos.
+### Added - GuacamoleGH Games (Selector de Dificultad Dinámica con Modo Extremo y Expansión de Breakout - REQ-42)
+- Selector de dificultad de 4 niveles (`Fácil`, `Normal`, `Difícil`, `Extremo`) integrado en la barra de controles superior de **Snake**, **Pong** y **Breakout** con persistencia en `localStorage` (REQ-42).
+- Reescalado inmediato en caliente de los vectores cinemáticos (`vx`, `vy`) de la bola en Pong y Breakout en el mismo instante en que se pulsa el botón, garantizando una respuesta táctil instantánea en tiempo real.
+- Modulación dinámica calibrada:
+  - **Snake:** Fácil (180 ms/tick), Normal (130 ms/tick), Difícil (80 ms/tick), Extremo (45 ms/tick).
+  - **Pong:** Fácil (Pelota 260 px/s, IA 200 px/s), Normal (Pelota 400 px/s, IA 340 px/s), Difícil (Pelota 600 px/s, IA 520 px/s), Extremo (Pelota 850 px/s, IA 750 px/s).
+  - **Breakout:** Fácil (Pelota 3.0, Paleta 7.0), Normal (Pelota 4.5, Paleta 8.5), Difícil (Pelota 6.5, Paleta 10.5), Extremo (Pelota 9.5, Paleta 13.5).
+- **Breakout (Expansión de Bloques):** Ampliada la cuadrícula superior a 7 filas x 10 columnas (70 ladrillos en total) con una paleta arcoíris retro neón de 7 niveles (magenta, violeta, rojo, ámbar, amarillo, turquesa y verde aguacate), ocupando el espacio superior vacío.
+- Cobertura de pruebas unitarias ampliada a 71 tests pasando en 9 suites.
 
 ### Fixed
 - **Catálogo de Juegos (Eliminación de Pie de Tarjetas):** Eliminado el pie redundante de metadatos (`Arcade Clásico` y categoría) en todas las tarjetas de juego para un diseño más limpio y minimalista.

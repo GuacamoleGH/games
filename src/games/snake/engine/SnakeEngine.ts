@@ -13,7 +13,7 @@
 
 import type { Point, Direction, GameStatus, SnakeConfig, SnakeSnapshot } from '../types.js';
 
-export type SnakeDifficulty = 'easy' | 'normal' | 'hard';
+export type SnakeDifficulty = 'easy' | 'normal' | 'hard' | 'extreme';
 
 export const DEFAULT_SNAKE_CONFIG: SnakeConfig = {
   gridSize: 20,
@@ -59,11 +59,14 @@ export class SnakeEngine {
   public setDifficulty(diff: SnakeDifficulty): void {
     this.difficulty = diff;
     if (diff === 'easy') {
-      this.config.initialSpeedMs = 170;
-      this.tickIntervalMs = 170;
+      this.config.initialSpeedMs = 180;
+      this.tickIntervalMs = 180;
     } else if (diff === 'hard') {
-      this.config.initialSpeedMs = 90;
-      this.tickIntervalMs = 90;
+      this.config.initialSpeedMs = 80;
+      this.tickIntervalMs = 80;
+    } else if (diff === 'extreme') {
+      this.config.initialSpeedMs = 45;
+      this.tickIntervalMs = 45;
     } else {
       this.config.initialSpeedMs = 130;
       this.tickIntervalMs = 130;

@@ -139,7 +139,14 @@ export class BreakoutView {
     this.diffBtn?.addEventListener('click', () => {
       soundManager.play('click');
       const current = this.engine.getDifficulty();
-      const next: BreakoutDifficulty = current === 'easy' ? 'normal' : current === 'normal' ? 'hard' : 'easy';
+      const next: BreakoutDifficulty =
+        current === 'easy'
+          ? 'normal'
+          : current === 'normal'
+            ? 'hard'
+            : current === 'hard'
+              ? 'extreme'
+              : 'easy';
       this.engine.setDifficulty(next);
       this.saveDifficulty(next);
       this.updateDiffButtonLabel();
@@ -488,7 +495,7 @@ export class BreakoutView {
   private loadDifficulty(): BreakoutDifficulty {
     try {
       const saved = localStorage.getItem(DIFFICULTY_STORAGE_KEY);
-      if (saved === 'easy' || saved === 'normal' || saved === 'hard') {
+      if (saved === 'easy' || saved === 'normal' || saved === 'hard' || saved === 'extreme') {
         return saved;
       }
     } catch {
@@ -513,7 +520,8 @@ export class BreakoutView {
     const map: Record<BreakoutDifficulty, string> = {
       easy: 'Fácil',
       normal: 'Normal',
-      hard: 'Difícil'
+      hard: 'Difícil',
+      extreme: 'Extremo'
     };
     this.diffBtn.textContent = `Dificultad: ${map[diff]}`;
   }
@@ -541,7 +549,7 @@ export class BreakoutView {
               </div>
               <div class="hud-item">
                 <span class="hud-label">LADRILLOS</span>
-                <span id="breakout-bricks" class="hud-value text-accent-turquoise" style="font-size: 0.9375rem;">50 / 50</span>
+                <span id="breakout-bricks" class="hud-value text-accent-turquoise" style="font-size: 0.9375rem;">70 / 70</span>
               </div>
               <div class="hud-item">
                 <span class="hud-label">RÉCORD</span>

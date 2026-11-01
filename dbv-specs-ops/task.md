@@ -100,6 +100,18 @@
 - [x] **T-91:** Selector de dificultad de 3 niveles en Breakout con modulación de velocidad de bola y paleta (`BreakoutEngine.ts`, `BreakoutView.ts`, test) (`@spec REQ-42`).
 - [x] **T-92:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py`, commit y push a GitHub.
 
+### Fase 7: Implementación del Juego Space Invaders (Planificada)
+- [ ] **T-93:** Definir tipos y modelos en `src/games/space-invaders/types.ts` (`@spec REQ-43, REQ-44, REQ-45`).
+- [ ] **T-94:** Implementar motor de física y lógica pura en `src/games/space-invaders/engine/SpaceInvadersEngine.ts` (`@spec REQ-44, REQ-45`).
+- [ ] **T-95:** Implementar efectos de sonido sintetizados en `src/common/audio/SoundEffects.ts` (`@spec REQ-47`).
+- [ ] **T-96:** Implementar vista Canvas y controles táctiles en `src/games/space-invaders/ui/SpaceInvadersView.ts` (`@spec REQ-45, REQ-46, REQ-47`).
+- [ ] **T-97:** Crear punto de entrada de módulo en `src/games/space-invaders/index.ts` (`@spec REQ-43`).
+- [ ] **T-98:** Añadir estilos CSS de Space Invaders en `src/common/styles/main.css`.
+- [ ] **T-99:** Actualizar tipos `GameId` en `src/common/types/game.ts` y catálogo en `src/common/data/games.data.ts` (`@spec REQ-48`).
+- [ ] **T-100:** Actualizar enrutador SPA y navegación en `src/main.ts` (`@spec REQ-48`).
+- [ ] **T-101:** Suite de pruebas unitarias en `tests/unit/space-invaders.engine.test.ts` y actualizar `tests/unit/render.test.ts` (`@spec REQ-43, REQ-44, REQ-45, REQ-46, REQ-47, REQ-48`).
+- [ ] **T-102:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py`, commit y push a GitHub.
+
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
@@ -110,6 +122,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Selector de dificultad de 3 niveles (Fácil, Normal, Difícil) implementado en Snake, Pong y Breakout con persistencia y modulación de velocidad física; maquetación de Breakout y ocultación de controles táctiles en escritorio completadas (REQ-42).
-> **Pending / Pendiente:** Ninguna.
-> **Next step / Próximo paso:** Proyecto en estado estable y probado, listo para nuevas peticiones o fases.
+> **Exact point / Punto exacto:** Planificación y especificación completadas para la Fase 7 (Space Invaders, REQ-43 a REQ-48). Esperando confirmación del usuario para proceder a la fase `/build`.
+> **Pending / Pendiente:** T-93 a T-102.
+> **Next step / Próximo paso:** T-93 (Tipos y modelos de Space Invaders).

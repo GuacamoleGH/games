@@ -338,7 +338,14 @@ export class SnakeView {
     this.diffBtn?.addEventListener('click', () => {
       soundManager.play('click');
       const current = this.engine.getDifficulty();
-      const next: SnakeDifficulty = current === 'easy' ? 'normal' : current === 'normal' ? 'hard' : 'easy';
+      const next: SnakeDifficulty =
+        current === 'easy'
+          ? 'normal'
+          : current === 'normal'
+            ? 'hard'
+            : current === 'hard'
+              ? 'extreme'
+              : 'easy';
       this.engine.setDifficulty(next);
       this.saveDifficulty(next);
       this.updateDiffButtonLabel();
@@ -454,7 +461,7 @@ export class SnakeView {
   private loadDifficulty(): SnakeDifficulty {
     try {
       const saved = localStorage.getItem(DIFFICULTY_STORAGE_KEY);
-      if (saved === 'easy' || saved === 'normal' || saved === 'hard') {
+      if (saved === 'easy' || saved === 'normal' || saved === 'hard' || saved === 'extreme') {
         return saved;
       }
     } catch {
@@ -479,7 +486,8 @@ export class SnakeView {
     const map: Record<SnakeDifficulty, string> = {
       easy: 'Fácil',
       normal: 'Normal',
-      hard: 'Difícil'
+      hard: 'Difícil',
+      extreme: 'Extremo'
     };
     this.diffBtn.textContent = `Dificultad: ${map[diff]}`;
   }
