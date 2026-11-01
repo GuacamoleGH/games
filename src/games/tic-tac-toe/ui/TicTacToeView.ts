@@ -82,6 +82,11 @@ export class TicTacToeView {
 
     this.diffBtn?.addEventListener('click', () => {
       soundManager.play('click');
+      if (this.aiTimeoutId !== null) {
+        window.clearTimeout(this.aiTimeoutId);
+        this.aiTimeoutId = null;
+        this.engine.setAiThinking(false);
+      }
       const snap = this.engine.getSnapshot();
       const newDiff: AIDifficulty =
         snap.difficulty === 'normal'
@@ -96,6 +101,11 @@ export class TicTacToeView {
 
     this.newGameBtn?.addEventListener('click', () => {
       soundManager.play('click');
+      if (this.aiTimeoutId !== null) {
+        window.clearTimeout(this.aiTimeoutId);
+        this.aiTimeoutId = null;
+        this.engine.setAiThinking(false);
+      }
       this.engine.reset();
       this.render();
     });
