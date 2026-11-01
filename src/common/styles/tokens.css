@@ -1,0 +1,66 @@
+/* =============================================================================
+   GuacamoleGH Games — Catálogo web de juegos arcade clásicos para navegador
+   Copyright (c) 2026 GuacamoleGH
+   Licensed under the MIT License. See LICENSE for details.
+   Built with dbv-specs-ops · https://github.com/davidbuenov/dbv-specs-ops
+   ============================================================================= */
+
+:root {
+  /* Fondos y Superficies (Gama Carbón) */
+  --color-bg-deep: #0c0e12;
+  --color-bg-base: #12151b;
+  --color-surface-card: #181d26;
+  --color-surface-card-hover: #1f2532;
+  --color-surface-elevated: #262d3d;
+
+  /* Bordes y Divisores */
+  --color-border-subtle: #222a38;
+  --color-border-highlight: rgba(0, 245, 155, 0.25);
+  --color-border-focus: #00f59b;
+
+  /* Acentos de Marca (Guacamole + Tecnología) */
+  --color-accent-green: #00f59b;
+  --color-accent-turquoise: #00d9c4;
+  --color-accent-gradient: linear-gradient(135deg, #00f59b 0%, #00d9c4 100%);
+
+  /* Tipografía y Textos */
+  --color-text-primary: #f0f4f8;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-text-accent: #00f59b;
+
+  /* Estados e Insignias */
+  --color-badge-bg: #132622;
+  --color-badge-border: #1d473b;
+  --color-badge-text: #34d399;
+
+  /* Tipografía */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Radios */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Espaciado */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --space-xxxl: 64px;
+
+  /* Layout */
+  --container-max-width: 1200px;
+  --header-height: 72px;
+
+  /* Sombras y Efectos */
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 8px 30px -4px rgba(0, 245, 155, 0.15);
+  --glow-subtle: 0 0 25px -5px rgba(0, 245, 155, 0.25);
+  --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}

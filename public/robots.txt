@@ -1,0 +1,11 @@
+# =============================================================================
+# GuacamoleGH Games — Catálogo web de juegos arcade clásicos para navegador
+# Copyright (c) 2026 GuacamoleGH
+# Licensed under the MIT License. See LICENSE for details.
+# Built with dbv-specs-ops · https://github.com/davidbuenov/dbv-specs-ops
+# =============================================================================
+
+User-agent: *
+Allow: /
+
+Content-Signal: ai-train=no, search=yes, ai-input=yes

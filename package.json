@@ -1,0 +1,21 @@
+{
+  "name": "guacamolegh-games",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Catálogo web de juegos arcade clásicos para navegador en el homelab GuacamoleGH",
+  "author": "GuacamoleGH (https://github.com/GuacamoleGH/games)",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "happy-dom": "^15.11.7",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.1",
+    "vitest": "^2.1.9"
+  }
+}

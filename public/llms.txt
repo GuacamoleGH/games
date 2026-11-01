@@ -1,0 +1,20 @@
+# GuacamoleGH Games
+
+> Catálogo web de juegos arcade clásicos para navegador en el homelab GuacamoleGH.
+
+## Información General
+- **Nombre:** GuacamoleGH Games
+- **Propósito:** Colección curada de juegos arcade clásicos para disfrutar directamente desde el navegador, ligera y sin dependencias externas.
+- **Metodología:** Spec-Driven Development con dbv-specs-ops (v3.2.0).
+- **Entorno:** Web estática sin backend, bases de datos ni registro de cuentas.
+
+## Catálogo de Juegos Planificados
+1. **Snake:** La serpiente arcade que crece devorando comida y evitando chocar contra muros o su propia cola.
+2. **Pong:** El legendario duelo 2D de palas y pelota en mesa virtual.
+3. **Tetris:** El rompecabezas geométrico de rotar y encajar tetrominós.
+4. **Breakout:** Demolición de barreras de bloques mediante paleta y bola de rebote continuo.
+5. **Tres en raya:** Duelo táctico clásico de turnos en tablero 3x3.
+
+## Estado Actual
+- **Fase 1:** Catálogo visual informativo con estado "Próximamente".
+- **Fases Siguientes:** Implementación modular y aislada de cada motor de juego en Canvas HTML5.
