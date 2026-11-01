@@ -253,7 +253,12 @@ export function handleRouting(): void {
     renderTetrisGameView(appContainer);
   } else if (hash === '#breakout') {
     renderBreakoutGameView(appContainer);
-  } else if (hash === '#tic-tac-toe') {
+  } else if (
+    hash === '#tic-tac-toe' ||
+    hash === '#tres-en-raya' ||
+    hash === '#tresenraya' ||
+    hash === '#tictactoe'
+  ) {
     renderTicTacToeGameView(appContainer);
   } else {
     renderCatalogView(appContainer);

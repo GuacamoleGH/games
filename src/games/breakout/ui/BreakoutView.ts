@@ -32,6 +32,9 @@ export class BreakoutView {
 
   private animationFrameId: number | null = null;
   private isDestroyed: boolean = false;
+  private lastFrameTime: number = 0;
+  private timeAccumulator: number = 0;
+  private readonly TICK_DURATION_MS: number = 1000 / 60; // 16.666 ms (60 Hz fijo)
 
   private isKeyLeftPressed: boolean = false;
   private isKeyRightPressed: boolean = false;
@@ -237,20 +240,33 @@ export class BreakoutView {
   }
 
   private startGameLoop(): void {
-    const loop = (): void => {
+    this.lastFrameTime = performance.now();
+    this.timeAccumulator = 0;
+
+    const loop = (currentTime: number): void => {
       if (this.isDestroyed) {
         return;
       }
 
-      // Procesar desplazamiento continuo por teclado
-      if (this.isKeyLeftPressed) {
-        this.engine.movePaddleLeft();
-      }
-      if (this.isKeyRightPressed) {
-        this.engine.movePaddleRight();
+      const elapsed = currentTime - this.lastFrameTime;
+      this.lastFrameTime = currentTime;
+      // Prevenir saltos temporales extremos si la pestaña pierde foco
+      this.timeAccumulator += Math.min(elapsed, 100);
+
+      while (this.timeAccumulator >= this.TICK_DURATION_MS) {
+        // Procesar desplazamiento continuo por teclado
+        if (this.isKeyLeftPressed) {
+          this.engine.movePaddleLeft();
+        }
+        if (this.isKeyRightPressed) {
+          this.engine.movePaddleRight();
+        }
+
+        this.engine.tick();
+        this.timeAccumulator -= this.TICK_DURATION_MS;
       }
 
-      const snapshot = this.engine.tick();
+      const snapshot = this.engine.getSnapshot();
       this.render(snapshot);
       this.updateHud(snapshot);
 

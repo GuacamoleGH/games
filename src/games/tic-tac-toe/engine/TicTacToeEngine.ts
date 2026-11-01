@@ -83,7 +83,7 @@ export class TicTacToeEngine {
    * @returns true si el movimiento fue válido y aplicado.
    */
   public makeMove(index: number): boolean {
-    if (this.status !== 'PLAYING' || this.isAiThinking) {
+    if (this.status !== 'PLAYING') {
       return false;
     }
     if (index < 0 || index >= 9 || this.board[index] !== null) {

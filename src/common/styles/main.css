@@ -367,10 +367,12 @@ body {
   justify-content: space-between;
 }
 
+.meta-platform,
 .meta-status-text {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--color-text-muted);
+  letter-spacing: 0.02em;
 }
 
 .meta-type {

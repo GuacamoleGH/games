@@ -22,6 +22,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Cobertura de pruebas unitarias ampliada a 65 tests pasando y 100% de trazabilidad de los 45 requisitos del proyecto.
 
 ### Fixed
+- **Breakout (Velocidad y Timestep a 60Hz):** Calibrada la velocidad de la bola (`initialBallSpeed: 4.2`, `maxBallSpeed: 8.5`) y desacoplada la física de la tasa de refresco de pantalla mediante acumulador temporal fijo para evitar aceleración excesiva en pantallas de 120Hz/144Hz/240Hz.
+- **Tres en raya (Desbloqueo de IA):** Corregido bloqueo en `makeMove()` que impedía a la IA colocar su ficha mientras `isAiThinking` estaba activo. Soporte adicional para alias de hash `#tres-en-raya`, `#tresenraya` y `#tictactoe`.
+- **Catálogo de Juegos (Limpieza de UI):** Eliminada la etiqueta interna "Fase X (Disponible)" del pie de las tarjetas de juego en el catálogo.
+- **Snake (Arte y Diseño):** Rediseñado el icono SVG de Snake en el catálogo con una serpiente arcade retro estilizada y fruta neón.
 - **Snake (Input Buffering para giros rápidos):** Implementada cola de entrada de 2 posiciones para permitir giros encadenados o pulsación casi simultánea de dos teclas (por ejemplo, Izquierda y Arriba para hacer esquina rápida) sin descartar la segunda orden.
 - **Snake (Auto-inicio por teclado):** Pulsar cualquier tecla de movimiento en la pantalla inicial (READY) inicia automáticamente la partida hacia esa dirección.
 

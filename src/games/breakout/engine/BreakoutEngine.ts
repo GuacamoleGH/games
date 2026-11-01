@@ -25,10 +25,10 @@ export const DEFAULT_BREAKOUT_CONFIG: BreakoutConfig = {
   virtualHeight: 600,
   paddleWidth: 110,
   paddleHeight: 14,
-  paddleSpeed: 9,
+  paddleSpeed: 8,
   ballRadius: 7,
-  initialBallSpeed: 6,
-  maxBallSpeed: 12,
+  initialBallSpeed: 4.2,
+  maxBallSpeed: 8.5,
   initialLives: 3,
   brickRows: 5,
   brickCols: 10,
@@ -352,7 +352,7 @@ export class BreakoutEngine {
     const bounceAngle = clampedIntersect * maxBounceAngle;
 
     // Aumentar velocidad gradualmente tras cada golpe
-    this.ball.speed = Math.min(this.config.maxBallSpeed, this.ball.speed + 0.15);
+    this.ball.speed = Math.min(this.config.maxBallSpeed, this.ball.speed + 0.1);
     this.ball.vx = this.ball.speed * Math.sin(bounceAngle);
     this.ball.vy = -this.ball.speed * Math.cos(bounceAngle);
 
@@ -409,7 +409,7 @@ export class BreakoutEngine {
         }
 
         // Aceleración de la bola por impacto con ladrillo
-        this.ball.speed = Math.min(this.config.maxBallSpeed, this.ball.speed + 0.05);
+        this.ball.speed = Math.min(this.config.maxBallSpeed, this.ball.speed + 0.03);
 
         // Comprobar condición de victoria (REQ-32)
         const remaining = this.bricks.some((b) => b.hitsLeft > 0);

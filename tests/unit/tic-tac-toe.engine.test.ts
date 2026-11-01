@@ -163,4 +163,15 @@ describe('TicTacToeEngine - Lógica Pura y Minimax (@spec REQ-35, REQ-36, REQ-37
     expect(snap.currentTurn).toBe('X');
     expect(snap.scores.playerWins).toBe(2);
   });
+
+  it('debe permitir a la IA mover correctamente aunque el estado de pensamiento esté activo (@spec REQ-37, REQ-38)', () => {
+    engine.makeMove(4); // X mueve al centro
+    engine.setAiThinking(true);
+    expect(engine.getSnapshot().isAiThinking).toBe(true);
+
+    const aiMove = engine.makeAiMove();
+    expect(aiMove).not.toBeNull();
+    expect(engine.getSnapshot().board[aiMove!]).toBe('O');
+    expect(engine.getSnapshot().currentTurn).toBe('X');
+  });
 });

@@ -86,6 +86,13 @@
 - [x] **T-81:** Crear suite de pruebas unitarias en `tests/unit/sound.test.ts` validando síntesis y tolerancia a entornos sin audio (`@spec REQ-41`).
 - [x] **T-82:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (65/65 tests, 45/45 specs, 0 avisos).
 
+### Ajustes de Jugabilidad, UI y Arte (Completado)
+- [x] **T-83:** Calibrar velocidad de la bola y bucle a 60Hz fijo en Breakout (`BreakoutEngine.ts` y `BreakoutView.ts`) (`@spec REQ-30, REQ-33`).
+- [x] **T-84:** Desbloquear turno de IA en Tres en raya corrigiendo `makeMove()` en `TicTacToeEngine.ts` y test (`@spec REQ-37, REQ-38`).
+- [x] **T-85:** Eliminar "Fase X (Disponible)" en las tarjetas de juego en `GameCard.ts` (`@spec REQ-04`).
+- [x] **T-86:** Mejorar el logo/icono SVG de Snake en `games.data.ts` con diseño retro arcade de alta calidad (`@spec REQ-04, REQ-10`).
+- [x] **T-87:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py`, commit y push a GitHub.
+
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
@@ -96,6 +103,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Sistema de sonido sintetizado retro completado con Web Audio API (REQ-41) en los 5 juegos.
-> **Pending / Pendiente:** Ninguna tarea pendiente en esta fase.
-> **Next step / Próximo paso:** Publicar commit a GitHub y presentar entrega final.
+> **Exact point / Punto exacto:** Breakout calibrado a 60Hz fijo, IA de Tres en raya desbloqueada, etiqueta Fase X eliminada y logo de Snake mejorado.
+> **Pending / Pendiente:** Ninguna tarea pendiente en este hito.
+> **Next step / Próximo paso:** Publicar cambios en GitHub y presentar entrega.

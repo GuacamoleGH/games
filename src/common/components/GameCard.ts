@@ -55,7 +55,7 @@ export function renderGameCard(game: GameMetadata): string {
       </div>
 
       <div class="card-footer">
-        <span class="meta-status-text">${game.releasePhase}</span>
+        <span class="meta-platform">Arcade Clásico</span>
         <span class="meta-type">${game.category}</span>
       </div>
     </article>
