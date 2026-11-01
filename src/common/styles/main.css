@@ -701,3 +701,132 @@ body {
 .snake-hints strong {
   color: var(--color-text-secondary);
 }
+
+/* ─────────────────────────────────────────────────────────────
+   PONG GAME VIEW (REQ-18, REQ-19, REQ-20)
+   ───────────────────────────────────────────────────────────── */
+.pong-game-wrapper {
+  padding: var(--space-xl) 0 var(--space-xxxl);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pong-inner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 840px;
+}
+
+.pong-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--space-md);
+  gap: var(--space-sm);
+}
+
+.pong-scoreboard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  padding: 6px 18px;
+  border-radius: var(--radius-md);
+}
+
+.score-team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.team-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.score-number {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 800;
+  min-width: 24px;
+  text-align: center;
+}
+
+.score-player {
+  color: var(--color-accent-green);
+}
+
+.score-ai {
+  color: var(--color-accent-turquoise);
+}
+
+.score-vs {
+  font-size: 1.25rem;
+  color: var(--color-border-subtle);
+}
+
+.pong-canvas-box {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 10;
+  background: #0c0f14;
+  border: 2px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.6);
+}
+
+#pong-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: ns-resize;
+}
+
+.overlay-title-win {
+  color: var(--color-accent-green);
+}
+
+.pong-touch-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  width: 100%;
+}
+
+.pong-touch-btn {
+  flex: 1;
+  max-width: 180px;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-fast);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.pong-touch-btn:active {
+  background: var(--color-surface-card-hover);
+  border-color: var(--color-accent-green);
+  color: var(--color-accent-green);
+  transform: scale(0.98);
+}

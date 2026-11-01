@@ -31,9 +31,9 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     title: 'Pong',
     description: 'El duelo original de dos dimensiones. Controla tu pala para golpear la pelota y superar al oponente en reflejos y precisión.',
     category: 'Clásico',
-    status: 'coming-soon',
-    statusLabel: 'Próximamente',
-    releasePhase: 'Fase 3',
+    status: 'available',
+    statusLabel: 'Jugar',
+    releasePhase: 'Fase 3 (Disponible)',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <line x1="4" y1="6" x2="4" y2="18"/>
       <line x1="20" y1="8" x2="20" y2="20"/>

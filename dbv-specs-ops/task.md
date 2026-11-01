@@ -30,10 +30,21 @@
 - [x] **T-35:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (22/22 tests, 17/17 specs, 0 avisos).
 - [x] **T-36:** Commit y push de la Fase 2 a GitHub.
 
+### Fase 3: Implementación del Juego Pong (Completada)
+- [x] **T-37:** Definir tipos en `src/games/pong/types.ts` (`@spec REQ-14, REQ-15`).
+- [x] **T-38:** Implementar motor de física pura en `src/games/pong/engine/PongEngine.ts` (`@spec REQ-15, REQ-16, REQ-17`).
+- [x] **T-39:** Implementar vista Canvas y controles táctiles en `src/games/pong/ui/PongView.ts` (`@spec REQ-18, REQ-19`).
+- [x] **T-40:** Crear punto de entrada de módulo en `src/games/pong/index.ts` (`@spec REQ-14`).
+- [x] **T-41:** Actualizar `src/common/data/games.data.ts` con Pong disponible (`@spec REQ-20`).
+- [x] **T-42:** Actualizar `src/main.ts` con navegación para `#pong` (`@spec REQ-20`).
+- [x] **T-43:** Suite de pruebas unitarias en `tests/unit/pong.engine.test.ts` (`@spec REQ-14, REQ-15, REQ-16, REQ-17`).
+- [x] **T-44:** Actualizar tests de renderizado en `tests/unit/render.test.ts` (`@spec REQ-18, REQ-19, REQ-20`).
+- [x] **T-45:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (29/29 tests, 24/24 specs, 0 avisos).
+- [x] **T-46:** Commit y push de la Fase 3 a GitHub.
+
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
-- [ ] Implementación de Pong (Fase 3 del roadmap).
 - [ ] Implementación de Tetris (Fase 4 del roadmap).
 - [ ] Implementación de Breakout (Fase 5 del roadmap).
 - [ ] Implementación de Tres en raya (Fase 6 del roadmap).
@@ -43,6 +54,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Fase 2 completada al 100%. Juego Snake totalmente funcional, jugable con teclado y controles táctiles, guardado local de High Score y navegación integrada en el catálogo.
-> **Pending / Pendiente:** Ninguna tarea pendiente para Snake.
-> **Next step / Próximo paso:** Fase 3 (Especificación e implementación de **Pong**).
+> **Exact point / Punto exacto:** Fase 3 completada al 100%. Juego Pong totalmente funcional y jugable contra la IA rival, con soporte de teclado, ratón y controles táctiles, tanteo a 5 puntos y navegación integrada en el catálogo.
+> **Pending / Pendiente:** Ninguna tarea pendiente para Pong.
+> **Next step / Próximo paso:** Fase 4 (Especificación e implementación de **Tetris**).

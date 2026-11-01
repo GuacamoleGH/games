@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
+### Added - GuacamoleGH Games (v0.3.0 - Fase 3: Pong)
+- Juego completo y jugable de Pong en módulo aislado `src/games/pong/`.
+- Motor de física 2D continua (`PongEngine.ts`) con cinemática vectorial, rebote angular dinámico y aceleración de rally (REQ-15).
+- Inteligencia artificial autónoma del rival calibrada con zona muerta y seguimiento natural (REQ-16).
+- Sistema de puntuación y condición de victoria a 5 tantos con saque centrado dinámico (REQ-17).
+- Renderizado Canvas a 60 FPS (`PongView.ts`) con red discontinua, palas neón en verde/turquesa y resplandor (REQ-18).
+- Soporte para controles de teclado (W/S y Flechas), ratón continuo y botones táctiles verticales para móviles (REQ-19).
+- Enrutamiento SPA con hash `#pong`, botón "Jugar Ahora" en el catálogo y botón "Volver al Catálogo" (REQ-20).
+- Cobertura de pruebas ampliada a 29 tests unitarios (100% de los 24 requisitos cubiertos).
+
 ### Added - GuacamoleGH Games (v0.2.0 - Fase 2: Snake)
 - Juego completo y jugable de Snake en módulo aislado `src/games/snake/`.
 - Motor de lógica pura (`SnakeEngine.ts`) con cuadrícula 20x20, movimiento discreto, colisiones de muros y autocolisión (REQ-08, REQ-09).
