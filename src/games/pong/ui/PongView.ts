@@ -7,10 +7,11 @@
 
 /**
  * @fileoverview Vista y ciclo de renderizado en Canvas HTML5 para Pong (marcador, controles e IA).
- * @spec REQ-18, REQ-19, REQ-20
+ * @spec REQ-18, REQ-19, REQ-20, REQ-41
  */
 
 import { PongEngine } from '../engine/PongEngine.js';
+import { soundManager } from '../../../common/audio/SoundEffects.js';
 
 export class PongView {
   private container: HTMLElement;
@@ -36,6 +37,15 @@ export class PongView {
     this.container = container;
     this.onBack = onBack;
     this.engine = new PongEngine();
+    this.engine.onSoundEvent = (event) => {
+      if (event === 'bounce') {
+        soundManager.play('bounce');
+      } else if (event === 'paddle') {
+        soundManager.play('paddle');
+      } else if (event === 'score') {
+        soundManager.play('laser');
+      }
+    };
 
     this.boundKeyDown = this.handleKeyDown.bind(this);
     this.boundKeyUp = this.handleKeyUp.bind(this);
@@ -103,6 +113,11 @@ export class PongView {
       }
 
       if (snapshot.status === 'GAME_OVER') {
+        if (snapshot.winner === 'PLAYER') {
+          soundManager.play('win');
+        } else {
+          soundManager.play('lose');
+        }
         this.showGameOverOverlay(snapshot.winner);
       }
     }
@@ -215,6 +230,7 @@ export class PongView {
 
     const startBtn = this.overlayEl.querySelector('#pong-start-btn');
     startBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.hideOverlay();
       this.engine.start();
     });
@@ -239,6 +255,7 @@ export class PongView {
 
     const restartBtn = this.overlayEl.querySelector('#pong-restart-btn');
     restartBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.hideOverlay();
       this.engine.start();
       this.updateHUD();
@@ -259,6 +276,7 @@ export class PongView {
 
     const resumeBtn = this.overlayEl.querySelector('#pong-resume-btn');
     resumeBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.hideOverlay();
       this.engine.togglePause();
     });

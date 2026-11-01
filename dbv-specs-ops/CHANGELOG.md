@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
+### Added - GuacamoleGH Games (Efectos de Sonido Web Audio API - REQ-41)
+- Sistema centralizado de efectos de sonido arcade retro sintetizados en tiempo real mediante Web Audio API pura (`SoundEffects.ts`), con cero dependencias de archivos de audio externos y footprint ultraligero < 3KB (REQ-41).
+- Efectos de sonido dinámicos para los 5 juegos del catálogo:
+  - **Snake:** Comer fruta (`eat`), choque/game over (`die`), clic de interacción (`click`).
+  - **Pong:** Rebotes en pared (`bounce`), golpe de paleta (`paddle`), tanto anotado (`laser`), victoria (`win`), derrota (`lose`).
+  - **Tetris:** Bloqueo de pieza (`bounce`), línea completada (`line`), Tetris de 4 líneas (`tetris`), game over (`die`).
+  - **Breakout:** Destrucción de ladrillo (`brick`), rebote en paleta (`paddle`), pérdida de vida (`die`), victoria (`win`).
+  - **Tres en raya:** Casilla marcada (`click`), jugada de IA (`step`), victoria (`win`), derrota (`lose`), tablas (`bounce`).
+- Botón accesible de control de audio global (🔊 / 🔇) integrado en la cabecera, con persistencia en `localStorage`.
+- Desbloqueo suave de la directiva Autoplay ante la primera interacción del usuario.
+- Cobertura de pruebas unitarias ampliada a 65 tests pasando y 100% de trazabilidad de los 45 requisitos del proyecto.
+
 ### Fixed
 - **Snake (Input Buffering para giros rápidos):** Implementada cola de entrada de 2 posiciones para permitir giros encadenados o pulsación casi simultánea de dos teclas (por ejemplo, Izquierda y Arriba para hacer esquina rápida) sin descartar la segunda orden.
 - **Snake (Auto-inicio por teclado):** Pulsar cualquier tecla de movimiento en la pantalla inicial (READY) inicia automáticamente la partida hacia esa dirección.

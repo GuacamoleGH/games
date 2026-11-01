@@ -7,7 +7,7 @@
 
 /**
  * @fileoverview Punto de entrada principal y orquestador de vistas de GuacamoleGH Games.
- * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-13, REQ-14, REQ-20, REQ-21, REQ-27, REQ-28, REQ-34, REQ-35, REQ-40
+ * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-13, REQ-14, REQ-20, REQ-21, REQ-27, REQ-28, REQ-34, REQ-35, REQ-40, REQ-41
  */
 
 import './common/styles/main.css';
@@ -16,6 +16,7 @@ import { renderHeader } from './common/components/Header.js';
 import { renderHero } from './common/components/Hero.js';
 import { renderGameGrid } from './common/components/GameGrid.js';
 import { renderFooter } from './common/components/Footer.js';
+import { soundManager } from './common/audio/SoundEffects.js';
 import { mountSnake } from './games/snake/index.js';
 import { mountPong } from './games/pong/index.js';
 import { mountTetris } from './games/tetris/index.js';
@@ -261,11 +262,38 @@ export function handleRouting(): void {
 
 /**
  * Inicializa y escucha los cambios de navegación en la aplicación.
- * @spec REQ-01, REQ-13, REQ-20, REQ-27, REQ-34, REQ-40
+ * @spec REQ-01, REQ-13, REQ-20, REQ-27, REQ-34, REQ-40, REQ-41
  */
 export function initApp(): void {
   handleRouting();
   window.addEventListener('hashchange', handleRouting);
+
+  // Delegación de eventos para el botón global de sonido
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    const muteBtn = target.closest<HTMLButtonElement>('#global-mute-btn');
+    if (muteBtn) {
+      const isMuted = soundManager.toggleMute();
+      const iconSpan = muteBtn.querySelector('.sound-icon');
+      if (iconSpan) {
+        iconSpan.textContent = isMuted ? '🔇' : '🔊';
+      }
+      const label = isMuted ? 'Activar sonido' : 'Silenciar sonido';
+      muteBtn.setAttribute('aria-label', label);
+      muteBtn.setAttribute('title', label);
+    }
+  });
+
+  // Reanudar contexto de audio ante la primera interacción
+  const unlockAudio = (): void => {
+    soundManager.initContext();
+    window.removeEventListener('click', unlockAudio);
+    window.removeEventListener('keydown', unlockAudio);
+    window.removeEventListener('touchstart', unlockAudio);
+  };
+  window.addEventListener('click', unlockAudio);
+  window.addEventListener('keydown', unlockAudio);
+  window.addEventListener('touchstart', unlockAudio);
 }
 
 // Ejecutar montaje cuando el DOM esté listo

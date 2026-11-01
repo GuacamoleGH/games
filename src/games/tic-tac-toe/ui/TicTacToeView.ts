@@ -7,11 +7,12 @@
 
 /**
  * @fileoverview Vista e interfaz accesible HTML/CSS/SVG para Tres en Raya (Tic-Tac-Toe).
- * @spec REQ-38, REQ-39
+ * @spec REQ-38, REQ-39, REQ-41
  */
 
 import { TicTacToeEngine } from '../engine/TicTacToeEngine.js';
 import type { AIDifficulty, ScoreBoard } from '../types.js';
+import { soundManager } from '../../../common/audio/SoundEffects.js';
 
 const SCORES_STORAGE_KEY = 'guacamolegh_tictactoe_scores';
 const DIFFICULTY_STORAGE_KEY = 'guacamolegh_tictactoe_diff';
@@ -80,6 +81,7 @@ export class TicTacToeView {
     });
 
     this.diffBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       const snap = this.engine.getSnapshot();
       const newDiff: AIDifficulty = snap.difficulty === 'unbeatable' ? 'easy' : 'unbeatable';
       this.engine.setDifficulty(newDiff);
@@ -88,12 +90,14 @@ export class TicTacToeView {
     });
 
     this.newGameBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.engine.reset();
       this.render();
     });
 
     const resetScoresBtn = this.container.querySelector('#ttt-reset-scores-btn');
     resetScoresBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.engine.setScoresForTesting({ playerWins: 0, aiWins: 0, draws: 0 });
       this.saveScores();
       this.render();
@@ -157,10 +161,20 @@ export class TicTacToeView {
       return;
     }
 
+    soundManager.play('click');
     this.render();
     this.saveScores();
 
     const afterMoveSnap = this.engine.getSnapshot();
+    if (afterMoveSnap.status === 'FINISHED') {
+      if (afterMoveSnap.result === 'X_WINS') {
+        soundManager.play('win');
+      } else if (afterMoveSnap.result === 'DRAW') {
+        soundManager.play('bounce');
+      }
+      return;
+    }
+
     if (afterMoveSnap.status === 'PLAYING' && afterMoveSnap.currentTurn === 'O') {
       // Activar indicador de pensamiento y responder tras breve retardo natural
       this.engine.setAiThinking(true);
@@ -171,9 +185,19 @@ export class TicTacToeView {
           return;
         }
         this.engine.makeAiMove();
+        soundManager.play('step');
         this.engine.setAiThinking(false);
         this.render();
         this.saveScores();
+
+        const postAiSnap = this.engine.getSnapshot();
+        if (postAiSnap.status === 'FINISHED') {
+          if (postAiSnap.result === 'O_WINS') {
+            soundManager.play('lose');
+          } else if (postAiSnap.result === 'DRAW') {
+            soundManager.play('bounce');
+          }
+        }
       }, 350);
     }
   }

@@ -7,11 +7,12 @@
 
 /**
  * @fileoverview Vista y renderizado en Canvas HTML5 para Breakout (destructor de bloques).
- * @spec REQ-32, REQ-33
+ * @spec REQ-32, REQ-33, REQ-41
  */
 
 import { BreakoutEngine } from '../engine/BreakoutEngine.js';
 import type { BreakoutSnapshot } from '../types.js';
+import { soundManager } from '../../../common/audio/SoundEffects.js';
 
 const HIGH_SCORE_KEY = 'guacamolegh_breakout_highscore';
 
@@ -47,6 +48,19 @@ export class BreakoutView {
 
     const savedHighScore = this.loadHighScore();
     this.engine = new BreakoutEngine(undefined, savedHighScore);
+    this.engine.onSoundEvent = (event) => {
+      if (event === 'bounce' || event === 'brick') {
+        soundManager.play('bounce');
+      } else if (event === 'paddle') {
+        soundManager.play('paddle');
+      } else if (event === 'life_loss') {
+        soundManager.play('die');
+      } else if (event === 'game_over') {
+        soundManager.play('lose');
+      } else if (event === 'victory') {
+        soundManager.play('win');
+      }
+    };
 
     this.boundKeyDown = this.handleKeyDown.bind(this);
     this.boundKeyUp = this.handleKeyUp.bind(this);
@@ -199,6 +213,7 @@ export class BreakoutView {
   }
 
   private handleActionClick(): void {
+    soundManager.play('click');
     const status = this.engine.getStatus();
     if (status === 'READY') {
       this.hideOverlay();

@@ -47,6 +47,7 @@ const ROW_COLORS = [
 ];
 
 export class BreakoutEngine {
+  public onSoundEvent?: (event: 'bounce' | 'paddle' | 'brick' | 'life_loss' | 'victory' | 'game_over') => void;
   private readonly config: BreakoutConfig;
   private paddle!: Paddle;
   private ball!: Ball;
@@ -304,18 +305,21 @@ export class BreakoutEngine {
     if (this.ball.x - radius <= 0) {
       this.ball.x = radius;
       this.ball.vx = Math.abs(this.ball.vx);
+      this.onSoundEvent?.('bounce');
     }
 
     // Pared derecha
     if (this.ball.x + radius >= this.config.virtualWidth) {
       this.ball.x = this.config.virtualWidth - radius;
       this.ball.vx = -Math.abs(this.ball.vx);
+      this.onSoundEvent?.('bounce');
     }
 
     // Techo
     if (this.ball.y - radius <= 0) {
       this.ball.y = radius;
       this.ball.vy = Math.abs(this.ball.vy);
+      this.onSoundEvent?.('bounce');
     }
   }
 
@@ -354,6 +358,7 @@ export class BreakoutEngine {
 
     // Reposicionar bola justo encima de la pala
     this.ball.y = py - br;
+    this.onSoundEvent?.('paddle');
   }
 
   private handleBrickCollisions(): void {
@@ -413,6 +418,7 @@ export class BreakoutEngine {
         }
 
         // Romper solo un ladrillo por frame para evitar colisiones múltiples fantasma
+        this.onSoundEvent?.(this.status === 'VICTORY' ? 'victory' : 'brick');
         break;
       }
     }
@@ -424,11 +430,13 @@ export class BreakoutEngine {
       if (this.lives <= 0) {
         this.lives = 0;
         this.status = 'GAME_OVER';
+        this.onSoundEvent?.('game_over');
       } else {
         // Reposicionar bola y paleta para la siguiente vida
         this.initPaddle();
         this.initBall();
         this.status = 'READY';
+        this.onSoundEvent?.('life_loss');
       }
     }
   }

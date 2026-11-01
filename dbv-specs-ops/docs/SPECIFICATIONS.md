@@ -97,6 +97,10 @@
 - [x] **REQ-39 · Renderizado e Interfaz de Usuario Accesible y Táctil:** Cuadrícula interactiva accesible (foco por teclado `:focus-visible` con navegación por flechas y selección con Espacio/Enter), resaltado visual de la línea ganadora, y estética oscura carbón con 'X' en verde aguacate neón (`#00f59b`) y 'O' en turquesa digital (`#00d9c4`).
 - [x] **REQ-40 · Integración de Tres en Raya en el Catálogo y Enrutador SPA:** La tarjeta de Tres en Raya en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#tic-tac-toe` y botón accesible *"Volver al Catálogo"*, completando el 100% de los 5 juegos jugables en la web.
 
+### Requisitos Funcionales (RF) — Sistema de Audio Arcade
+
+- [x] **REQ-41 · Sistema de Efectos de Sonido Sintetizados (Web Audio API):** Generación de audio 100% sintetizado en tiempo real sin archivos de audio externos (cero descargas de red, ultra-ligero < 3KB), mediante osciladores nativos de la Web Audio API (ondas cuadradas/triangulares y envolventes de ganancia) para reproducir efectos retro arcade en todos los juegos (comer en Snake, rebotes en Pong, rotaciones y líneas en Tetris, impactos en Breakout, marcas en Tres en raya, clics, victorias y derrotas). Incluye botón accesible de silenciar/activar sonido (🔊 / 🔇) con persistencia en `localStorage` y activación automática ante la primera interacción del usuario.
+
 ### Requisitos No Funcionales (RNF)
 
 - [x] **RNF-01 · Rendimiento y Ligereza:** Carga instantánea con footprint inicial reducido (bundle compilado < 150KB sin assets pesados), score objetivo de 100/100 en Lighthouse de rendimiento.

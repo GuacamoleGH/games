@@ -7,11 +7,12 @@
 
 /**
  * @fileoverview Vista y renderizado en Canvas HTML5 para Tetris (matriz, ghost piece, siguiente pieza y controles).
- * @spec REQ-24, REQ-25, REQ-26, REQ-27
+ * @spec REQ-24, REQ-25, REQ-26, REQ-27, REQ-41
  */
 
 import { TetrisEngine } from '../engine/TetrisEngine.js';
 import type { Tetromino } from '../types.js';
+import { soundManager } from '../../../common/audio/SoundEffects.js';
 
 const HIGH_SCORE_KEY = 'guacamolegh_tetris_highscore';
 
@@ -43,6 +44,17 @@ export class TetrisView {
 
     const savedHighScore = this.loadHighScore();
     this.engine = new TetrisEngine(undefined, savedHighScore);
+    this.engine.onSoundEvent = (event) => {
+      if (event === 'lock') {
+        soundManager.play('bounce');
+      } else if (event === 'line') {
+        soundManager.play('line');
+      } else if (event === 'tetris') {
+        soundManager.play('tetris');
+      } else if (event === 'game_over') {
+        soundManager.play('die');
+      }
+    };
     this.boundKeyDown = this.handleKeyDown.bind(this);
   }
 
@@ -288,6 +300,7 @@ export class TetrisView {
 
     const startBtn = this.overlayEl.querySelector('#tetris-start-btn');
     startBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.hideOverlay();
       this.engine.start();
     });
@@ -309,6 +322,7 @@ export class TetrisView {
 
     const restartBtn = this.overlayEl.querySelector('#tetris-restart-btn');
     restartBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.hideOverlay();
       this.engine.start();
       this.updateHUD();
@@ -329,6 +343,7 @@ export class TetrisView {
 
     const resumeBtn = this.overlayEl.querySelector('#tetris-resume-btn');
     resumeBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.hideOverlay();
       this.engine.togglePause();
     });

@@ -78,16 +78,24 @@
 - [x] **T-75:** Actualizar tests de renderizado en `tests/unit/render.test.ts` y catálogo (`@spec REQ-39, REQ-40`).
 - [x] **T-76:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (59/59 tests, 44/44 specs, 0 avisos).
 
+### Sistema de Efectos de Sonido Arcade (Completado)
+- [x] **T-77:** Implementar `src/common/audio/SoundEffects.ts` con osciladores Web Audio API (`AudioContext`), síntesis de ondas cuadradas/triangulares y envolventes ADSR (`@spec REQ-41`).
+- [x] **T-78:** Añadir botón de control de audio (🔊 / 🔇) en la cabecera semántica `src/common/components/Header.ts` con persistencia en `localStorage` (`@spec REQ-41`).
+- [x] **T-79:** Conectar efectos de sonido en Snake (`src/games/snake/ui/SnakeView.ts`: comer, morir, inicio) (`@spec REQ-41`).
+- [x] **T-80:** Conectar efectos de sonido en Pong, Tetris, Breakout y Tres en raya (`@spec REQ-41`).
+- [x] **T-81:** Crear suite de pruebas unitarias en `tests/unit/sound.test.ts` validando síntesis y tolerancia a entornos sin audio (`@spec REQ-41`).
+- [x] **T-82:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (65/65 tests, 45/45 specs, 0 avisos).
+
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
-- *(Ninguna pendiente: los 5 juegos clásicos del catálogo están 100% implementados, testeados y operativos).*
+- *(Ninguna pendiente).*
 
 ---
 
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** ¡Proyecto GuacamoleGH Games Completado al 100%! Los 5 juegos arcade clásicos (Snake, Pong, Tetris, Breakout y Tres en raya) están completamente desarrollados en módulos desacoplados en `src/games/`, integrados en el catálogo interactivo y desplegables de forma estática pura sin backend.
-> **Pending / Pendiente:** Ninguna tarea pendiente.
-> **Next step / Próximo paso:** Listo para entrega final o despliegue en servidor estático homelab.
+> **Exact point / Punto exacto:** Sistema de sonido sintetizado retro completado con Web Audio API (REQ-41) en los 5 juegos.
+> **Pending / Pendiente:** Ninguna tarea pendiente en esta fase.
+> **Next step / Próximo paso:** Publicar commit a GitHub y presentar entrega final.

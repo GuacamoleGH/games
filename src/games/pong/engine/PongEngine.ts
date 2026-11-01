@@ -28,6 +28,7 @@ export const DEFAULT_PONG_CONFIG: PongConfig = {
 };
 
 export class PongEngine {
+  public onSoundEvent?: (event: 'bounce' | 'paddle' | 'score') => void;
   private readonly config: PongConfig;
   private playerPaddle: Paddle;
   private aiPaddle: Paddle;
@@ -193,9 +194,11 @@ export class PongEngine {
     if (this.ball.y - this.ball.radius <= 0) {
       this.ball.y = this.ball.radius;
       this.ball.vy = Math.abs(this.ball.vy);
+      this.onSoundEvent?.('bounce');
     } else if (this.ball.y + this.ball.radius >= this.config.courtHeight) {
       this.ball.y = this.config.courtHeight - this.ball.radius;
       this.ball.vy = -Math.abs(this.ball.vy);
+      this.onSoundEvent?.('bounce');
     }
 
     // 5. Rebote con pala del jugador (Izquierda) (REQ-15)
@@ -290,6 +293,7 @@ export class PongEngine {
     } else {
       this.ball.x = paddleLeft - this.ball.radius;
     }
+    this.onSoundEvent?.('paddle');
 
     // Calcular ángulo dinámico de rebote (-60° a +60°) según punto de impacto en la pala
     const paddleCenterY = paddle.y + paddle.height / 2;
@@ -309,6 +313,7 @@ export class PongEngine {
     // Tanto del Rival (bola rebasa al jugador)
     if (this.ball.x + this.ball.radius < 0) {
       this.aiScore += 1;
+      this.onSoundEvent?.('score');
       if (this.aiScore >= this.config.winningScore) {
         this.status = 'GAME_OVER';
         this.winner = 'AI';
@@ -323,6 +328,7 @@ export class PongEngine {
     // Tanto del Jugador (bola rebasa al rival)
     if (this.ball.x - this.ball.radius > this.config.courtWidth) {
       this.playerScore += 1;
+      this.onSoundEvent?.('score');
       if (this.playerScore >= this.config.winningScore) {
         this.status = 'GAME_OVER';
         this.winner = 'PLAYER';

@@ -20,13 +20,14 @@ import { GAMES_DATA } from '../../src/common/data/games.data.js';
 import type { GameMetadata } from '../../src/common/types/game.js';
 
 describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, REQ-18, REQ-19, REQ-20, REQ-25, REQ-26, REQ-27, REQ-33, REQ-34, REQ-39, REQ-40)', () => {
-  it('renderHeader debe generar la cabecera semántica con logo y título (@spec REQ-01)', () => {
+  it('renderHeader debe generar la cabecera semántica con logo, título y control de audio (@spec REQ-01, REQ-41)', () => {
     const html = renderHeader();
     expect(html).toContain('<header class="site-header"');
     expect(html).toContain('src="/logo.png"');
     expect(html).toContain('GuacamoleGH');
     expect(html).toContain('Games');
     expect(html).toContain('Homelab Edition');
+    expect(html).toContain('id="global-mute-btn"');
   });
 
   it('renderHero debe generar la sección de presentación arcade (@spec REQ-02)', () => {

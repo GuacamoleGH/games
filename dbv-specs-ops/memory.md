@@ -22,6 +22,7 @@
 - **2026-11-01 - ADR-007: Algoritmo SRS Simplificado con Wall Kicks y Ghost Piece para Tetris:** La lógica de rotación de tetrominós implementa compensación de pared (*wall kicks* en desplazamientos de [0, -1, 1, -2, 2]) y cálculo en tiempo real de proyección de caída (*ghost piece*), desacoplada del renderizado para testeo determinista de colisiones y líneas.
 - **2026-11-01 - ADR-008: Descomposición Geométrica de Impactos AABB y Rebote Angular en Breakout:** Para evitar solapamientos y efecto túnel entre ladrillos contiguos, la detección compara `overlapX` vs `overlapY` para determinar el vector de inversión (`vx` vs `vy`), reposiciona la bola en el plano exterior y limita la velocidad máxima a 12 unidades por tick.
 - **2026-11-01 - ADR-009: IA Minimax Determinista con Retardo Asíncrono y Cuadrícula Accesible para Tres en Raya:** La lógica de decisión de la IA implementa el árbol de juegos Minimax completo evaluando los 9 estados finales en tiempo real, mientras la UI introduce un retardo asíncrono no bloqueante (350 ms) para simular pensamiento natural y monta botones accesibles con foco por teclado.
+- **2026-11-01 - ADR-010: Síntesis de Sonido Retro Desacoplada con Web Audio API:** Se implementa un subsistema de audio 100% sintetizado en tiempo real con osciladores nativos (`AudioContext`, ondas cuadradas, triangulares y diente de sierra) sin archivos de audio externos (`.mp3` o `.wav`), garantizando cero latencia de red, carga ultraligera (<3KB), botón accesible de mute (🔊/🔇) con persistencia en `localStorage` y soporte graceful en entornos sin audio.
 
 ## ⚠️ Lecciones Aprendidas / Errores Evitados
 
@@ -32,6 +33,7 @@
 - **2026-11-01:** En Breakout, resolver como máximo un impacto de ladrillo por tick previene que la bola rompa simultáneamente dos ladrillos en una misma esquina y provoque rebotes dobles indeseados en el mismo fotograma.
 - **2026-11-01:** En juegos por turnos (Tres en raya), implementar la cuadrícula mediante elementos HTML semánticos (`role="grid"` y `role="gridcell"`) en lugar de Canvas puro optimiza la accesibilidad WCAG 2.1 AA por teclado (`Tab` y flechas direccionales) sin sacrificar la estética retro neón con SVG.
 - **2026-11-01:** En Snake, el procesamiento de entradas rápidas (pulsar dos teclas casi a la vez o encadenar giros en esquina antes del siguiente tick) requiere una cola de entrada (*Input Buffering* de 2 slots) donde cada nueva dirección se valida contra la última dirección encolada en el búfer y no solo contra el último tick ya procesado, permitiendo giros sucesivos fluidos y evitando descartes de pulsaciones válidas.
+- **2026-11-01:** La política de autoreproducción (*Autoplay Policy*) de los navegadores modernos requiere reanudar el `AudioContext` tras el primer gesto del usuario (`click`, `keydown`, `touchstart`). Además, en entornos de test desprovistos de interfaz gráfica (`node`), el subsistema debe degradar elegantemente protegiendo las llamadas con comprobaciones de tipo (`typeof window !== 'undefined'`) para evitar excepciones fatales.
 
 ## 🚫 Rejection Memory (Caminos Descartados)
 

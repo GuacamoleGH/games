@@ -7,11 +7,12 @@
 
 /**
  * @fileoverview Vista, ciclo de renderizado en Canvas HTML5, HUD y controles para Snake.
- * @spec REQ-10, REQ-11, REQ-12, REQ-13
+ * @spec REQ-10, REQ-11, REQ-12, REQ-13, REQ-41
  */
 
 import { SnakeEngine } from '../engine/SnakeEngine.js';
 import type { Direction, Point } from '../types.js';
+import { soundManager } from '../../../common/audio/SoundEffects.js';
 
 const HIGH_SCORE_KEY = 'guacamolegh_snake_highscore';
 
@@ -94,9 +95,11 @@ export class SnakeView {
         if (snapshot.score !== prevScore) {
           this.updateHUD();
           this.saveHighScore(snapshot.highScore);
+          soundManager.play('eat');
         }
 
         if (snapshot.status === 'GAME_OVER') {
+          soundManager.play('die');
           this.showGameOverOverlay(snapshot.score, snapshot.highScore);
         }
       } else {
@@ -263,6 +266,7 @@ export class SnakeView {
 
     const startBtn = this.overlayEl.querySelector('#snake-start-btn');
     startBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.hideOverlay();
       this.engine.start();
     });
@@ -284,6 +288,7 @@ export class SnakeView {
 
     const restartBtn = this.overlayEl.querySelector('#snake-restart-btn');
     restartBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.hideOverlay();
       this.engine.start();
       this.updateHUD();
@@ -304,6 +309,7 @@ export class SnakeView {
 
     const resumeBtn = this.overlayEl.querySelector('#snake-resume-btn');
     resumeBtn?.addEventListener('click', () => {
+      soundManager.play('click');
       this.hideOverlay();
       this.engine.togglePause();
     });

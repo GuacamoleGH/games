@@ -30,6 +30,7 @@ export const DEFAULT_TETRIS_CONFIG: TetrisConfig = {
 };
 
 export class TetrisEngine {
+  public onSoundEvent?: (event: 'lock' | 'line' | 'tetris' | 'game_over') => void;
   private readonly config: TetrisConfig;
   private board: (string | null)[][];
   private currentPiece: ActivePiece | null = null;
@@ -333,6 +334,12 @@ export class TetrisEngine {
     }
 
     if (completedCount > 0) {
+      if (completedCount === 4) {
+        this.onSoundEvent?.('tetris');
+      } else {
+        this.onSoundEvent?.('line');
+      }
+
       // Rellenar filas vacías en la parte superior
       while (newBoard.length < this.config.rows) {
         newBoard.unshift(new Array<string | null>(this.config.cols).fill(null));
@@ -349,6 +356,8 @@ export class TetrisEngine {
       if (this.score > this.highScore) {
         this.highScore = this.score;
       }
+    } else {
+      this.onSoundEvent?.('lock');
     }
   }
 
@@ -363,6 +372,7 @@ export class TetrisEngine {
     if (this.checkCollision(startX, startY, pieceDef.matrix)) {
       this.status = 'GAME_OVER';
       this.currentPiece = null;
+      this.onSoundEvent?.('game_over');
       return;
     }
 
