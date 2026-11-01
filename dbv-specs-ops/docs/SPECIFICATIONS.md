@@ -101,6 +101,10 @@
 
 - [x] **REQ-41 · Sistema de Efectos de Sonido Sintetizados (Web Audio API):** Generación de audio 100% sintetizado en tiempo real sin archivos de audio externos (cero descargas de red, ultra-ligero < 3KB), mediante osciladores nativos de la Web Audio API (ondas cuadradas/triangulares y envolventes de ganancia) para reproducir efectos retro arcade en todos los juegos (comer en Snake, rebotes en Pong, rotaciones y líneas en Tetris, impactos en Breakout, marcas en Tres en raya, clics, victorias y derrotas). Incluye botón accesible de silenciar/activar sonido (🔊 / 🔇) con persistencia en `localStorage` y activación automática ante la primera interacción del usuario.
 
+### Requisitos Funcionales (RF) — Ajustes y Dificultad Dinámica
+
+- [x] **REQ-42 · Selector de Dificultad Dinámico (Fácil, Normal, Difícil) en Snake, Pong y Breakout:** Selector interactivo de 3 niveles de dificultad con persistencia en `localStorage` que modula la velocidad de la física y bucles de juego (Snake: 170ms / 130ms / 90ms; Pong: 260 / 380 / 500 px/s; Breakout: 3.2 / 4.2 / 5.5 px/tick) con botón accesible en cabecera y corrección de maquetación en la barra superior de Breakout.
+
 ### Requisitos No Funcionales (RNF)
 
 - [x] **RNF-01 · Rendimiento y Ligereza:** Carga instantánea con footprint inicial reducido (bundle compilado < 150KB sin assets pesados), score objetivo de 100/100 en Lighthouse de rendimiento.

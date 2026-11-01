@@ -7,13 +7,13 @@
 
 /**
  * @fileoverview Pruebas unitarias para el motor físico puro de Breakout (BreakoutEngine).
- * @spec REQ-28, REQ-29, REQ-30, REQ-31, REQ-32
+ * @spec REQ-28, REQ-29, REQ-30, REQ-31, REQ-32, REQ-42
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
 import { BreakoutEngine } from '../../src/games/breakout/engine/BreakoutEngine.js';
 
-describe('BreakoutEngine - Cinemática y Lógica Pura', () => {
+describe('BreakoutEngine - Cinemática y Lógica Pura (@spec REQ-28, REQ-29, REQ-30, REQ-31, REQ-32, REQ-42)', () => {
   let engine: BreakoutEngine;
 
   beforeEach(() => {
@@ -177,5 +177,25 @@ describe('BreakoutEngine - Cinemática y Lógica Pura', () => {
     const snap = engine.getSnapshot();
     expect(snap.status).toBe('VICTORY');
     expect(snap.remainingBricks).toBe(0);
+  });
+
+  it('debe modular la velocidad de la bola y de la paleta según los 3 niveles de dificultad (@spec REQ-42)', () => {
+    engine.setDifficulty('easy');
+    expect(engine.getDifficulty()).toBe('easy');
+    expect(engine.getConfig().initialBallSpeed).toBe(3.2);
+    expect(engine.getConfig().paddleSpeed).toBe(7.5);
+    expect(engine.getConfig().maxBallSpeed).toBe(6.5);
+
+    engine.setDifficulty('normal');
+    expect(engine.getDifficulty()).toBe('normal');
+    expect(engine.getConfig().initialBallSpeed).toBe(4.2);
+    expect(engine.getConfig().paddleSpeed).toBe(8.5);
+    expect(engine.getConfig().maxBallSpeed).toBe(8.5);
+
+    engine.setDifficulty('hard');
+    expect(engine.getDifficulty()).toBe('hard');
+    expect(engine.getConfig().initialBallSpeed).toBe(5.5);
+    expect(engine.getConfig().paddleSpeed).toBe(9.5);
+    expect(engine.getConfig().maxBallSpeed).toBe(11.0);
   });
 });

@@ -154,4 +154,18 @@ describe('SnakeEngine - Motor de Juego Puro (@spec REQ-07, REQ-08, REQ-09, REQ-1
     expect(engine.getSnapshot().score).toBe(0);
     expect(engine.getSnapshot().snake.length).toBe(3);
   });
+
+  it('debe modular la cadencia de avance según los 3 niveles de dificultad (@spec REQ-42)', () => {
+    engine.setDifficulty('easy');
+    expect(engine.getDifficulty()).toBe('easy');
+    expect(engine.getTickIntervalMs()).toBe(170);
+
+    engine.setDifficulty('normal');
+    expect(engine.getDifficulty()).toBe('normal');
+    expect(engine.getTickIntervalMs()).toBe(130);
+
+    engine.setDifficulty('hard');
+    expect(engine.getDifficulty()).toBe('hard');
+    expect(engine.getTickIntervalMs()).toBe(90);
+  });
 });

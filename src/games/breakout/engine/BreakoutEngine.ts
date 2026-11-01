@@ -8,7 +8,7 @@
 /**
  * @fileoverview Motor de física pura y lógica para Breakout (destructor de bloques).
  * Desacoplado del DOM y de APIs de renderizado.
- * @spec REQ-29, REQ-30, REQ-31, REQ-32
+ * @spec REQ-29, REQ-30, REQ-31, REQ-32, REQ-42
  */
 
 import type {
@@ -19,6 +19,8 @@ import type {
   BreakoutSnapshot,
   BreakoutGameStatus
 } from '../types.js';
+
+export type BreakoutDifficulty = 'easy' | 'normal' | 'hard';
 
 export const DEFAULT_BREAKOUT_CONFIG: BreakoutConfig = {
   virtualWidth: 800,
@@ -48,7 +50,7 @@ const ROW_COLORS = [
 
 export class BreakoutEngine {
   public onSoundEvent?: (event: 'bounce' | 'paddle' | 'brick' | 'life_loss' | 'victory' | 'game_over') => void;
-  private readonly config: BreakoutConfig;
+  private config: BreakoutConfig;
   private paddle!: Paddle;
   private ball!: Ball;
   private bricks: Brick[] = [];
@@ -56,8 +58,13 @@ export class BreakoutEngine {
   private lives: number = 3;
   private highScore: number = 0;
   private status: BreakoutGameStatus = 'READY';
+  private difficulty: BreakoutDifficulty = 'normal';
 
-  constructor(customConfig?: Partial<BreakoutConfig>, initialHighScore: number = 0) {
+  constructor(
+    customConfig?: Partial<BreakoutConfig>,
+    initialHighScore: number = 0,
+    initialDifficulty: BreakoutDifficulty = 'normal'
+  ) {
     this.config = {
       virtualWidth: customConfig?.virtualWidth ?? DEFAULT_BREAKOUT_CONFIG.virtualWidth,
       virtualHeight: customConfig?.virtualHeight ?? DEFAULT_BREAKOUT_CONFIG.virtualHeight,
@@ -76,7 +83,54 @@ export class BreakoutEngine {
       brickHeight: customConfig?.brickHeight ?? DEFAULT_BREAKOUT_CONFIG.brickHeight
     };
     this.highScore = Math.max(0, initialHighScore);
+    this.setDifficulty(initialDifficulty);
     this.reset();
+  }
+
+  /**
+   * Modifica la dificultad del juego modulando la velocidad de la bola y de la paleta.
+   * @spec REQ-42
+   */
+  public setDifficulty(diff: BreakoutDifficulty): void {
+    this.difficulty = diff;
+    if (diff === 'easy') {
+      this.config.initialBallSpeed = 3.2;
+      this.config.paddleSpeed = 7.5;
+      this.config.maxBallSpeed = 6.5;
+    } else if (diff === 'hard') {
+      this.config.initialBallSpeed = 5.5;
+      this.config.paddleSpeed = 9.5;
+      this.config.maxBallSpeed = 11.0;
+    } else {
+      this.config.initialBallSpeed = 4.2;
+      this.config.paddleSpeed = 8.5;
+      this.config.maxBallSpeed = 8.5;
+    }
+
+    if (this.paddle) {
+      this.paddle.speed = this.config.paddleSpeed;
+    }
+    if (this.status === 'READY' && this.ball) {
+      this.initBall();
+    }
+  }
+
+  /**
+   * Retorna la dificultad actual de la partida.
+   * @spec REQ-42
+   */
+  public getDifficulty(): BreakoutDifficulty {
+    const d = this.difficulty;
+    return d;
+  }
+
+  /**
+   * Retorna la configuración inmutable del motor.
+   * @spec REQ-29, REQ-42
+   */
+  public getConfig(): Readonly<BreakoutConfig> {
+    const cfg = { ...this.config };
+    return cfg;
   }
 
   /**

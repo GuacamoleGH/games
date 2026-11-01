@@ -93,6 +93,13 @@
 - [x] **T-86:** Mejorar el logo/icono SVG de Snake en `games.data.ts` con diseño retro arcade de alta calidad (`@spec REQ-04, REQ-10`).
 - [x] **T-87:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py`, commit y push a GitHub.
 
+### Selector de Dificultad Dinámica y Ajustes de Breakout (Completado)
+- [x] **T-88:** Corregir maquetación de la cabecera en Breakout y ocultar controles táctiles en escritorio (`BreakoutView.ts` y `main.css`) (`@spec REQ-33, REQ-42`).
+- [x] **T-89:** Selector de dificultad de 3 niveles en Snake con modulación de velocidad y persistencia (`SnakeEngine.ts`, `SnakeView.ts`, test) (`@spec REQ-42`).
+- [x] **T-90:** Selector de dificultad de 3 niveles en Pong con modulación de velocidad e IA (`PongEngine.ts`, `PongView.ts`, test) (`@spec REQ-42`).
+- [x] **T-91:** Selector de dificultad de 3 niveles en Breakout con modulación de velocidad de bola y paleta (`BreakoutEngine.ts`, `BreakoutView.ts`, test) (`@spec REQ-42`).
+- [x] **T-92:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py`, commit y push a GitHub.
+
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
@@ -103,6 +110,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Breakout calibrado a 60Hz fijo, IA de Tres en raya desbloqueada, etiqueta Fase X eliminada y logo de Snake mejorado.
-> **Pending / Pendiente:** Ninguna tarea pendiente en este hito.
-> **Next step / Próximo paso:** Publicar cambios en GitHub y presentar entrega.
+> **Exact point / Punto exacto:** Selector de dificultad de 3 niveles (Fácil, Normal, Difícil) implementado en Snake, Pong y Breakout con persistencia y modulación de velocidad física; maquetación de Breakout y ocultación de controles táctiles en escritorio completadas (REQ-42).
+> **Pending / Pendiente:** Ninguna.
+> **Next step / Próximo paso:** Proyecto en estado estable y probado, listo para nuevas peticiones o fases.

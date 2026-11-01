@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Sin publicar] / [Unreleased]
 
+### Added - GuacamoleGH Games (Selector de Dificultad Dinámica y Ergonomía de Pantalla - REQ-42)
+- Selector de dificultad de 3 niveles (`Fácil`, `Normal`, `Difícil`) integrado en la barra de controles superior de **Snake**, **Pong** y **Breakout** con persistencia en `localStorage` (REQ-42).
+- Modulación dinámica de parámetros de velocidad y tiempo por dificultad:
+  - **Snake:** Fácil (170 ms/tick), Normal (130 ms/tick), Difícil (90 ms/tick).
+  - **Pong:** Fácil (Pelota 260 px/s, IA 220 px/s), Normal (Pelota 380 px/s, IA 320 px/s), Difícil (Pelota 500 px/s, IA 440 px/s).
+  - **Breakout:** Fácil (Pelota 3.2 px/tick, Paleta 7.5), Normal (Pelota 4.2 px/tick, Paleta 8.5), Difícil (Pelota 5.5 px/tick, Paleta 9.5).
+- Cobertura de pruebas unitarias ampliada a 69 tests pasando en 9 suites con 100% de trazabilidad de los 46 requisitos.
+
+### Fixed
+- **Breakout (Maquetación de Cabecera):** Sustituida la clase huérfana `game-header-bar` por `.breakout-top-bar` con distribución horizontal simétrica: botón "Volver al Catálogo" con flecha SVG a la izquierda, HUD de estadísticas al centro y botones de Dificultad y Pausa a la derecha.
+- **Ergonomía de Pantalla (Controles Táctiles):** Ocultados los botones táctiles virtuales redundantes (`◀ IZQUIERDA`, `⤓ LANZAR`, `DERECHA ▶`) en monitores y pantallas de escritorio (`@media (min-width: 900px)`) para Snake, Pong y Breakout, preservándolos en dispositivos móviles y tablets.
+- **Snake (Evitar Fruta en Casilla Frontal Inicial):** Filtro en la generación aleatoria de comida durante el estado `READY` para no superponerla inmediatamente frente a la cabeza al reiniciar la partida.
+
 ### Added - GuacamoleGH Games (Efectos de Sonido Web Audio API - REQ-41)
 - Sistema centralizado de efectos de sonido arcade retro sintetizados en tiempo real mediante Web Audio API pura (`SoundEffects.ts`), con cero dependencias de archivos de audio externos y footprint ultraligero < 3KB (REQ-41).
 - Efectos de sonido dinámicos para los 5 juegos del catálogo:

@@ -7,14 +7,15 @@
 
 /**
  * @fileoverview Vista y renderizado en Canvas HTML5 para Breakout (destructor de bloques).
- * @spec REQ-32, REQ-33, REQ-41
+ * @spec REQ-32, REQ-33, REQ-41, REQ-42
  */
 
-import { BreakoutEngine } from '../engine/BreakoutEngine.js';
+import { BreakoutEngine, type BreakoutDifficulty } from '../engine/BreakoutEngine.js';
 import type { BreakoutSnapshot } from '../types.js';
 import { soundManager } from '../../../common/audio/SoundEffects.js';
 
 const HIGH_SCORE_KEY = 'guacamolegh_breakout_highscore';
+const DIFFICULTY_STORAGE_KEY = 'guacamolegh_breakout_diff';
 
 export class BreakoutView {
   private container: HTMLElement;
@@ -29,6 +30,7 @@ export class BreakoutView {
   private bricksEl!: HTMLElement;
   private highScoreEl!: HTMLElement;
   private overlayEl!: HTMLElement;
+  private diffBtn!: HTMLButtonElement;
 
   private animationFrameId: number | null = null;
   private isDestroyed: boolean = false;
@@ -50,7 +52,8 @@ export class BreakoutView {
     this.onBack = onBack;
 
     const savedHighScore = this.loadHighScore();
-    this.engine = new BreakoutEngine(undefined, savedHighScore);
+    const savedDiff = this.loadDifficulty();
+    this.engine = new BreakoutEngine(undefined, savedHighScore, savedDiff);
     this.engine.onSoundEvent = (event) => {
       if (event === 'bounce' || event === 'brick') {
         soundManager.play('bounce');
@@ -87,8 +90,10 @@ export class BreakoutView {
     this.bricksEl = this.container.querySelector('#breakout-bricks') as HTMLElement;
     this.highScoreEl = this.container.querySelector('#breakout-highscore') as HTMLElement;
     this.overlayEl = this.container.querySelector('#breakout-overlay') as HTMLElement;
+    this.diffBtn = this.container.querySelector('#breakout-diff-btn') as HTMLButtonElement;
 
     this.bindEvents();
+    this.updateDiffButtonLabel();
     this.updateHud(this.engine.getSnapshot());
     this.showReadyOverlay();
 
@@ -128,6 +133,16 @@ export class BreakoutView {
     const backBtn = this.container.querySelector('#breakout-back-btn');
     backBtn?.addEventListener('click', () => {
       this.onBack();
+    });
+
+    // Botón de dificultad en HUD
+    this.diffBtn?.addEventListener('click', () => {
+      soundManager.play('click');
+      const current = this.engine.getDifficulty();
+      const next: BreakoutDifficulty = current === 'easy' ? 'normal' : current === 'normal' ? 'hard' : 'easy';
+      this.engine.setDifficulty(next);
+      this.saveDifficulty(next);
+      this.updateDiffButtonLabel();
     });
 
     // Botón de pausa
@@ -470,13 +485,50 @@ export class BreakoutView {
     }
   }
 
+  private loadDifficulty(): BreakoutDifficulty {
+    try {
+      const saved = localStorage.getItem(DIFFICULTY_STORAGE_KEY);
+      if (saved === 'easy' || saved === 'normal' || saved === 'hard') {
+        return saved;
+      }
+    } catch {
+      // Ignorar
+    }
+    return 'normal';
+  }
+
+  private saveDifficulty(diff: BreakoutDifficulty): void {
+    try {
+      localStorage.setItem(DIFFICULTY_STORAGE_KEY, diff);
+    } catch {
+      // Ignorar
+    }
+  }
+
+  private updateDiffButtonLabel(): void {
+    if (!this.diffBtn) {
+      return;
+    }
+    const diff = this.engine.getDifficulty();
+    const map: Record<BreakoutDifficulty, string> = {
+      easy: 'Fácil',
+      normal: 'Normal',
+      hard: 'Difícil'
+    };
+    this.diffBtn.textContent = `Dificultad: ${map[diff]}`;
+  }
+
   private getTemplateHtml(): string {
     const html = `
       <section class="breakout-game-wrapper" aria-label="Juego Breakout">
         <div class="breakout-inner-container">
-          <div class="game-header-bar">
-            <button id="breakout-back-btn" class="snake-back-btn" aria-label="Volver al catálogo">
-              &larr; Volver al Catálogo
+          <div class="breakout-top-bar">
+            <button id="breakout-back-btn" class="snake-back-btn" aria-label="Volver al catálogo principal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Volver al Catálogo</span>
             </button>
             <div class="snake-hud">
               <div class="hud-item">
@@ -496,9 +548,14 @@ export class BreakoutView {
                 <span id="breakout-highscore" class="hud-value text-accent-turquoise">0</span>
               </div>
             </div>
-            <button id="breakout-pause-btn" class="hud-btn" aria-label="Pausar o reanudar Breakout">
-              Pausa [P]
-            </button>
+            <div class="breakout-actions-bar">
+              <button id="breakout-diff-btn" class="hud-btn" aria-label="Cambiar dificultad de Breakout">
+                Dificultad: Normal
+              </button>
+              <button id="breakout-pause-btn" class="hud-btn" aria-label="Pausar o reanudar Breakout">
+                Pausa [P]
+              </button>
+            </div>
           </div>
 
           <div class="breakout-canvas-box">

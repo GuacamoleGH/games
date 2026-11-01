@@ -13,10 +13,12 @@
 
 import type { Point, Direction, GameStatus, SnakeConfig, SnakeSnapshot } from '../types.js';
 
+export type SnakeDifficulty = 'easy' | 'normal' | 'hard';
+
 export const DEFAULT_SNAKE_CONFIG: SnakeConfig = {
   gridSize: 20,
-  initialSpeedMs: 140,
-  minSpeedMs: 70,
+  initialSpeedMs: 130,
+  minSpeedMs: 65,
   speedDecrementMs: 5
 };
 
@@ -31,8 +33,13 @@ export class SnakeEngine {
   private score: number = 0;
   private highScore: number = 0;
   private tickIntervalMs: number;
+  private difficulty: SnakeDifficulty = 'normal';
 
-  constructor(customConfig?: Partial<SnakeConfig>, initialHighScore: number = 0) {
+  constructor(
+    customConfig?: Partial<SnakeConfig>,
+    initialHighScore: number = 0,
+    initialDifficulty: SnakeDifficulty = 'normal'
+  ) {
     this.config = {
       gridSize: customConfig?.gridSize ?? DEFAULT_SNAKE_CONFIG.gridSize,
       initialSpeedMs: customConfig?.initialSpeedMs ?? DEFAULT_SNAKE_CONFIG.initialSpeedMs,
@@ -41,7 +48,35 @@ export class SnakeEngine {
     };
     this.highScore = Math.max(0, initialHighScore);
     this.tickIntervalMs = this.config.initialSpeedMs;
+    this.setDifficulty(initialDifficulty);
     this.reset();
+  }
+
+  /**
+   * Modifica la dificultad del juego ajustando la velocidad de avance.
+   * @spec REQ-42
+   */
+  public setDifficulty(diff: SnakeDifficulty): void {
+    this.difficulty = diff;
+    if (diff === 'easy') {
+      this.config.initialSpeedMs = 170;
+      this.tickIntervalMs = 170;
+    } else if (diff === 'hard') {
+      this.config.initialSpeedMs = 90;
+      this.tickIntervalMs = 90;
+    } else {
+      this.config.initialSpeedMs = 130;
+      this.tickIntervalMs = 130;
+    }
+  }
+
+  /**
+   * Retorna la dificultad actual.
+   * @spec REQ-42
+   */
+  public getDifficulty(): SnakeDifficulty {
+    const d = this.difficulty;
+    return d;
   }
 
   /**
@@ -239,10 +274,17 @@ export class SnakeEngine {
   }
 
   private spawnFood(): void {
+    const head = this.snake[0];
+    const nextFrontX = head ? head.x + 1 : -1;
+    const nextFrontY = head ? head.y : -1;
+
     const availableCells: Point[] = [];
     for (let x = 0; x < this.config.gridSize; x += 1) {
       for (let y = 0; y < this.config.gridSize; y += 1) {
         if (!this.snake.some((s) => s.x === x && s.y === y)) {
+          if (this.status === 'READY' && x === nextFrontX && y === nextFrontY) {
+            continue;
+          }
           availableCells.push({ x, y });
         }
       }

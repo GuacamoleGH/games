@@ -1072,6 +1072,22 @@ body {
   max-width: 820px;
 }
 
+.breakout-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--space-md);
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.breakout-actions-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
 .breakout-canvas-box {
   position: relative;
   width: 100%;
@@ -1099,6 +1115,14 @@ body {
   margin-top: var(--space-md);
   width: 100%;
   max-width: 480px;
+}
+
+@media (min-width: 900px) {
+  .breakout-touch-controls,
+  .pong-touch-controls,
+  .snake-touch-controls {
+    display: none !important;
+  }
 }
 
 /* ==========================================================================

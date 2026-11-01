@@ -10,8 +10,10 @@
  * @spec REQ-18, REQ-19, REQ-20, REQ-41
  */
 
-import { PongEngine } from '../engine/PongEngine.js';
+import { PongEngine, type PongDifficulty } from '../engine/PongEngine.js';
 import { soundManager } from '../../../common/audio/SoundEffects.js';
+
+const DIFFICULTY_STORAGE_KEY = 'guacamolegh_pong_diff';
 
 export class PongView {
   private container: HTMLElement;
@@ -23,6 +25,7 @@ export class PongView {
   private playerScoreEl!: HTMLElement;
   private aiScoreEl!: HTMLElement;
   private overlayEl!: HTMLElement;
+  private diffBtn!: HTMLButtonElement;
 
   private animationFrameId: number | null = null;
   private lastFrameTime: number = 0;
@@ -36,7 +39,8 @@ export class PongView {
   constructor(container: HTMLElement, onBack: () => void) {
     this.container = container;
     this.onBack = onBack;
-    this.engine = new PongEngine();
+    const savedDiff = this.loadDifficulty();
+    this.engine = new PongEngine(undefined, savedDiff);
     this.engine.onSoundEvent = (event) => {
       if (event === 'bounce') {
         soundManager.play('bounce');
@@ -65,8 +69,10 @@ export class PongView {
     this.playerScoreEl = this.container.querySelector('#pong-player-score') as HTMLElement;
     this.aiScoreEl = this.container.querySelector('#pong-ai-score') as HTMLElement;
     this.overlayEl = this.container.querySelector('#pong-overlay') as HTMLElement;
+    this.diffBtn = this.container.querySelector('#pong-diff-btn') as HTMLButtonElement;
 
     this.setupEventListeners();
+    this.updateDiffButtonLabel();
     this.updateHUD();
     this.render();
     this.showReadyOverlay();
@@ -302,6 +308,16 @@ export class PongView {
       this.onBack();
     });
 
+    // Botón dificultad en HUD
+    this.diffBtn?.addEventListener('click', () => {
+      soundManager.play('click');
+      const current = this.engine.getDifficulty();
+      const next: PongDifficulty = current === 'easy' ? 'normal' : current === 'normal' ? 'hard' : 'easy';
+      this.engine.setDifficulty(next);
+      this.saveDifficulty(next);
+      this.updateDiffButtonLabel();
+    });
+
     // Botón de pausa en HUD
     const pauseHudBtn = this.container.querySelector('#pong-pause-hud-btn');
     pauseHudBtn?.addEventListener('click', () => {
@@ -401,6 +417,39 @@ export class PongView {
     this.engine.setPlayerCenterY(clientY);
   }
 
+  private loadDifficulty(): PongDifficulty {
+    try {
+      const saved = localStorage.getItem(DIFFICULTY_STORAGE_KEY);
+      if (saved === 'easy' || saved === 'normal' || saved === 'hard') {
+        return saved;
+      }
+    } catch {
+      // Ignorar
+    }
+    return 'normal';
+  }
+
+  private saveDifficulty(diff: PongDifficulty): void {
+    try {
+      localStorage.setItem(DIFFICULTY_STORAGE_KEY, diff);
+    } catch {
+      // Ignorar
+    }
+  }
+
+  private updateDiffButtonLabel(): void {
+    if (!this.diffBtn) {
+      return;
+    }
+    const diff = this.engine.getDifficulty();
+    const map: Record<PongDifficulty, string> = {
+      easy: 'Fácil',
+      normal: 'Normal',
+      hard: 'Difícil'
+    };
+    this.diffBtn.textContent = `Dificultad: ${map[diff]}`;
+  }
+
   private getTemplateHtml(): string {
     const html = `
       <section class="pong-game-wrapper" aria-label="Juego Pong">
@@ -424,6 +473,9 @@ export class PongView {
                 <span id="pong-ai-score" class="score-number score-ai">0</span>
                 <span class="team-label">RIVAL</span>
               </div>
+              <button id="pong-diff-btn" class="hud-btn" aria-label="Cambiar dificultad de Pong">
+                Dificultad: Normal
+              </button>
               <button id="pong-pause-hud-btn" class="hud-btn" aria-label="Pausar o reanudar Pong">
                 Pausa [P]
               </button>

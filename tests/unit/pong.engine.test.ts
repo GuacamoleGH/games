@@ -7,13 +7,13 @@
 
 /**
  * @fileoverview Pruebas unitarias completas del motor físico y reglas de Pong.
- * @spec REQ-14, REQ-15, REQ-16, REQ-17
+ * @spec REQ-14, REQ-15, REQ-16, REQ-17, REQ-42
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
 import { PongEngine } from '../../src/games/pong/engine/PongEngine.js';
 
-describe('PongEngine - Motor de Física y Tanteo (@spec REQ-14, REQ-15, REQ-16, REQ-17)', () => {
+describe('PongEngine - Motor de Física y Tanteo (@spec REQ-14, REQ-15, REQ-16, REQ-17, REQ-42)', () => {
   let engine: PongEngine;
 
   beforeEach(() => {
@@ -154,5 +154,22 @@ describe('PongEngine - Motor de Física y Tanteo (@spec REQ-14, REQ-15, REQ-16, 
 
     engine.togglePause();
     expect(engine.getStatus()).toBe('PLAYING');
+  });
+
+  it('debe modular la velocidad de la bola y agilidad de la IA según la dificultad (@spec REQ-42)', () => {
+    engine.setDifficulty('easy');
+    expect(engine.getDifficulty()).toBe('easy');
+    expect(engine.getConfig().initialBallSpeed).toBe(260);
+    expect(engine.getConfig().aiSpeed).toBe(220);
+
+    engine.setDifficulty('normal');
+    expect(engine.getDifficulty()).toBe('normal');
+    expect(engine.getConfig().initialBallSpeed).toBe(380);
+    expect(engine.getConfig().aiSpeed).toBe(320);
+
+    engine.setDifficulty('hard');
+    expect(engine.getDifficulty()).toBe('hard');
+    expect(engine.getConfig().initialBallSpeed).toBe(500);
+    expect(engine.getConfig().aiSpeed).toBe(440);
   });
 });

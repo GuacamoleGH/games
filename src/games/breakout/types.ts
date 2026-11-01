@@ -45,10 +45,10 @@ export interface BreakoutConfig {
   readonly virtualHeight: number;
   readonly paddleWidth: number;
   readonly paddleHeight: number;
-  readonly paddleSpeed: number;
+  paddleSpeed: number;
   readonly ballRadius: number;
-  readonly initialBallSpeed: number;
-  readonly maxBallSpeed: number;
+  initialBallSpeed: number;
+  maxBallSpeed: number;
   readonly initialLives: number;
   readonly brickRows: number;
   readonly brickCols: number;

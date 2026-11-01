@@ -21,7 +21,7 @@ export type GameStatus = 'READY' | 'PLAYING' | 'PAUSED' | 'GAME_OVER';
 
 export interface SnakeConfig {
   readonly gridSize: number;
-  readonly initialSpeedMs: number;
+  initialSpeedMs: number;
   readonly minSpeedMs: number;
   readonly speedDecrementMs: number;
 }

@@ -10,11 +10,12 @@
  * @spec REQ-10, REQ-11, REQ-12, REQ-13, REQ-41
  */
 
-import { SnakeEngine } from '../engine/SnakeEngine.js';
+import { SnakeEngine, type SnakeDifficulty } from '../engine/SnakeEngine.js';
 import type { Direction, Point } from '../types.js';
 import { soundManager } from '../../../common/audio/SoundEffects.js';
 
 const HIGH_SCORE_KEY = 'guacamolegh_snake_highscore';
+const DIFFICULTY_STORAGE_KEY = 'guacamolegh_snake_diff';
 
 export class SnakeView {
   private container: HTMLElement;
@@ -26,6 +27,7 @@ export class SnakeView {
   private scoreEl!: HTMLElement;
   private highScoreEl!: HTMLElement;
   private overlayEl!: HTMLElement;
+  private diffBtn!: HTMLButtonElement;
 
   private animationFrameId: number | null = null;
   private lastTickTime: number = 0;
@@ -38,7 +40,8 @@ export class SnakeView {
     this.onBack = onBack;
 
     const savedHighScore = this.loadHighScore();
-    this.engine = new SnakeEngine(undefined, savedHighScore);
+    const savedDiff = this.loadDifficulty();
+    this.engine = new SnakeEngine(undefined, savedHighScore, savedDiff);
     this.boundKeyDown = this.handleKeyDown.bind(this);
   }
 
@@ -54,8 +57,10 @@ export class SnakeView {
     this.scoreEl = this.container.querySelector('#snake-score') as HTMLElement;
     this.highScoreEl = this.container.querySelector('#snake-highscore') as HTMLElement;
     this.overlayEl = this.container.querySelector('#snake-overlay') as HTMLElement;
+    this.diffBtn = this.container.querySelector('#snake-diff-btn') as HTMLButtonElement;
 
     this.setupEventListeners();
+    this.updateDiffButtonLabel();
     this.updateHUD();
     this.render();
     this.showReadyOverlay();
@@ -329,6 +334,16 @@ export class SnakeView {
       this.onBack();
     });
 
+    // Botón de dificultad en HUD
+    this.diffBtn?.addEventListener('click', () => {
+      soundManager.play('click');
+      const current = this.engine.getDifficulty();
+      const next: SnakeDifficulty = current === 'easy' ? 'normal' : current === 'normal' ? 'hard' : 'easy';
+      this.engine.setDifficulty(next);
+      this.saveDifficulty(next);
+      this.updateDiffButtonLabel();
+    });
+
     // Botón de pausa en HUD
     const pauseHudBtn = this.container.querySelector('#snake-pause-hud-btn');
     pauseHudBtn?.addEventListener('click', () => {
@@ -436,6 +451,39 @@ export class SnakeView {
     }
   }
 
+  private loadDifficulty(): SnakeDifficulty {
+    try {
+      const saved = localStorage.getItem(DIFFICULTY_STORAGE_KEY);
+      if (saved === 'easy' || saved === 'normal' || saved === 'hard') {
+        return saved;
+      }
+    } catch {
+      // Ignorar
+    }
+    return 'normal';
+  }
+
+  private saveDifficulty(diff: SnakeDifficulty): void {
+    try {
+      localStorage.setItem(DIFFICULTY_STORAGE_KEY, diff);
+    } catch {
+      // Ignorar
+    }
+  }
+
+  private updateDiffButtonLabel(): void {
+    if (!this.diffBtn) {
+      return;
+    }
+    const diff = this.engine.getDifficulty();
+    const map: Record<SnakeDifficulty, string> = {
+      easy: 'Fácil',
+      normal: 'Normal',
+      hard: 'Difícil'
+    };
+    this.diffBtn.textContent = `Dificultad: ${map[diff]}`;
+  }
+
   private getTemplateHtml(): string {
     const html = `
       <section class="snake-game-wrapper" aria-label="Juego Snake">
@@ -458,6 +506,9 @@ export class SnakeView {
                 <span class="hud-label">RÉCORD</span>
                 <span id="snake-highscore" class="hud-value">0</span>
               </div>
+              <button id="snake-diff-btn" class="hud-btn" aria-label="Cambiar dificultad de Snake">
+                Dificultad: Normal
+              </button>
               <button id="snake-pause-hud-btn" class="hud-btn" aria-label="Pausar o reanudar partida">
                 Pausa [P]
               </button>

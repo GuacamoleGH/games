@@ -13,6 +13,8 @@
 
 import type { Paddle, Ball, PongConfig, PongSnapshot, PongGameStatus } from '../types.js';
 
+export type PongDifficulty = 'easy' | 'normal' | 'hard';
+
 export const DEFAULT_PONG_CONFIG: PongConfig = {
   courtWidth: 800,
   courtHeight: 500,
@@ -38,8 +40,9 @@ export class PongEngine {
   private status: PongGameStatus = 'READY';
   private winner: 'PLAYER' | 'AI' | null = null;
   private serveDirection: number = 1;
+  private difficulty: PongDifficulty = 'normal';
 
-  constructor(customConfig?: Partial<PongConfig>) {
+  constructor(customConfig?: Partial<PongConfig>, initialDifficulty: PongDifficulty = 'normal') {
     this.config = {
       courtWidth: customConfig?.courtWidth ?? DEFAULT_PONG_CONFIG.courtWidth,
       courtHeight: customConfig?.courtHeight ?? DEFAULT_PONG_CONFIG.courtHeight,
@@ -81,7 +84,47 @@ export class PongEngine {
       speed: this.config.initialBallSpeed
     };
 
+    this.setDifficulty(initialDifficulty);
     this.reset();
+  }
+
+  /**
+   * Modifica la dificultad del juego modulando la velocidad de la bola y agilidad de la IA.
+   * @spec REQ-42
+   */
+  public setDifficulty(diff: PongDifficulty): void {
+    this.difficulty = diff;
+    if (diff === 'easy') {
+      this.config.initialBallSpeed = 260;
+      this.config.aiSpeed = 220;
+      this.config.maxBallSpeed = 450;
+    } else if (diff === 'hard') {
+      this.config.initialBallSpeed = 500;
+      this.config.aiSpeed = 440;
+      this.config.maxBallSpeed = 800;
+    } else {
+      this.config.initialBallSpeed = 380;
+      this.config.aiSpeed = 320;
+      this.config.maxBallSpeed = 650;
+    }
+  }
+
+  /**
+   * Retorna la dificultad actual.
+   * @spec REQ-42
+   */
+  public getDifficulty(): PongDifficulty {
+    const d = this.difficulty;
+    return d;
+  }
+
+  /**
+   * Retorna la configuración inmutable del motor.
+   * @spec REQ-15, REQ-42
+   */
+  public getConfig(): Readonly<PongConfig> {
+    const cfg = { ...this.config };
+    return cfg;
   }
 
   /**
