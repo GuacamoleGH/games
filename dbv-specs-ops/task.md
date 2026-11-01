@@ -112,6 +112,12 @@
 - [x] **T-101:** Suite de pruebas unitarias en `tests/unit/space-invaders.engine.test.ts` y actualizar `tests/unit/render.test.ts` (`@spec REQ-43, REQ-44, REQ-45, REQ-46, REQ-47, REQ-48`).
 - [x] **T-102:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py`, commit y push a GitHub.
 
+### Optimización de UI y Distribución de Controles (Completada)
+- [x] **T-103:** Corregir alineación de la barra superior de Tetris (`.tetris-top-bar`) con `justify-content: space-between` y ancho acotado a 416px para alinear Volver al Catálogo y Pausa (`main.css`) (`@spec REQ-25, RNF-02, RNF-03`).
+- [x] **T-104:** Ocultar controles táctiles virtuales en escritorio (`min-width: 900px` y `pointer: fine`) para Tetris (`.tetris-touch-controls`) y demás títulos (`main.css`) (`@spec RNF-02, RNF-03`).
+- [x] **T-105:** Centrar barra de acciones en Breakout y Space Invaders en resoluciones intermedias/móviles para evitar desbordes desalineados (`main.css`) (`@spec REQ-33, REQ-46, RNF-02`).
+- [x] **T-106:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (86/86 tests, 52/52 specs, 0 avisos).
+
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
@@ -122,6 +128,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Fase 7 (Space Invaders) completada con éxito. Catálogo ampliado a 6 juegos interactivos, motor de simulación con 55 invasores, 4 búnkeres de 12 celdas con degradación, OVNI misterioso, selector de 4 dificultades (Fácil, Normal, Difícil, Extremo), Web Audio API en tiempo real y 83/83 pruebas unitarias pasando.
+> **Exact point / Punto exacto:** Ajustes de UI completados: barra superior de Tetris alineada con simetría (`justify-content: space-between`), controles táctiles de Tetris ocultos en escritorio con ratón, barras de acción de Breakout y Space Invaders centradas en pantallas estrechas. 86/86 pruebas pasando y build limpio verificado.
 > **Pending / Pendiente:** Ninguna tarea pendiente. Todos los requisitos REQ-01 a REQ-48 y RNF-01 a RNF-04 verificados.
-> **Next step / Próximo paso:** Publicar release y documentar en memoria del proyecto.
+> **Next step / Próximo paso:** Listo para desplegar o seguir probando en local / homelab.

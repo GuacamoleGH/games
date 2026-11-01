@@ -51,7 +51,7 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, 
 
   it('renderGameCard debe renderizar tarjetas no interactivas seguras para juegos hipotéticos en próximamente (@spec REQ-05)', () => {
     const comingSoonMock: GameMetadata = {
-      id: 'space-invaders' as any,
+      id: 'space-invaders',
       title: 'Space Invaders',
       description: 'Defiende la Tierra de las oleadas alienígenas descendentes.',
       category: 'Arcade',

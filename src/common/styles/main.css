@@ -895,6 +895,16 @@ body {
   max-width: 520px;
 }
 
+.tetris-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 416px;
+  margin-bottom: var(--space-sm);
+  gap: var(--space-sm);
+}
+
 .tetris-layout {
   display: flex;
   align-items: flex-start;
@@ -1124,11 +1134,12 @@ body {
   max-width: 480px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 900px), (pointer: fine) and (min-width: 768px) {
   .breakout-touch-controls,
   .pong-touch-controls,
   .snake-touch-controls,
-  .space-touch-controls {
+  .space-touch-controls,
+  .tetris-touch-controls {
     display: none !important;
   }
 }
@@ -1329,6 +1340,19 @@ body {
 /* ==========================================================================
    Responsive Adaptations for Mobile Viewports (REQ-01, RNF-02, RNF-03)
    ========================================================================== */
+@media (max-width: 768px) {
+  .breakout-top-bar,
+  .space-top-bar {
+    justify-content: center;
+  }
+
+  .breakout-actions-bar,
+  .space-actions-bar {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 600px) {
   .site-header {
     height: 60px;
