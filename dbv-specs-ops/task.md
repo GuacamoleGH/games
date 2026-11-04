@@ -159,6 +159,7 @@
 - [x] **T-137:** Eliminar el botón y selector de dificultad en Pac-Man preservando el escalado arcade auténtico por niveles (`PacmanView.ts`, tests) (`@spec REQ-50, REQ-51`).
 - [x] **T-138:** Homologación visual absoluta de la barra superior en 900px con HUD unificado sin solapamientos, y reinicio automático de partida al alternar dificultad en todos los juegos (Snake, Breakout, Pong, Space Invaders, Asteroids, Tic-Tac-Toe) (`AsteroidsEngine.ts`, views, `main.css`, tests) (`@spec REQ-04, REQ-10, REQ-18, REQ-25, REQ-33, REQ-46, REQ-54, RNF-02, RNF-03`).
 - [x] **T-139:** Restaurar cinemática original de Asteroids (Atari 1979) donde los asteroides no chocan entre sí y atraviesan libremente el espacio (`AsteroidsEngine.ts`, tests) (`@spec REQ-54`).
+- [x] **T-140:** Actualizar `README.md`, badge de tests (130 passing) y sincronizar todos los cambios con GitHub en las ramas `main` y `master`.
 
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
@@ -170,6 +171,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-04
-> **Exact point / Punto exacto:** Cinemática auténtica de Asteroids (Atari 1979) restaurada (los asteroides viajan con trayectorias independientes cruzándose sin colisiones mutuas). Barra superior y HUD consistentes en 900px para todos los juegos sin solapamientos. 130/130 tests pasando, 0 errores en compilación y 100% trazabilidad DBV.
-> **Pending / Pendiente:** Ninguna tarea pendiente. Esperando feedback del usuario.
+> **Exact point / Punto exacto:** Todos los cambios (Pac-Man, Asteroids, Blackjack, nuevo logo oficial, HUD homologado 900px, 130 tests unitarios) commiteados y subidos exitosamente a GitHub (ramas `main` y `master`).
+> **Pending / Pendiente:** Ninguna tarea pendiente. Esperando nuevas instrucciones del usuario.
 > **Next step / Próximo paso:** Esperar nuevas instrucciones del usuario.
