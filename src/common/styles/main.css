@@ -282,9 +282,17 @@ body {
 
 .card-top {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 0;
+  flex: 1;
 }
 
 .game-icon-box {
@@ -298,6 +306,7 @@ body {
   justify-content: center;
   color: var(--color-accent-green);
   transition: var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .game-card:hover .game-icon-box {
@@ -359,11 +368,17 @@ body {
 }
 
 .game-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   color: var(--color-text-primary);
-  margin-bottom: var(--space-sm);
+  margin: 0;
+  line-height: 1.2;
+  transition: color var(--transition-fast);
+}
+
+.game-card:hover .game-title {
+  color: var(--color-accent-green);
 }
 
 .game-description {
@@ -371,6 +386,7 @@ body {
   line-height: 1.55;
   color: var(--color-text-secondary);
   flex: 1;
+  margin-bottom: var(--space-md);
 }
 
 .card-footer {

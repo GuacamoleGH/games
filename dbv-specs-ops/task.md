@@ -161,6 +161,7 @@
 - [x] **T-139:** Restaurar cinemática original de Asteroids (Atari 1979) donde los asteroides no chocan entre sí y atraviesan libremente el espacio (`AsteroidsEngine.ts`, tests) (`@spec REQ-54`).
 - [x] **T-140:** Actualizar `README.md`, badge de tests (130 passing) y sincronizar todos los cambios con GitHub en las ramas `main` y `master`.
 - [x] **T-141:** Integrar los nuevos iconos gráficos PNG de los 9 juegos arcade en las tarjetas del catálogo (`public/icons/`, `GameCard.ts`, `games.data.ts`, `main.css`, tests) (`@spec REQ-04, RNF-02`).
+- [x] **T-142:** Rediseñar cabecera de las tarjetas de juego colocando el título en grande a la derecha del icono y suprimiendo el badge "• JUGAR" (`GameCard.ts`, `main.css`, tests) (`@spec REQ-04`).
 
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
@@ -172,6 +173,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-04
-> **Exact point / Punto exacto:** Nuevos iconos gráficos de los 9 juegos integrados en las tarjetas del catálogo (`public/icons/`). 130/130 tests pasando, build verificado y trazabilidad DBV 100%.
+> **Exact point / Punto exacto:** Tarjetas de juego rediseñadas con el título en grande a la derecha del icono y eliminación del badge "• JUGAR". 130/130 tests pasando, build verificado y trazabilidad DBV 100%.
 > **Pending / Pendiente:** Ninguna tarea pendiente. Esperando confirmación del usuario.
 > **Next step / Próximo paso:** Esperar nuevas instrucciones del usuario.

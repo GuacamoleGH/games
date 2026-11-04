@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - **Reinicio Automático al Cambiar Dificultad:** En todos los juegos con selector de dificultad (Snake, Breakout, Pong, Space Invaders, Asteroids, Tic-Tac-Toe), alternar la dificultad reinicia de inmediato la partida con la nueva configuración.
 - **Nuevo Logotipo Oficial:** Sustituido el logotipo por el nuevo `logo.png` corporativo en favicon y cabecera del catálogo.
 - **Iconografía Gráfica Oficial para Tarjetas del Catálogo (REQ-04, RNF-02):** Sustituidos los iconos monocromáticos por las ilustraciones e iconos de alta fidelidad para los 9 juegos en `public/icons/` (`snake.png`, `pong.png`, `tetris.png`, `breakout.png`, `tresenraya.png`, `spaceinvaders.png`, `pacman.png`, `asteroids.png` y `blackjack.png`), con ajuste `object-fit: contain` y microinteracción visual de escala en hover.
+- **Rediseño de Cabecera de Tarjetas de Juego (REQ-04):** Ubicado el nombre de cada juego en tamaño grande (`1.45rem`, `font-weight: 700`) directamente a la derecha de su icono gráfico, y eliminada la insignia redundante "• JUGAR" de la esquina superior derecha para un diseño más limpio y moderno.
 - Cobertura de pruebas unitarias ampliada a 130 tests pasando en 13 suites con 100% de trazabilidad de requisitos verificada por `dbv-lint.py` (64/64 requisitos trazados).
 
 ### Fixed
