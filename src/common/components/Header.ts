@@ -26,7 +26,7 @@ export function renderHeader(): string {
     <header class="site-header" role="banner">
       <div class="container header-inner">
         <a href="/" class="brand-wrapper" aria-label="GuacamoleGH Games - Inicio">
-          <img src="/logo.png" alt="GuacamoleGH Logo" class="brand-logo-img" width="38" height="38" />
+          <img src="/logo.png?v=1.4.0" alt="GuacamoleGH Logo" class="brand-logo-img" width="38" height="38" />
           <span class="brand-title">
             GuacamoleGH <span class="brand-title-accent">Games</span>
           </span>

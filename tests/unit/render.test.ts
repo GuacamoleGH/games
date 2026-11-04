@@ -23,7 +23,7 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, 
   it('renderHeader debe generar la cabecera semántica con logo, título y control de audio (@spec REQ-01, REQ-41)', () => {
     const html = renderHeader();
     expect(html).toContain('<header class="site-header"');
-    expect(html).toContain('src="/logo.png"');
+    expect(html).toContain('src="/logo.png');
     expect(html).toContain('GuacamoleGH');
     expect(html).toContain('Games');
     expect(html).not.toContain('Homelab Edition');
