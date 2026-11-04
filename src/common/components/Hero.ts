@@ -27,7 +27,7 @@ export function renderHero(): string {
           Arcade Clásico en tu <span class="hero-title-highlight">Navegador</span>
         </h1>
         <p class="hero-description">
-          Una colección curada de juegos arcade retro construidos para jugar al instante, ligeros y sin dependencias externas. Diseñado para el homelab GuacamoleGH.
+          Una colección curada de juegos arcade retro construidos para jugar al instante, ligeros y sin dependencias externas.
         </p>
       </div>
     </section>
