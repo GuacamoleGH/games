@@ -21,6 +21,7 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     status: 'available',
     statusLabel: 'Jugar',
     releasePhase: 'Fase 2 (Disponible)',
+    iconUrl: '/icons/snake.png',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M17 5H9.5a3.5 3.5 0 0 0-3.5 3.5v2a3.5 3.5 0 0 0 3.5 3.5h5a3.5 3.5 0 0 1 3.5 3.5v1A3.5 3.5 0 0 1 14.5 22H6" stroke-width="2.5" />
       <path d="M17 3h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2z" fill="currentColor" stroke="none" />
@@ -37,6 +38,7 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     status: 'available',
     statusLabel: 'Jugar',
     releasePhase: 'Fase 3 (Disponible)',
+    iconUrl: '/icons/pong.png',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <line x1="4" y1="6" x2="4" y2="18"/>
       <line x1="20" y1="8" x2="20" y2="20"/>
@@ -53,6 +55,7 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     status: 'available',
     statusLabel: 'Jugar',
     releasePhase: 'Fase 4 (Disponible)',
+    iconUrl: '/icons/tetris.png',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="4" y="4" width="7" height="7"/>
       <rect x="13" y="4" width="7" height="7"/>
@@ -68,6 +71,7 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     status: 'available',
     statusLabel: 'Jugar',
     releasePhase: 'Fase 5 (Disponible)',
+    iconUrl: '/icons/breakout.png',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="3" y="4" width="4" height="3" fill="currentColor"/>
       <rect x="10" y="4" width="4" height="3" fill="currentColor"/>
@@ -87,6 +91,7 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     status: 'available',
     statusLabel: 'Jugar',
     releasePhase: 'Fase 6 (Disponible)',
+    iconUrl: '/icons/tresenraya.png',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <line x1="8" y1="3" x2="8" y2="21"/>
       <line x1="16" y1="3" x2="16" y2="21"/>
@@ -105,6 +110,7 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     status: 'available',
     statusLabel: 'Jugar',
     releasePhase: 'Fase 7 (Disponible)',
+    iconUrl: '/icons/spaceinvaders.png',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M7 6h10M5 9h14M3 12h18M6 15h2m8 0h2M8 18h2m4 0h2" stroke-width="2.2" stroke="currentColor"/>
       <circle cx="8" cy="12" r="1.2" fill="currentColor"/>
@@ -120,6 +126,7 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     status: 'available',
     statusLabel: 'Jugar',
     releasePhase: 'Fase 8 (Disponible)',
+    iconUrl: '/icons/pacman.png',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M12 2a10 10 0 1 0 10 10l-10-3z" fill="currentColor" fill-opacity="0.2" stroke-width="2.2"/>
       <circle cx="12" cy="6.5" r="1.2" fill="#0c0e12" stroke="none"/>
@@ -135,6 +142,7 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     status: 'available',
     statusLabel: 'Jugar',
     releasePhase: 'Fase 9 (Disponible)',
+    iconUrl: '/icons/asteroids.png',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <polygon points="12,3 19,21 12,17 5,21" stroke-width="2" stroke-linejoin="round"/>
       <polygon points="5,4 9,2 10,6 7,8" stroke-dasharray="2 1"/>
@@ -150,6 +158,7 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
     status: 'available',
     statusLabel: 'Jugar',
     releasePhase: 'Fase 10 (Disponible)',
+    iconUrl: '/icons/blackjack.png',
     iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="3" y="5" width="11" height="15" rx="2" stroke-width="2"/>
       <rect x="9" y="3" width="11" height="15" rx="2" stroke-width="2" fill="#0f172a"/>

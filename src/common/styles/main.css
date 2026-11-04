@@ -311,6 +311,22 @@ body {
   height: 28px;
 }
 
+.game-icon-img {
+  width: 38px;
+  height: 38px;
+  max-width: 38px;
+  max-height: 38px;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+  transition: transform var(--transition-fast);
+}
+
+.game-card:hover .game-icon-img {
+  transform: scale(1.1);
+}
+
 .badge-coming-soon {
   display: inline-flex;
   align-items: center;

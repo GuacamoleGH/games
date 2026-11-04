@@ -33,5 +33,6 @@ export interface GameMetadata {
   readonly status: GameStatus;
   readonly statusLabel: string;
   readonly iconSvg: string;
+  readonly iconUrl?: string;
   readonly releasePhase: string;
 }

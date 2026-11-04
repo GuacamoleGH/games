@@ -160,6 +160,7 @@
 - [x] **T-138:** Homologación visual absoluta de la barra superior en 900px con HUD unificado sin solapamientos, y reinicio automático de partida al alternar dificultad en todos los juegos (Snake, Breakout, Pong, Space Invaders, Asteroids, Tic-Tac-Toe) (`AsteroidsEngine.ts`, views, `main.css`, tests) (`@spec REQ-04, REQ-10, REQ-18, REQ-25, REQ-33, REQ-46, REQ-54, RNF-02, RNF-03`).
 - [x] **T-139:** Restaurar cinemática original de Asteroids (Atari 1979) donde los asteroides no chocan entre sí y atraviesan libremente el espacio (`AsteroidsEngine.ts`, tests) (`@spec REQ-54`).
 - [x] **T-140:** Actualizar `README.md`, badge de tests (130 passing) y sincronizar todos los cambios con GitHub en las ramas `main` y `master`.
+- [x] **T-141:** Integrar los nuevos iconos gráficos PNG de los 9 juegos arcade en las tarjetas del catálogo (`public/icons/`, `GameCard.ts`, `games.data.ts`, `main.css`, tests) (`@spec REQ-04, RNF-02`).
 
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
@@ -171,6 +172,6 @@
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
 > **Last update / Última actualización:** 2026-11-04
-> **Exact point / Punto exacto:** Todos los cambios (Pac-Man, Asteroids, Blackjack, nuevo logo oficial, HUD homologado 900px, 130 tests unitarios) commiteados y subidos exitosamente a GitHub (ramas `main` y `master`).
-> **Pending / Pendiente:** Ninguna tarea pendiente. Esperando nuevas instrucciones del usuario.
+> **Exact point / Punto exacto:** Nuevos iconos gráficos de los 9 juegos integrados en las tarjetas del catálogo (`public/icons/`). 130/130 tests pasando, build verificado y trazabilidad DBV 100%.
+> **Pending / Pendiente:** Ninguna tarea pendiente. Esperando confirmación del usuario.
 > **Next step / Próximo paso:** Esperar nuevas instrucciones del usuario.

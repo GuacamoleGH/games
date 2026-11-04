@@ -40,7 +40,7 @@ export function renderGameCard(game: GameMetadata): string {
     >
       <div class="card-top">
         <div class="game-icon-box" aria-hidden="true">
-          ${game.iconSvg}
+          ${game.iconUrl ? `<img src="${game.iconUrl}" alt="" class="game-icon-img" width="38" height="38" loading="lazy" />` : game.iconSvg}
         </div>
         <span class="${badgeClass}" aria-label="Estado: ${game.statusLabel}">
           <span class="badge-dot" aria-hidden="true"></span>

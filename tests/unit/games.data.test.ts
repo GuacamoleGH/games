@@ -29,6 +29,8 @@ describe('GAMES_DATA - Integridad del Catálogo (@spec REQ-03, REQ-04, REQ-05)',
       expect(game.description.trim().length).toBeGreaterThan(10);
       expect(game.iconSvg).toContain('<svg');
       expect(game.iconSvg).toContain('</svg>');
+      expect(game.iconUrl).toBeDefined();
+      expect(game.iconUrl?.length).toBeGreaterThan(0);
     }
   });
 
