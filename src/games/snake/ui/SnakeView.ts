@@ -348,6 +348,10 @@ export class SnakeView {
               : 'easy';
       this.engine.setDifficulty(next);
       this.saveDifficulty(next);
+      this.engine.reset();
+      this.updateHUD();
+      this.render();
+      this.showReadyOverlay();
       this.updateDiffButtonLabel();
     });
 

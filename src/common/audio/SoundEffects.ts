@@ -31,6 +31,8 @@ export class SoundManager {
   private ctx: AudioContext | null = null;
   private muted: boolean = false;
   private masterGain: GainNode | null = null;
+  private bgmIntervalId: number | null = null;
+  private isBgmPlaying: boolean = false;
 
   private constructor() {
     this.muted = this.loadMutePreference();
@@ -63,6 +65,16 @@ export class SoundManager {
     if (!this.muted) {
       this.initContext();
       this.play('click');
+      if (this.isBgmPlaying) {
+        this.startPacmanMusic();
+      }
+    } else {
+      if (this.bgmIntervalId !== null) {
+        if (typeof window !== 'undefined') {
+          window.clearInterval(this.bgmIntervalId);
+        }
+        this.bgmIntervalId = null;
+      }
     }
     const currentMuted = this.muted;
     return currentMuted;
@@ -95,6 +107,61 @@ export class SoundManager {
       }
     } catch {
       // Ignorar fallos en navegadores sin soporte
+    }
+  }
+
+  /**
+   * Inicia la música de fondo retro arcade de Pac-Man.
+   * @spec REQ-41
+   */
+  public startPacmanMusic(): void {
+    if (this.muted) {
+      return;
+    }
+    this.initContext();
+    if (!this.ctx || !this.masterGain) {
+      return;
+    }
+
+    this.stopPacmanMusic();
+    this.isBgmPlaying = true;
+
+    // Melodía clásica de Pac-Man sintetizada en onda triangular
+    const melody = [
+      493.88, 987.77, 739.99, 622.25, 987.77, 739.99, 622.25,
+      523.25, 1046.50, 783.99, 659.25, 1046.50, 783.99, 659.25,
+      493.88, 987.77, 739.99, 622.25, 987.77, 739.99, 622.25,
+      622.25, 659.25, 698.46, 739.99, 783.99, 830.61, 880.00, 987.77
+    ];
+    let stepIndex = 0;
+
+    const tickBgm = (): void => {
+      if (!this.isBgmPlaying || this.muted || !this.ctx || !this.masterGain) {
+        return;
+      }
+      const freq = melody[stepIndex];
+      if (freq) {
+        this.playTone(this.ctx.currentTime, freq, 0.09, 'triangle', 0.16);
+      }
+      stepIndex = (stepIndex + 1) % melody.length;
+    };
+
+    if (typeof window !== 'undefined') {
+      this.bgmIntervalId = window.setInterval(tickBgm, 130);
+    }
+  }
+
+  /**
+   * Detiene la música de fondo de Pac-Man.
+   * @spec REQ-41
+   */
+  public stopPacmanMusic(): void {
+    this.isBgmPlaying = false;
+    if (this.bgmIntervalId !== null) {
+      if (typeof window !== 'undefined') {
+        window.clearInterval(this.bgmIntervalId);
+      }
+      this.bgmIntervalId = null;
     }
   }
 
@@ -177,18 +244,18 @@ export class SoundManager {
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
 
-    osc.type = 'square';
-    osc.frequency.setValueAtTime(320, startTime);
-    osc.frequency.exponentialRampToValueAtTime(640, startTime + 0.1);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(360, startTime);
+    osc.frequency.exponentialRampToValueAtTime(580, startTime + 0.06);
 
-    gain.gain.setValueAtTime(0.18, startTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.12);
+    gain.gain.setValueAtTime(0.04, startTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.06);
 
     osc.connect(gain);
     gain.connect(this.masterGain);
 
     osc.start(startTime);
-    osc.stop(startTime + 0.12);
+    osc.stop(startTime + 0.06);
   }
 
   private playDieSound(startTime: number): void {
@@ -285,8 +352,11 @@ export class SoundManager {
   private loadMutePreference(): boolean {
     let isMutedPref = false;
     try {
-      const saved = localStorage.getItem(MUTE_STORAGE_KEY);
-      isMutedPref = saved === 'true';
+      const storage = typeof window !== 'undefined' && window.localStorage ? window.localStorage : (typeof localStorage !== 'undefined' ? localStorage : null);
+      if (storage) {
+        const saved = storage.getItem(MUTE_STORAGE_KEY);
+        isMutedPref = saved === 'true';
+      }
     } catch {
       isMutedPref = false;
     }
@@ -295,7 +365,10 @@ export class SoundManager {
 
   private saveMutePreference(muted: boolean): void {
     try {
-      localStorage.setItem(MUTE_STORAGE_KEY, muted ? 'true' : 'false');
+      const storage = typeof window !== 'undefined' && window.localStorage ? window.localStorage : (typeof localStorage !== 'undefined' ? localStorage : null);
+      if (storage) {
+        storage.setItem(MUTE_STORAGE_KEY, muted ? 'true' : 'false');
+      }
     } catch {
       // Ignorar fallos de cuota o modo incógnito
     }

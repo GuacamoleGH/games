@@ -7,7 +7,7 @@
 
 /**
  * @fileoverview Punto de entrada principal y orquestador de vistas de GuacamoleGH Games.
- * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-13, REQ-14, REQ-20, REQ-21, REQ-27, REQ-28, REQ-34, REQ-35, REQ-40, REQ-41, REQ-43, REQ-48
+ * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07, REQ-13, REQ-14, REQ-20, REQ-21, REQ-27, REQ-28, REQ-34, REQ-35, REQ-40, REQ-41, REQ-43, REQ-48, REQ-52, REQ-56, REQ-60
  */
 
 import './common/styles/main.css';
@@ -23,6 +23,9 @@ import { mountTetris } from './games/tetris/index.js';
 import { mountBreakout } from './games/breakout/index.js';
 import { mountTicTacToe } from './games/tic-tac-toe/index.js';
 import { mountSpaceInvaders } from './games/space-invaders/index.js';
+import { mountPacman } from './games/pacman/index.js';
+import { mountAsteroids } from './games/asteroids/index.js';
+import { mountBlackjack } from './games/blackjack/index.js';
 
 let activeUnmount: (() => void) | null = null;
 
@@ -55,18 +58,8 @@ function renderCatalogView(appContainer: HTMLElement): void {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const gameId = btn.getAttribute('data-play-id');
-      if (gameId === 'snake') {
-        window.location.hash = '#snake';
-      } else if (gameId === 'pong') {
-        window.location.hash = '#pong';
-      } else if (gameId === 'tetris') {
-        window.location.hash = '#tetris';
-      } else if (gameId === 'breakout') {
-        window.location.hash = '#breakout';
-      } else if (gameId === 'tic-tac-toe') {
-        window.location.hash = '#tic-tac-toe';
-      } else if (gameId === 'space-invaders') {
-        window.location.hash = '#space-invaders';
+      if (gameId) {
+        window.location.hash = `#${gameId}`;
       }
     });
   });
@@ -80,21 +73,35 @@ function renderCatalogView(appContainer: HTMLElement): void {
         return;
       }
       const gameId = card.getAttribute('data-game-id');
-      if (gameId === 'snake') {
-        window.location.hash = '#snake';
-      } else if (gameId === 'pong') {
-        window.location.hash = '#pong';
-      } else if (gameId === 'tetris') {
-        window.location.hash = '#tetris';
-      } else if (gameId === 'breakout') {
-        window.location.hash = '#breakout';
-      } else if (gameId === 'tic-tac-toe') {
-        window.location.hash = '#tic-tac-toe';
-      } else if (gameId === 'space-invaders') {
-        window.location.hash = '#space-invaders';
+      if (gameId) {
+        window.location.hash = `#${gameId}`;
       }
     });
   });
+}
+
+function renderGameContainer(appContainer: HTMLElement, mountFn: (mountPoint: HTMLElement, onBack: () => void) => () => void): void {
+  if (activeUnmount) {
+    activeUnmount();
+    activeUnmount = null;
+  }
+
+  const appHtml = `
+    ${renderHeader()}
+    <main id="main-content" role="main">
+      <div id="game-mount-point"></div>
+    </main>
+    ${renderFooter()}
+  `;
+
+  appContainer.innerHTML = appHtml;
+
+  const mountPoint = appContainer.querySelector<HTMLElement>('#game-mount-point');
+  if (mountPoint) {
+    activeUnmount = mountFn(mountPoint, () => {
+      window.location.hash = '';
+    });
+  }
 }
 
 /**
@@ -102,27 +109,7 @@ function renderCatalogView(appContainer: HTMLElement): void {
  * @spec REQ-07, REQ-13
  */
 function renderSnakeGameView(appContainer: HTMLElement): void {
-  if (activeUnmount) {
-    activeUnmount();
-    activeUnmount = null;
-  }
-
-  const appHtml = `
-    ${renderHeader()}
-    <main id="main-content" role="main">
-      <div id="game-mount-point"></div>
-    </main>
-    ${renderFooter()}
-  `;
-
-  appContainer.innerHTML = appHtml;
-
-  const mountPoint = appContainer.querySelector<HTMLElement>('#game-mount-point');
-  if (mountPoint) {
-    activeUnmount = mountSnake(mountPoint, () => {
-      window.location.hash = '';
-    });
-  }
+  renderGameContainer(appContainer, mountSnake);
 }
 
 /**
@@ -130,27 +117,7 @@ function renderSnakeGameView(appContainer: HTMLElement): void {
  * @spec REQ-14, REQ-20
  */
 function renderPongGameView(appContainer: HTMLElement): void {
-  if (activeUnmount) {
-    activeUnmount();
-    activeUnmount = null;
-  }
-
-  const appHtml = `
-    ${renderHeader()}
-    <main id="main-content" role="main">
-      <div id="game-mount-point"></div>
-    </main>
-    ${renderFooter()}
-  `;
-
-  appContainer.innerHTML = appHtml;
-
-  const mountPoint = appContainer.querySelector<HTMLElement>('#game-mount-point');
-  if (mountPoint) {
-    activeUnmount = mountPong(mountPoint, () => {
-      window.location.hash = '';
-    });
-  }
+  renderGameContainer(appContainer, mountPong);
 }
 
 /**
@@ -158,27 +125,7 @@ function renderPongGameView(appContainer: HTMLElement): void {
  * @spec REQ-21, REQ-27
  */
 function renderTetrisGameView(appContainer: HTMLElement): void {
-  if (activeUnmount) {
-    activeUnmount();
-    activeUnmount = null;
-  }
-
-  const appHtml = `
-    ${renderHeader()}
-    <main id="main-content" role="main">
-      <div id="game-mount-point"></div>
-    </main>
-    ${renderFooter()}
-  `;
-
-  appContainer.innerHTML = appHtml;
-
-  const mountPoint = appContainer.querySelector<HTMLElement>('#game-mount-point');
-  if (mountPoint) {
-    activeUnmount = mountTetris(mountPoint, () => {
-      window.location.hash = '';
-    });
-  }
+  renderGameContainer(appContainer, mountTetris);
 }
 
 /**
@@ -186,27 +133,7 @@ function renderTetrisGameView(appContainer: HTMLElement): void {
  * @spec REQ-28, REQ-34
  */
 function renderBreakoutGameView(appContainer: HTMLElement): void {
-  if (activeUnmount) {
-    activeUnmount();
-    activeUnmount = null;
-  }
-
-  const appHtml = `
-    ${renderHeader()}
-    <main id="main-content" role="main">
-      <div id="game-mount-point"></div>
-    </main>
-    ${renderFooter()}
-  `;
-
-  appContainer.innerHTML = appHtml;
-
-  const mountPoint = appContainer.querySelector<HTMLElement>('#game-mount-point');
-  if (mountPoint) {
-    activeUnmount = mountBreakout(mountPoint, () => {
-      window.location.hash = '';
-    });
-  }
+  renderGameContainer(appContainer, mountBreakout);
 }
 
 /**
@@ -214,27 +141,7 @@ function renderBreakoutGameView(appContainer: HTMLElement): void {
  * @spec REQ-35, REQ-40
  */
 function renderTicTacToeGameView(appContainer: HTMLElement): void {
-  if (activeUnmount) {
-    activeUnmount();
-    activeUnmount = null;
-  }
-
-  const appHtml = `
-    ${renderHeader()}
-    <main id="main-content" role="main">
-      <div id="game-mount-point"></div>
-    </main>
-    ${renderFooter()}
-  `;
-
-  appContainer.innerHTML = appHtml;
-
-  const mountPoint = appContainer.querySelector<HTMLElement>('#game-mount-point');
-  if (mountPoint) {
-    activeUnmount = mountTicTacToe(mountPoint, () => {
-      window.location.hash = '';
-    });
-  }
+  renderGameContainer(appContainer, mountTicTacToe);
 }
 
 /**
@@ -242,32 +149,36 @@ function renderTicTacToeGameView(appContainer: HTMLElement): void {
  * @spec REQ-43, REQ-48
  */
 function renderSpaceInvadersGameView(appContainer: HTMLElement): void {
-  if (activeUnmount) {
-    activeUnmount();
-    activeUnmount = null;
-  }
+  renderGameContainer(appContainer, mountSpaceInvaders);
+}
 
-  const appHtml = `
-    ${renderHeader()}
-    <main id="main-content" role="main">
-      <div id="game-mount-point"></div>
-    </main>
-    ${renderFooter()}
-  `;
+/**
+ * Renderiza la vista del juego Pac-Man en modo aislado.
+ * @spec REQ-49, REQ-52
+ */
+function renderPacmanGameView(appContainer: HTMLElement): void {
+  renderGameContainer(appContainer, mountPacman);
+}
 
-  appContainer.innerHTML = appHtml;
+/**
+ * Renderiza la vista del juego Asteroids en modo aislado.
+ * @spec REQ-53, REQ-56
+ */
+function renderAsteroidsGameView(appContainer: HTMLElement): void {
+  renderGameContainer(appContainer, mountAsteroids);
+}
 
-  const mountPoint = appContainer.querySelector<HTMLElement>('#game-mount-point');
-  if (mountPoint) {
-    activeUnmount = mountSpaceInvaders(mountPoint, () => {
-      window.location.hash = '';
-    });
-  }
+/**
+ * Renderiza la vista del juego Blackjack en modo aislado.
+ * @spec REQ-57, REQ-60
+ */
+function renderBlackjackGameView(appContainer: HTMLElement): void {
+  renderGameContainer(appContainer, mountBlackjack);
 }
 
 /**
  * Enruta la aplicación según el hash actual del navegador.
- * @spec REQ-13, REQ-20, REQ-27, REQ-34, REQ-40, REQ-48
+ * @spec REQ-13, REQ-20, REQ-27, REQ-34, REQ-40, REQ-48, REQ-52, REQ-56, REQ-60
  */
 export function handleRouting(): void {
   const appContainer = document.querySelector<HTMLDivElement>('#app');
@@ -299,6 +210,12 @@ export function handleRouting(): void {
     hash === '#invaders'
   ) {
     renderSpaceInvadersGameView(appContainer);
+  } else if (hash === '#pacman' || hash === '#pac-man') {
+    renderPacmanGameView(appContainer);
+  } else if (hash === '#asteroids' || hash === '#asteroid') {
+    renderAsteroidsGameView(appContainer);
+  } else if (hash === '#blackjack' || hash === '#black-jack' || hash === '#21') {
+    renderBlackjackGameView(appContainer);
   } else {
     renderCatalogView(appContainer);
   }

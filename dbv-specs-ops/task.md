@@ -121,6 +121,45 @@
 - [x] **T-108:** Corregir deformación de cuadrícula en Tres en Raya (`grid-template-rows: repeat(3, 1fr)` y `aspect-ratio: 1 / 1`), alinear barra superior a 640px en una sola línea horizontal y cancelar temporizadores asíncronos en reinicio (`main.css`, `TicTacToeView.ts`) (`@spec REQ-38, REQ-39, RNF-02, RNF-03`).
 - [x] **T-109:** Selección aleatoria de turno inicial (50% humano 'X', 50% IA 'O') en Tres en Raya al iniciar o pulsar Nueva Ronda, con mensajes de apertura dinámicos y disparo automático de IA (`TicTacToeEngine.ts`, `TicTacToeView.ts`, tests) (`@spec REQ-36`).
 
+
+### Fase 8: Implementación del Juego Pac-Man (Completada)
+- [x] **T-110:** Definir tipos y estados en `src/games/pacman/types.ts` (`@spec REQ-49, REQ-50`).
+- [x] **T-111:** Implementar motor lógico y laberinto en `src/games/pacman/engine/PacmanEngine.ts` (`@spec REQ-50`).
+- [x] **T-112:** Implementar renderizado Canvas retro-neón y controles táctiles en `src/games/pacman/ui/PacmanView.ts` (`@spec REQ-50, REQ-51`).
+- [x] **T-113:** Crear punto de entrada de módulo en `src/games/pacman/index.ts` y README (`@spec REQ-49`).
+- [x] **T-114:** Integrar Pac-Man en catálogo `games.data.ts` y enrutador `main.ts` (`@spec REQ-52`).
+- [x] **T-115:** Suite de pruebas unitarias en `tests/unit/pacman.engine.test.ts` (`@spec REQ-49, REQ-50, REQ-51, REQ-52`).
+
+### Fase 9: Implementación del Juego Asteroids (Completada)
+- [x] **T-116:** Definir tipos y modelos en `src/games/asteroids/types.ts` (`@spec REQ-53, REQ-54`).
+- [x] **T-117:** Implementar motor físico vectorial en `src/games/asteroids/engine/AsteroidsEngine.ts` (`@spec REQ-54`).
+- [x] **T-118:** Implementar renderizado Canvas vectorial y controles táctiles en `src/games/asteroids/ui/AsteroidsView.ts` (`@spec REQ-54, REQ-55`).
+- [x] **T-119:** Crear punto de entrada de módulo en `src/games/asteroids/index.ts` y README (`@spec REQ-53`).
+- [x] **T-120:** Integrar Asteroids en catálogo `games.data.ts` y enrutador `main.ts` (`@spec REQ-56`).
+- [x] **T-121:** Suite de pruebas unitarias en `tests/unit/asteroids.engine.test.ts` (`@spec REQ-53, REQ-54, REQ-55, REQ-56`).
+
+### Fase 10: Implementación del Juego Blackjack (Completada)
+- [x] **T-122:** Definir tipos y reglas en `src/games/blackjack/types.ts` (`@spec REQ-57, REQ-58`).
+- [x] **T-123:** Implementar motor de naipes e IA crupier en `src/games/blackjack/engine/BlackjackEngine.ts` (`@spec REQ-58`).
+- [x] **T-124:** Implementar vista accesible de tapete y naipes en `src/games/blackjack/ui/BlackjackView.ts` (`@spec REQ-58, REQ-59`).
+- [x] **T-125:** Crear punto de entrada de módulo en `src/games/blackjack/index.ts` y README (`@spec REQ-57`).
+- [x] **T-126:** Integrar Blackjack en catálogo `games.data.ts` y enrutador `main.ts` (`@spec REQ-60`).
+- [x] **T-127:** Suite de pruebas unitarias en `tests/unit/blackjack.engine.test.ts` (`@spec REQ-57, REQ-58, REQ-59, REQ-60`).
+
+### Verificación Final y Documentación (Completada)
+- [x] **T-128:** Actualizar estilos CSS en `src/common/styles/main.css` manteniendo compacidad y consistencia visual.
+- [x] **T-129:** Actualizar pruebas del catálogo `render.test.ts` y `games.data.test.ts` con 9 juegos disponibles.
+- [x] **T-130:** Verificación completa con `npm test`, `npm run build` y `dbv-lint.py` (0 errores, 0 avisos).
+- [x] **T-131:** Implementar IA auténtica de fantasmas Namco 1980 en Pac-Man: ciclos temporizados Scatter/Chase, desempate estricto UP>LEFT>DOWN>RIGHT, objetivos individuales (Blinky Chase/Cruise Elroy, Pinky 4 casillas con bug hacia arriba, Inky duplicación vectorial, Clyde radio 8 casillas), eliminación de la línea rosa del interior de la casa, estado 'eaten' con navegación de ojos y regeneración en la base (`PacmanEngine.ts`, tests) (`@spec REQ-50`).
+- [x] **T-132:** Centrar barra superior de Pac-Man respecto a la pantalla completa (`minmax(0, 1fr) auto minmax(0, 1fr)` con `max-width: 900px`), vidas estrictamente horizontales con `white-space: nowrap` y eliminación del badge 'Homelab Edition' del Header (`PacmanView.ts`, `Header.ts`, `main.css`, tests) (`@spec REQ-01, REQ-51`).
+- [x] **T-133:** Implementar mecánica de División (Split) en Blackjack y sincronizar audio de resultado: botón Dividir [V], gestión independiente de manos y apuestas, resolución ante el crupier, y sonido ejecutado de forma síncrona solo tras revelar la carta del crupier y mostrar el banner (`BlackjackEngine.ts`, `BlackjackView.ts`, `main.css`, tests) (`@spec REQ-58, REQ-59`).
+- [x] **T-134:** Corregir movimiento casilla a casilla estricto en Pac-Man: erradicar redondeos de coma flotante que teletransportaban fantasmas al interior de muros, asegurar salida fluida de la Ghost House (Pinky, Inky, Clyde) y regeneración de ojos devorados en la puerta (9, 8) sin bloqueos (`PacmanEngine.ts`, tests) (`@spec REQ-50`).
+- [x] **T-135:** Zapato multibaraja de 6 barajas (312 cartas) con rebarajado automático, visualización de baraja de naipes en esquina superior derecha con etiqueta "BARAJA", cambio de etiqueta de puntuación a "VALOR" y eliminación del conteo de cartas numérico (`BlackjackEngine.ts`, `BlackjackView.ts`, `main.css`, tests) (`@spec REQ-58, REQ-59`).
+- [x] **T-136:** Resolver solapamiento en barra superior de Asteroids ampliando contenedor a 880px y compactando espaciado; implementar escalado integral de dificultad (Fácil, Normal, Difícil, Extremo) que altera dinámicamente cantidad de asteroides por oleada, multiplicador de velocidad, fragmentación, vidas iniciales y cadencia de disparo (`AsteroidsEngine.ts`, `AsteroidsView.ts`, `main.css`, tests) (`@spec REQ-54, REQ-55`).
+- [x] **T-137:** Eliminar el botón y selector de dificultad en Pac-Man preservando el escalado arcade auténtico por niveles (`PacmanView.ts`, tests) (`@spec REQ-50, REQ-51`).
+- [x] **T-138:** Homologación visual absoluta de la barra superior en 900px con HUD unificado sin solapamientos, y reinicio automático de partida al alternar dificultad en todos los juegos (Snake, Breakout, Pong, Space Invaders, Asteroids, Tic-Tac-Toe) (`AsteroidsEngine.ts`, views, `main.css`, tests) (`@spec REQ-04, REQ-10, REQ-18, REQ-25, REQ-33, REQ-46, REQ-54, RNF-02, RNF-03`).
+- [x] **T-139:** Restaurar cinemática original de Asteroids (Atari 1979) donde los asteroides no chocan entre sí y atraviesan libremente el espacio (`AsteroidsEngine.ts`, tests) (`@spec REQ-54`).
+
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
 
@@ -130,7 +169,7 @@
 
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
-> **Last update / Última actualización:** 2026-11-01
-> **Exact point / Punto exacto:** Turno inicial aleatorio en Tres en Raya completado con éxito: 50% de probabilidad para jugador ('X') o IA ('O') en cada inicio o "Nueva Ronda", con feedback textual en cabecera ("¡Empiezas tú! (X)" vs "Empieza la IA (O)...") y disparo automático tras 400ms si inicia la IA. Las casillas y barras superiores de todos los juegos permanecen 100% consistentes y alineadas. 87/87 tests pasando, build de producción verificado y 52/52 specs trazadas.
-> **Pending / Pendiente:** Ninguna tarea pendiente. Todos los requisitos REQ-01 a REQ-48 y RNF-01 a RNF-04 verificados.
-> **Next step / Próximo paso:** Listo para probar en homelab o continuar según feedback.
+> **Last update / Última actualización:** 2026-11-04
+> **Exact point / Punto exacto:** Cinemática auténtica de Asteroids (Atari 1979) restaurada (los asteroides viajan con trayectorias independientes cruzándose sin colisiones mutuas). Barra superior y HUD consistentes en 900px para todos los juegos sin solapamientos. 130/130 tests pasando, 0 errores en compilación y 100% trazabilidad DBV.
+> **Pending / Pendiente:** Ninguna tarea pendiente. Esperando feedback del usuario.
+> **Next step / Próximo paso:** Esperar nuevas instrucciones del usuario.

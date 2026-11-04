@@ -30,6 +30,10 @@ export class TetrisView {
   private linesEl!: HTMLElement;
   private levelEl!: HTMLElement;
   private highScoreEl!: HTMLElement;
+  private topScoreEl: HTMLElement | null = null;
+  private topLinesEl: HTMLElement | null = null;
+  private topLevelEl: HTMLElement | null = null;
+  private topHighScoreEl: HTMLElement | null = null;
   private overlayEl!: HTMLElement;
 
   private animationFrameId: number | null = null;
@@ -74,6 +78,10 @@ export class TetrisView {
     this.linesEl = this.container.querySelector('#tetris-lines') as HTMLElement;
     this.levelEl = this.container.querySelector('#tetris-level') as HTMLElement;
     this.highScoreEl = this.container.querySelector('#tetris-highscore') as HTMLElement;
+    this.topScoreEl = this.container.querySelector('#tetris-top-score');
+    this.topLinesEl = this.container.querySelector('#tetris-top-lines');
+    this.topLevelEl = this.container.querySelector('#tetris-top-level');
+    this.topHighScoreEl = this.container.querySelector('#tetris-top-highscore');
     this.overlayEl = this.container.querySelector('#tetris-overlay') as HTMLElement;
 
     this.setupEventListeners();
@@ -283,6 +291,10 @@ export class TetrisView {
     }
     if (this.highScoreEl) {
       this.highScoreEl.textContent = String(snapshot.highScore);
+      if (this.topScoreEl) this.topScoreEl.textContent = String(snapshot.score);
+      if (this.topLinesEl) this.topLinesEl.textContent = String(snapshot.lines);
+      if (this.topLevelEl) this.topLevelEl.textContent = String(snapshot.level);
+      if (this.topHighScoreEl) this.topHighScoreEl.textContent = String(snapshot.highScore);
     }
   }
 
@@ -462,6 +474,24 @@ export class TetrisView {
               </svg>
               <span>Volver al Catálogo</span>
             </button>
+            <div class="tetris-hud game-hud">
+              <div class="hud-item">
+                <span class="hud-label">PUNTOS</span>
+                <span id="tetris-top-score" class="hud-value text-accent-green">0</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">LÍNEAS</span>
+                <span id="tetris-top-lines" class="hud-value text-accent-turquoise">0</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">NIVEL</span>
+                <span id="tetris-top-level" class="hud-value text-accent-turquoise">1</span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">RÉCORD</span>
+                <span id="tetris-top-highscore" class="hud-value text-accent-turquoise">0</span>
+              </div>
+            </div>
             <div class="tetris-actions-bar game-actions-bar">
               <button id="tetris-pause-btn" class="hud-btn game-top-btn" aria-label="Pausar o reanudar Tetris">
                 Pausa [P]

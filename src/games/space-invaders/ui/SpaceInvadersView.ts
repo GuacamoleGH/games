@@ -174,6 +174,9 @@ export class SpaceInvadersView {
               : 'easy';
       this.engine.setDifficulty(next);
       this.saveDifficulty(next);
+      this.engine.reset();
+      this.updateHud(this.engine.getSnapshot());
+      this.showReadyOverlay();
       this.updateDiffButtonLabel();
     });
 

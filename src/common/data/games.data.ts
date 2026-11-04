@@ -6,8 +6,8 @@
 // =============================================================================
 
 /**
- * @fileoverview Registro inmutable de los 5 juegos clásicos planificados para GuacamoleGH Games.
- * @spec REQ-03, REQ-04
+ * @fileoverview Registro inmutable de los 9 juegos arcade clásicos de GuacamoleGH Games.
+ * @spec REQ-03, REQ-04, REQ-48, REQ-52, REQ-56, REQ-60
  */
 
 import type { GameMetadata } from '../types/game.js';
@@ -111,12 +111,56 @@ export const GAMES_DATA: readonly GameMetadata[] = Object.freeze([
       <circle cx="16" cy="12" r="1.2" fill="currentColor"/>
       <path d="M4 18l2-3m14 3l-2-3" stroke-width="1.8"/>
     </svg>`
+  },
+  {
+    id: 'pacman',
+    title: 'Pac-Man',
+    description: 'Devora todos los puntos del laberinto mientras escapas de los 4 fantasmas. ¡Consume las píldoras de energía para contraatacar y sumar bonus!',
+    category: 'Arcade',
+    status: 'available',
+    statusLabel: 'Jugar',
+    releasePhase: 'Fase 8 (Disponible)',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 2a10 10 0 1 0 10 10l-10-3z" fill="currentColor" fill-opacity="0.2" stroke-width="2.2"/>
+      <circle cx="12" cy="6.5" r="1.2" fill="#0c0e12" stroke="none"/>
+      <circle cx="18" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+      <circle cx="21" cy="12" r="1" fill="currentColor" stroke="none"/>
+    </svg>`
+  },
+  {
+    id: 'asteroids',
+    title: 'Asteroids',
+    description: 'Pilota tu nave espacial en el vacío estelar con física inercial, esquivando y fragmentando asteroides con tus cañones láser.',
+    category: 'Arcade',
+    status: 'available',
+    statusLabel: 'Jugar',
+    releasePhase: 'Fase 9 (Disponible)',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon points="12,3 19,21 12,17 5,21" stroke-width="2" stroke-linejoin="round"/>
+      <polygon points="5,4 9,2 10,6 7,8" stroke-dasharray="2 1"/>
+      <polygon points="17,5 21,3 22,7 19,9" stroke-dasharray="2 1"/>
+      <circle cx="12" cy="14" r="1" fill="currentColor"/>
+    </svg>`
+  },
+  {
+    id: 'blackjack',
+    title: 'Blackjack',
+    description: 'El clásico duelo de naipes 21 contra la casa. Pide carta, plántate o dobla tu apuesta calculando el valor óptimo de tus Ases.',
+    category: 'Cartas',
+    status: 'available',
+    statusLabel: 'Jugar',
+    releasePhase: 'Fase 10 (Disponible)',
+    iconSvg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="5" width="11" height="15" rx="2" stroke-width="2"/>
+      <rect x="9" y="3" width="11" height="15" rx="2" stroke-width="2" fill="#0f172a"/>
+      <path d="M14.5 8l-1.5 2h3zM14.5 13l-1.5-2h3z" fill="currentColor"/>
+    </svg>`
   }
 ]);
 
 /**
  * Retorna la lista inmutable de juegos del catálogo.
- * @spec REQ-03
+ * @spec REQ-03, REQ-48, REQ-52, REQ-56, REQ-60
  * @returns Lista de metadatos de los juegos.
  */
 export function getGames(): readonly GameMetadata[] {

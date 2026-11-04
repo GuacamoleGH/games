@@ -14,9 +14,27 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { SoundManager, soundManager, type SoundEffect } from '../../src/common/audio/SoundEffects.js';
 
+const mockStore = new Map<string, string>();
+const fakeStorage = {
+  getItem: (k: string) => mockStore.get(k) ?? null,
+  setItem: (k: string, v: string) => { mockStore.set(k, String(v)); },
+  removeItem: (k: string) => { mockStore.delete(k); },
+  clear: () => { mockStore.clear(); },
+  get length() { return mockStore.size; },
+  key: () => null
+};
+
 describe('SoundManager - Sistema de Sonido Arcade Web Audio API (@spec REQ-41)', () => {
   beforeEach(() => {
-    localStorage.clear();
+    mockStore.clear();
+    try {
+      Object.defineProperty(globalThis, 'localStorage', { value: fakeStorage, configurable: true, writable: true });
+    } catch {}
+    if (typeof window !== 'undefined') {
+      try {
+        Object.defineProperty(window, 'localStorage', { value: fakeStorage, configurable: true, writable: true });
+      } catch {}
+    }
   });
 
   it('debe obtener la instancia singleton de SoundManager (@spec REQ-41)', () => {
@@ -32,7 +50,7 @@ describe('SoundManager - Sistema de Sonido Arcade Web Audio API (@spec REQ-41)',
     expect(newMuted).toBe(!initialMuted);
     expect(soundManager.isMuted()).toBe(newMuted);
 
-    const storedValue = localStorage.getItem('guacamolegh_sound_muted');
+    const storedValue = fakeStorage.getItem('guacamolegh_sound_muted');
     expect(storedValue).toBe(newMuted ? 'true' : 'false');
 
     // Restaurar estado

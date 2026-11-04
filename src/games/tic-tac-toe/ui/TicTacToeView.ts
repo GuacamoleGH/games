@@ -97,6 +97,9 @@ export class TicTacToeView {
             : 'normal';
       this.engine.setDifficulty(newDiff);
       this.saveDifficulty(newDiff);
+      this.engine.reset();
+      this.render();
+      this.triggerAiMoveIfNeeded();
       this.render();
     });
 

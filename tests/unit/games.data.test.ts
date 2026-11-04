@@ -15,9 +15,9 @@ import { GAMES_DATA, getGames } from '../../src/common/data/games.data.js';
 import type { GameId } from '../../src/common/types/game.js';
 
 describe('GAMES_DATA - Integridad del Catálogo (@spec REQ-03, REQ-04, REQ-05)', () => {
-  it('debe contener exactamente los 6 juegos clásicos planificados', () => {
-    const expectedIds: GameId[] = ['snake', 'pong', 'tetris', 'breakout', 'tic-tac-toe', 'space-invaders'];
-    expect(GAMES_DATA.length).toBe(6);
+  it('debe contener exactamente los 9 juegos arcade planificados', () => {
+    const expectedIds: GameId[] = ['snake', 'pong', 'tetris', 'breakout', 'tic-tac-toe', 'space-invaders', 'pacman', 'asteroids', 'blackjack'];
+    expect(GAMES_DATA.length).toBe(9);
     
     const actualIds = GAMES_DATA.map((g) => g.id);
     expect(actualIds).toEqual(expectedIds);
@@ -32,7 +32,7 @@ describe('GAMES_DATA - Integridad del Catálogo (@spec REQ-03, REQ-04, REQ-05)',
     }
   });
 
-  it('todos los 6 juegos del catálogo deben tener estado "available" y etiqueta "Jugar" (@spec REQ-04, REQ-05, REQ-13, REQ-20, REQ-27, REQ-34, REQ-40, REQ-47)', () => {
+  it('todos los 9 juegos del catálogo deben tener estado "available" y etiqueta "Jugar" (@spec REQ-04, REQ-05, REQ-13, REQ-20, REQ-27, REQ-34, REQ-40, REQ-47)', () => {
     for (const game of GAMES_DATA) {
       expect(game.status).toBe('available');
       expect(game.statusLabel).toBe('Jugar');
@@ -41,7 +41,7 @@ describe('GAMES_DATA - Integridad del Catálogo (@spec REQ-03, REQ-04, REQ-05)',
 
   it('getGames() debe retornar la lista de juegos completa', () => {
     const games = getGames();
-    expect(games.length).toBe(6);
+    expect(games.length).toBe(9);
     expect(games).toBe(GAMES_DATA);
   });
 });

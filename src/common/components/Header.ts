@@ -35,7 +35,6 @@ export function renderHeader(): string {
           <button id="global-mute-btn" class="sound-toggle-btn" type="button" aria-label="${label}" title="${label}">
             <span class="sound-icon" aria-hidden="true">${icon}</span>
           </button>
-          <span class="header-tag" aria-label="Edición Homelab">Homelab Edition</span>
         </div>
       </div>
     </header>

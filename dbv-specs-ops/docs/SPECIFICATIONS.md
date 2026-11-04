@@ -114,6 +114,27 @@
 - [x] **REQ-47 · Integración de Efectos de Sonido Sintetizados (Web Audio API):** Generación en tiempo real de sonidos de disparo láser, marcha rítmica alienígena, explosión de invasor, impacto en escudo y victoria/derrota mediante osciladores Web Audio API sin ficheros externos.
 - [x] **REQ-48 · Integración de Space Invaders en el Catálogo y Enrutador SPA:** Añadir Space Invaders como 6to juego oficial en `src/common/data/games.data.ts`, actualización de contador a 6 títulos, tarjeta con estado `"Disponible"`, botón interactivo *"Jugar Ahora →"*, enrutamiento cliente `#space-invaders` y botón accesible *"Volver al Catálogo"*.
 
+### Requisitos Funcionales (RF) — Fase 8 (Juego Pac-Man)
+
+- [x] **REQ-49 · Módulo Aislado de Pac-Man:** El juego debe residir exclusivamente en `src/games/pacman/`, encapsulando toda su lógica de laberinto, entidades, renderizado en Canvas y vistas, sin dependencias cruzadas con otros juegos.
+- [x] **REQ-50 · Motor Lógico y Laberinto de Pac-Man (PacmanEngine):** Modelo de laberinto en cuadrícula con caminos transitables, muros y túnel de transporte lateral. Pac-Man con avance continuo y búfer de dirección. Generación de puntos (pellets, +10 pts) y píldoras de energía (energizers, +50 pts). 4 fantasmas (Blinky, Pinky, Inky, Clyde) con ciclo de estados: persecución, dispersión y asustado (vulnerables durante tiempo calibrado, +200/400/800/1600 pts acumulativos). Gestión de 3 vidas, condición de victoria al consumir todos los puntos, y récord persistido.
+- [x] **REQ-51 · Renderizado Canvas HTML5 y Controles para Pac-Man:** Renderizado retro-neón a 60 FPS con sincronización `requestAnimationFrame`, animación de apertura y cierre de boca de Pac-Man según dirección, sprites vectoriales de fantasmas con ojos orientados y parpadeo al expirar el modo asustado. Soporte de teclado (Flechas y WASD) y controles táctiles virtuales (D-pad en pantalla) para móviles.
+- [x] **REQ-52 · Integración de Pac-Man en el Catálogo y Enrutador SPA:** La tarjeta de Pac-Man en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#pacman` y botón accesible *"Volver al Catálogo"*.
+
+### Requisitos Funcionales (RF) — Fase 9 (Juego Asteroids)
+
+- [x] **REQ-53 · Módulo Aislado de Asteroids:** El juego debe residir exclusivamente en `src/games/asteroids/`, encapsulando toda su cinemática 2D espacial, división de asteroides, proyectiles, Canvas y vistas, sin dependencias cruzadas con otros juegos.
+- [x] **REQ-54 · Motor Físico Vectorial 2D de Asteroids (AsteroidsEngine):** Espacio continuo (800x600) con física inercial pura: nave con orientación angular, aceleración por empuje con estela de partículas, arrastre/rozamiento suave por vacío, y envolvente toroidal en los 4 bordes (wrap-around de coordenadas). Disparo de proyectiles láser con alcance y cadencia calibrada. Asteroides poligonales en 3 tamaños (Grande, Mediano, Pequeño) que se fragmentan al recibir impacto (+20, +50, +100 pts). 3 vidas, oleadas consecutivas y récord persistido en `localStorage`.
+- [x] **REQ-55 · Renderizado Canvas Vectorial y Controles para Asteroids:** Renderizado vectorial retro-arcade en verde aguacate neón (`#00f59b`) y turquesa digital (`#00d9c4`) con partículas de propulsión y explosiones. Controles por teclado (Flechas/WASD, Espacio para disparar) y controles táctiles en pantalla para móviles (Girar Izquierda/Derecha, Empuje, Disparo).
+- [x] **REQ-56 · Integración de Asteroids en el Catálogo y Enrutador SPA:** La tarjeta de Asteroids en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#asteroids` y botón accesible *"Volver al Catálogo"*.
+
+### Requisitos Funcionales (RF) — Fase 10 (Juego Blackjack)
+
+- [x] **REQ-57 · Módulo Aislado de Blackjack:** El juego debe residir exclusivamente en `src/games/blackjack/`, encapsulando toda su lógica de baraja de naipes, reglas de juego, IA del crupier, vistas y estilos, sin dependencias cruzadas con otros juegos.
+- [x] **REQ-58 · Motor de Lógica y Reglas de Blackjack (BlackjackEngine):** Mazo estándar de 52 cartas con barajado determinista/aleatorio. Cómputo óptimo del valor de la mano considerando As como 1 u 11 puntos según convenga. Acciones completas del jugador: Pedir Carta (Hit), Plantarse (Stand), Doblar Apuesta (Double Down) y Nueva Ronda (Deal). IA del crupier siguiendo la regla de la casa (pedir con 16 o menos, plantarse en 17+). Pagos oficiales (Blackjack natural 3:2, victoria estándar 1:1, empate o Push que devuelve la apuesta). Gestión de saldo de fichas, selector de apuestas y recarga automática si se agotan las fichas.
+- [x] **REQ-59 · Interfaz Visual Accesible y Controles para Blackjack:** Tablero interactivo con estética de paño de mesa carbón/neón, naipes vectoriales estilizados con palos de alta visibilidad, panel de control con botones ergonómicos (área táctil >= 44px) y feedback auditivo para reparto, victorias, derrotas y empates.
+- [x] **REQ-60 · Integración de Blackjack en el Catálogo y Enrutador SPA:** La tarjeta de Blackjack en el catálogo principal pasa a estado `"Disponible"` con botón interactivo de `"Jugar"`, enrutamiento mediante hash `#blackjack` y botón accesible *"Volver al Catálogo"*, completando los 9 juegos del catálogo.
+
 ### Requisitos No Funcionales (RNF)
 
 - [x] **RNF-01 · Rendimiento y Ligereza:** Carga instantánea con footprint inicial reducido (bundle compilado < 150KB sin assets pesados), score objetivo de 100/100 en Lighthouse de rendimiento.

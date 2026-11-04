@@ -26,7 +26,7 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, 
     expect(html).toContain('src="/logo.png"');
     expect(html).toContain('GuacamoleGH');
     expect(html).toContain('Games');
-    expect(html).toContain('Homelab Edition');
+    expect(html).not.toContain('Homelab Edition');
     expect(html).toContain('id="global-mute-btn"');
   });
 
@@ -78,7 +78,7 @@ describe('Renderizado de Componentes UI (@spec REQ-01 a REQ-06, REQ-10, REQ-13, 
     const html = renderGameGrid(GAMES_DATA);
 
     expect(html).toContain('Catálogo de Juegos');
-    expect(html).toContain('6 títulos');
+    expect(html).toContain(`${GAMES_DATA.length} títulos`);
 
     for (const game of GAMES_DATA) {
       expect(html).toContain(`data-game-id="${game.id}"`);

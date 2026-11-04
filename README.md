@@ -4,10 +4,10 @@
   <img src="public/logo.png" alt="GuacamoleGH Games Logo" width="128" height="128" />
   <p><strong>Catálogo web de juegos arcade clásicos para navegador en el homelab GuacamoleGH</strong></p>
   <p>
-    <img src="https://img.shields.io/badge/status-v1.3.1%20(6%20Juegos%20Disponibles)-00f59b?style=flat-square" alt="Status" />
+    <img src="https://img.shields.io/badge/status-v1.4.0%20(9%20Juegos%20Disponibles)-00f59b?style=flat-square" alt="Status" />
     <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License" />
     <img src="https://img.shields.io/badge/methodology-DBV%20Specs%20Ops%20v3.2.0-00d9c4?style=flat-square" alt="Methodology" />
-    <img src="https://img.shields.io/badge/tests-87%20passing-00d9c4?style=flat-square" alt="Tests" />
+    <img src="https://img.shields.io/badge/tests-130%20passing-00d9c4?style=flat-square" alt="Tests" />
   </p>
 </div>
 
@@ -31,7 +31,7 @@
 
 **GuacamoleGH Games** es un catálogo web arcade moderno, minimalista y tecnológico, diseñado para explorar y jugar a títulos clásicos directamente desde el navegador dentro del homelab GuacamoleGH.
 
-El proyecto cuenta con sus **seis juegos arcade clásicos completamente jugables**: **Snake**, **Pong**, **Tetris**, **Breakout**, **Tres en raya** y **Space Invaders**, todos ellos desacoplados en módulos independientes dentro de `src/games/`, con diseño responsive, tema oscuro en tonos carbón y acentos verde/turquesa, controles táctiles, selector de dificultad dinámica con modo Extremo y síntesis de audio nativa con Web Audio API.
+El proyecto cuenta con sus **nueve juegos arcade clásicos completamente jugables**: **Snake**, **Pong**, **Tetris**, **Breakout**, **Tres en raya**, **Space Invaders**, **Pac-Man**, **Asteroids** y **Blackjack**, todos ellos desacoplados en módulos independientes dentro de `src/games/`, con diseño responsive, tema oscuro en tonos carbón y acentos verde/turquesa, controles táctiles, pantallas de inicio/pausa/game over y síntesis de audio nativa con Web Audio API.
 
 El desarrollo sigue rigurosamente la metodología **Spec-Driven Development (SDD)** con el framework [dbv-specs-ops](https://github.com/davidbuenov/dbv-specs-ops).
 
@@ -48,18 +48,21 @@ El desarrollo sigue rigurosamente la metodología **Spec-Driven Development (SDD
 | **Breakout** | Arcade | 🟢 **Disponible (Jugable)** | `src/games/breakout/` |
 | **Tres en raya** | Estrategia | 🟢 **Disponible (Jugable)** | `src/games/tic-tac-toe/` |
 | **Space Invaders** | Arcade Shooter | 🟢 **Disponible (Jugable)** | `src/games/space-invaders/` |
+| **Pac-Man** | Arcade Clásico | 🟢 **Disponible (Jugable)** | `src/games/pacman/` |
+| **Asteroids** | Arcade Vectorial | 🟢 **Disponible (Jugable)** | `src/games/asteroids/` |
+| **Blackjack** | Cartas / Casino | 🟢 **Disponible (Jugable)** | `src/games/blackjack/` |
 
-Cada juego futuro se implementará de manera modular y aislada en su propio directorio dentro de `src/games/` sin acoplarse al catálogo.
+Todos los juegos están implementados de manera modular y aislada en su propio subdirectorio dentro de `src/games/` sin acoplarse al catálogo.
 
 ---
 
 <a name="stack"></a>
 ## 🛠️ Stack Tecnológico
 
-- **Entorno y Bundler:** Vite 6.x (compilación estática ultra-ligera < 20KB).
+- **Entorno y Bundler:** Vite 6.x (compilación estática ultra-ligera).
 - **Lenguaje:** TypeScript 5.x con tipado estricto (`strict: true`).
 - **Estilos:** CSS3 Moderno con Custom Properties (Tokens de diseño de `docs/DESIGN.md`), CSS Grid fluido y variables temáticas.
-- **Testing:** Vitest con Happy-DOM (100% trazabilidad de requisitos `@spec`).
+- **Testing:** Vitest con Happy-DOM (100% trazabilidad de requisitos `@spec`, 130 pruebas unitarias).
 - **Arquitectura:** Web Estática pura (sin backend, base de datos ni cuentas de usuario).
 
 ---
@@ -111,11 +114,20 @@ npm run preview
 ├── src/
 │   ├── common/             # Componentes, estilos y datos del catálogo
 │   │   ├── components/     # Header, Hero, GameGrid, GameCard, Footer
-│   │   ├── data/           # games.data.ts (Metadatos tipados de los 5 juegos)
+│   │   ├── data/           # games.data.ts (Metadatos tipados de los 9 juegos)
 │   │   ├── styles/         # tokens.css, reset.css, main.css
 │   │   └── types/          # Interfaces TypeScript (GameMetadata, GameStatus)
-│   ├── games/              # Módulos aislados reservados para futuros juegos
-│   └── main.ts             # Punto de entrada de la aplicación
+│   ├── games/              # Módulos aislados de juegos
+│   │   ├── snake/          # Serpiente clásica
+│   │   ├── pong/           # Duelo de palas 2D
+│   │   ├── tetris/         # Puzzle geométrico
+│   │   ├── breakout/       # Demolición de ladrillos
+│   │   ├── tic-tac-toe/    # Tres en raya accesible
+│   │   ├── space-invaders/ # Cañón y oleadas alienígenas
+│   │   ├── pacman/         # Laberinto arcade y fantasmas
+│   │   ├── asteroids/      # Cinemática espacial vectorial
+│   │   └── blackjack/      # 21 y apuestas con naipes
+│   └── main.ts             # Punto de entrada de la aplicación y enrutador SPA
 ├── tests/                  # Suite de pruebas unitarias y de requisitos (Vitest)
 ├── index.html              # Entrada HTML5 semántica
 ├── package.json            # Dependencias y scripts del proyecto
