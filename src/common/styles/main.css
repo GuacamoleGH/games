@@ -528,11 +528,11 @@ body {
 
 /* SNAKE GAME VIEW (REQ-10, REQ-11, REQ-12, REQ-13) */
 .snake-game-wrapper {
-  padding: var(--space-xl) 0 var(--space-xxxl);
-  flex: 1;
+  padding: var(--space-md) var(--space-sm) var(--space-xl);
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .snake-inner-container {
@@ -875,11 +875,11 @@ body {
 
 /* PONG GAME VIEW (REQ-18, REQ-19, REQ-20) */
 .pong-game-wrapper {
-  padding: var(--space-xl) 0 var(--space-xxxl);
-  flex: 1;
+  padding: var(--space-md) var(--space-sm) var(--space-xl);
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .pong-inner-container {
@@ -991,9 +991,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 180px);
-  padding: var(--space-lg) var(--space-md);
+  width: 100%;
+  padding: var(--space-md) var(--space-sm) var(--space-xl);
   animation: fadeIn 0.3s ease;
 }
 
@@ -1178,9 +1177,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 180px);
-  padding: var(--space-lg) var(--space-md);
+  width: 100%;
+  padding: var(--space-md) var(--space-sm) var(--space-xl);
   animation: fadeIn 0.3s ease;
 }
 
@@ -1286,9 +1284,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 180px);
-  padding: var(--space-lg) var(--space-md);
+  width: 100%;
+  padding: var(--space-md) var(--space-sm) var(--space-xl);
   animation: fadeIn 0.3s ease;
 }
 
@@ -1411,9 +1408,39 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: var(--space-md);
   margin-top: var(--space-lg);
   width: 100%;
+}
+
+.ttt-reset-btn,
+.btn-secondary-game {
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.ttt-reset-btn:hover,
+.btn-secondary-game:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-text-primary);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
 }
 
 /* Responsive Adaptations for Mobile Viewports (REQ-01, RNF-02, RNF-03) */
@@ -1592,10 +1619,29 @@ body {
   }
 
   .snake-back-btn {
-    width: 42px;
-    min-width: 42px;
-    height: 42px;
-    padding: 0;
+    width: 38px !important;
+    min-width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+  }
+
+  .snake-game-wrapper,
+  .pong-game-wrapper,
+  .tetris-game-wrapper,
+  .breakout-game-wrapper,
+  .space-game-wrapper,
+  .tictactoe-game-wrapper,
+  .pacman-game-wrapper,
+  .bj-game-wrapper {
+    padding-top: var(--space-xs) !important;
+    padding-bottom: var(--space-lg) !important;
+  }
+
+  .ttt-reset-btn,
+  .btn-secondary-game {
+    height: 38px !important;
+    font-size: 0.78rem !important;
+    padding: 0 14px !important;
   }
 }
 
@@ -1618,9 +1664,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
-  padding: var(--space-md) var(--space-sm);
+  padding: var(--space-md) var(--space-sm) var(--space-xl);
   animation: fadeIn 0.3s ease;
 }
 
@@ -1689,9 +1734,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
-  padding: var(--space-md) var(--space-sm);
+  padding: var(--space-md) var(--space-sm) var(--space-xl);
   animation: fadeIn 0.3s ease;
 }
 

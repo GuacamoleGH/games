@@ -409,7 +409,7 @@ export class TicTacToeView {
             <button id="ttt-new-game-btn" class="btn-play-game" aria-label="Empezar nueva ronda">
               Nueva Ronda
             </button>
-            <button id="ttt-reset-scores-btn" class="snake-back-btn" aria-label="Reiniciar tanteo a cero">
+            <button id="ttt-reset-scores-btn" class="ttt-reset-btn btn-secondary-game" aria-label="Reiniciar tanteo a cero">
               Reiniciar Marcador
             </button>
           </div>

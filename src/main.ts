@@ -34,6 +34,7 @@ let activeUnmount: (() => void) | null = null;
  * @spec REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06
  */
 function renderCatalogView(appContainer: HTMLElement): void {
+  window.scrollTo(0, 0);
   if (activeUnmount) {
     activeUnmount();
     activeUnmount = null;
@@ -81,6 +82,7 @@ function renderCatalogView(appContainer: HTMLElement): void {
 }
 
 function renderGameContainer(appContainer: HTMLElement, mountFn: (mountPoint: HTMLElement, onBack: () => void) => () => void): void {
+  window.scrollTo(0, 0);
   if (activeUnmount) {
     activeUnmount();
     activeUnmount = null;
@@ -181,6 +183,7 @@ function renderBlackjackGameView(appContainer: HTMLElement): void {
  * @spec REQ-13, REQ-20, REQ-27, REQ-34, REQ-40, REQ-48, REQ-52, REQ-56, REQ-60
  */
 export function handleRouting(): void {
+  window.scrollTo(0, 0);
   const appContainer = document.querySelector<HTMLDivElement>('#app');
   if (!appContainer) {
     console.error('[GuacamoleGH Games] Contenedor #app no encontrado.');
