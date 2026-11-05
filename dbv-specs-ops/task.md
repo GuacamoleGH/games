@@ -162,6 +162,7 @@
 - [x] **T-140:** Actualizar `README.md`, badge de tests (130 passing) y sincronizar todos los cambios con GitHub en las ramas `main` y `master`.
 - [x] **T-141:** Integrar los nuevos iconos gráficos PNG de los 9 juegos arcade en las tarjetas del catálogo (`public/icons/`, `GameCard.ts`, `games.data.ts`, `main.css`, tests) (`@spec REQ-04, RNF-02`).
 - [x] **T-142:** Rediseñar cabecera de las tarjetas de juego colocando el título en grande a la derecha del icono y suprimiendo el badge "• JUGAR" (`GameCard.ts`, `main.css`, tests) (`@spec REQ-04`).
+- [x] **T-143:** Corregir envoltura y alineación de la barra superior en móviles (< 600px): fila 1 con retorno (izq) y acciones (der), y fila 2 con HUD centrado a ancho completo (`main.css`, tests) (`@spec RNF-02`).
 
 ## Deuda Técnica
 *Mejoras detectadas fuera del foco de la tarea actual, para abordarlas en fases futuras.*
@@ -172,7 +173,7 @@
 
 ## 🔄 Context Snapshot / Snapshot de Contexto
 
-> **Last update / Última actualización:** 2026-11-04
-> **Exact point / Punto exacto:** Tarjetas de juego rediseñadas con el título en grande a la derecha del icono y eliminación del badge "• JUGAR". 130/130 tests pasando, build verificado y trazabilidad DBV 100%.
+> **Last update / Última actualización:** 2026-11-05
+> **Exact point / Punto exacto:** Barra superior en pantallas móviles (< 600px) corregida en 2 filas balanceadas: Fila 1 (Volver izq + Acciones der) y Fila 2 (HUD completo centrado). 130/130 tests pasando, build verificado y trazabilidad DBV 100%.
 > **Pending / Pendiente:** Ninguna tarea pendiente. Esperando confirmación del usuario.
 > **Next step / Próximo paso:** Esperar nuevas instrucciones del usuario.
