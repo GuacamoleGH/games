@@ -2,7 +2,7 @@
 
 <div align="center">
   <img src="public/logo.png" alt="GuacamoleGH Games Logo" width="128" height="128" />
-  <p><strong>Catálogo web de juegos arcade clásicos para navegador en el homelab GuacamoleGH</strong></p>
+  <p><strong>Catálogo web de juegos arcade clásicos para navegador en el ecosistema GuacamoleGH</strong></p>
   <p>
     <img src="https://img.shields.io/badge/status-v1.4.0%20(9%20Juegos%20Disponibles)-00f59b?style=flat-square" alt="Status" />
     <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License" />
@@ -29,7 +29,7 @@
 <a name="about"></a>
 ## 📌 Sobre el proyecto
 
-**GuacamoleGH Games** es un catálogo web arcade moderno, minimalista y tecnológico, diseñado para explorar y jugar a títulos clásicos directamente desde el navegador dentro del homelab GuacamoleGH.
+**GuacamoleGH Games** es un catálogo web arcade moderno, minimalista y tecnológico, diseñado para explorar y jugar a títulos clásicos directamente desde el navegador dentro del ecosistema GuacamoleGH.
 
 El proyecto cuenta con sus **nueve juegos arcade clásicos completamente jugables**: **Snake**, **Pong**, **Tetris**, **Breakout**, **Tres en raya**, **Space Invaders**, **Pac-Man**, **Asteroids** y **Blackjack**, todos ellos desacoplados en módulos independientes dentro de `src/games/`, con diseño responsive, tema oscuro en tonos carbón y acentos verde/turquesa, controles táctiles, pantallas de inicio/pausa/game over y síntesis de audio nativa con Web Audio API.
 
@@ -89,13 +89,13 @@ npm install
 ```bash
 npm run dev
 ```
-La aplicación se abrirá en `http://localhost:3000` con recarga en caliente instantánea (HMR).
+La aplicación se abrirá en el navegador con recarga en caliente instantánea (HMR).
 
 ### 3. Compilar para producción
 ```bash
 npm run build
 ```
-Genera los archivos estáticos en la carpeta `dist/`, listos para servirse desde cualquier servidor web HTTP o contenedor del homelab.
+Genera los archivos estáticos optimizados en la carpeta `dist/`.
 
 ### 4. Vista previa local del build de producción
 ```bash
